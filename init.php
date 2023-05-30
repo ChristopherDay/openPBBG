@@ -37,6 +37,7 @@
 
     $pageToLoad = $_GET['page'];
 
+    $user = false;
     if (!empty($_SESSION['userID'])) {
         $user = new user($_SESSION['userID']);
         
@@ -56,24 +57,24 @@
 
         $moduleInfo = $page->modules[$pageToLoad];
 
-        debug($moduleInfo);
-        exit;
-
-        $user = false;
-
+        /* If the user is logged in load the page */
         if ($user) {
-            
+            /* Always let the user logout no matter what */
             if ($_GET["page"] == "logout") {
                 $page->loadPage('logout');
-            } else if ($user->info->U_status == 2 && $jailPageCheck["requireLogin"]) {
-                $page->loadPage('users');
-
             } else {
+                /* Let a hook override what page to load */
+                $hook = new Hook("moduleLoad");
+                $pageToLoad = $hook->run($pageToLoad, true);
+
                 $page->loadPage($pageToLoad);
             }
-                
+        
+        /* If they are not logged in check if they can access the page when not logged in */
         } else if (!$jailPageCheck["requireLogin"]) {
             $page->loadPage($_GET['page']);
+
+        /* show the login page */
         } else {
             $loginPage = "login";
             $hook = new Hook("loginPage");
