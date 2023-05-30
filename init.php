@@ -71,7 +71,7 @@
             }
         
         /* If they are not logged in check if they can access the page when not logged in */
-        } else if (!$jailPageCheck["requireLogin"]) {
+        } else if (!$moduleInfo["requireLogin"]) {
             $page->loadPage($_GET['page']);
 
         /* show the login page */
