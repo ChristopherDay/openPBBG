@@ -8,7 +8,7 @@
 			foreach( $files as $file ){
 				delete_files( $file );      
 			}
-			rmdir( $target );
+			@rmdir( $target );
 		} elseif(is_file($target)) {
 			unlink( $target );  
 		}
@@ -23,6 +23,7 @@
 			if (isset($_GET["remove"])) {
 				success(4, "Remove Installer");
 				echo '<ol><li>Directory removed</li></ol>';
+
 				delete_files("../install");
 				success(5, "Complete!");
 				echo '<ol><li>Redirecting you in 5 seconds</li></ol>';
