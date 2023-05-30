@@ -16,7 +16,7 @@
                         <input class="form-control" type="password" name="cpassword" placeholder="Confirm Password" />
                     </div>
                 </div><br />
-                <div class="text-right">
+                <div class="text-end">
                     <button type="submit" class="btn btn-default">Register</button>
                 </div>
             </form>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
 
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
                 </div>
             </form>

@@ -8,9 +8,9 @@
 
         public $userSearch = '
 
-            <div class="panel panel-default">
-                <div class="panel-heading">Find User</div>
-                <div class="panel-body">
+            <div class="card">
+                <div class="card-header">Find User</div>
+                <div class="card-body">
                     <form method="post" action="#">
                         <input type="text" name="user" class="form-control form-control-inline" placeholder="Username ..." />
                         <button class="btn btn-primary">Search</button>
@@ -18,9 +18,9 @@
                 </div>
             </div>
 
-            <div class="panel panel-default">
-                <div class="panel-heading">Results</div>
-                <div class="panel-body">
+            <div class="card">
+                <div class="card-header">Results</div>
+                <div class="card-body">
                     {#unless results}
                         <em> No users found </em>
                     {/unless}
@@ -41,9 +41,9 @@
         public $editPassword = '
 
 
-            <div class="panel panel-default">
-                <div class="panel-heading">Edit Password</div>
-                <div class="panel-body">
+            <div class="card">
+                <div class="card-header">Edit Password</div>
+                <div class="card-body">
 
                     <ul class="nav nav-tabs nav-justified">
                         <li><a href="?page=profile&action=edit">Profile</a></li>
@@ -52,7 +52,7 @@
 
                     <form action="#" method="post">
                         <div class="row">
-                            <div class="col-md-3 text-right">
+                            <div class="col-md-3 text-end">
                                 <strong>Old Password</strong>
                             </div>
                             <div class="col-md-9">
@@ -60,7 +60,7 @@
                             </div>
                         </div><br />
                         <div class="row">
-                            <div class="col-md-3 text-right">
+                            <div class="col-md-3 text-end">
                                 <strong>New Password</strong>
                             </div>
                             <div class="col-md-9">
@@ -68,7 +68,7 @@
                             </div>
                         </div><br />
                         <div class="row">
-                            <div class="col-md-3 text-right">
+                            <div class="col-md-3 text-end">
                                 <strong>Confirm Password</strong>
                             </div>
                             <div class="col-md-9">
@@ -87,16 +87,16 @@
 
         public $editProfile = '
 
-            <div class="panel panel-default">
-                <div class="panel-heading">Edit Profile</div>
-                <div class="panel-body">
+            <div class="card">
+                <div class="card-header">Edit Profile</div>
+                <div class="card-body">
                     <ul class="nav nav-tabs nav-justified">
                         <li class="active"><a href="?page=profile&action=edit">Profile</a></li>
                         <li><a href="?page=profile&action=password">Change Password</a></li>
                     </ul>
                     <form action="#" method="post">
                         <div class="row">
-                            <div class="col-md-3 text-right">
+                            <div class="col-md-3 text-end">
                                 <strong>Picture</strong>
                             </div>
                             <div class="col-md-9">
@@ -104,7 +104,7 @@
                             </div>
                         </div><br />
                         <div class="row">
-                            <div class="col-md-3 text-right">
+                            <div class="col-md-3 text-end">
                                 <strong>Bio</strong>
                             </div>
                             <div class="col-md-9">
@@ -123,9 +123,9 @@
         
         public $profile = '
 
-            <div class="panel panel-default user-profile">
-                <div class="panel-heading">Links</div>
-                <div class="panel-body">
+            <div class="card user-profile">
+                <div class="card-header">Links</div>
+                <div class="card-body">
                     <ul class="nav nav-pills">
                         {#each profileLinks}
                             {#if url}<a class="btn btn-xs btn-default" href="{url}">{text}</a> &nbsp;{/if}
@@ -136,25 +136,25 @@
 
             <div class="row">
                 <div class="col-md-8 col-lg-9">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">{user.name}</div>
-                            <div class="panel-body">
+                    <div class="card">
+                        <div class="card-header">{user.name}</div>
+                            <div class="card-body">
 
-                            <ul class="list-group text-left profile-user-stats">
+                            <ul class="list-group text-start profile-user-stats">
                                 <li class="list-group-item">
                                     <strong>Username</strong>
-                                    <span class="pull-right">
+                                    <span class="float-end">
                                         {>userName}
                                         <sup><{status}></sup>
                                     </span>
                                 </li>
                                 <li class="list-group-item">
                                     <strong>Last Active</strong>
-                                    <span class="pull-right">{_ago laston} ago</span>
+                                    <span class="float-end">{_ago laston} ago</span>
                                 </li>
                                 <li class="list-group-item">
                                     <strong>Status</strong>
-                                    <span class="pull-right">
+                                    <span class="float-end">
                                         {#if dead}
                                             <strong style="color: #900;">DEAD</strong> <{killedBy}>
                                         {/if}
@@ -166,27 +166,27 @@
                                 {#if showRole}
                                     <li class="list-group-item">
                                         <strong>Role</strong>
-                                        <span class="pull-right">
+                                        <span class="float-end">
                                             {role}
                                         </span>
                                     </li>
                                 {/if}
                                 <li class="list-group-item">
                                     <strong>Rank</strong>
-                                    <span class="pull-right">
+                                    <span class="float-end">
                                         {rank}
                                     </span>
                                 </li>
                                 <li class="list-group-item">
                                     <strong>Wealth</strong>
-                                    <span class="pull-right">
+                                    <span class="float-end">
                                         {moneyRank}
                                     </span>
                                 </li>
                                 {#each profileStats}
                                     <li class="list-group-item">
                                         <strong>{text}</strong>
-                                        <span class="pull-right">
+                                        <span class="float-end">
                                             <{stat}>
                                         </span>
                                     </li>
@@ -196,19 +196,19 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-lg-3">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Profile Picture</div>
+                    <div class="card">
+                        <div class="card-header">Profile Picture</div>
 
-                        <div class="panel-body profile-pic">
+                        <div class="card-body profile-pic">
                             <img src="{picture}" style="max-height: 250px" class="img-responsive" alt="{user.name}\'s Profile" />
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="panel panel-default">
-                <div class="panel-heading">Bio</div>
-                <div class="panel-body">
+            <div class="card">
+                <div class="card-header">Bio</div>
+                <div class="card-body">
                     {#if bio}
                         [{bio}]
                     {/if}

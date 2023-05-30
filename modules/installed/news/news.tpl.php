@@ -7,7 +7,7 @@
                 <div class="well well-sm">
                     <h3>
                         {title} 
-                        <small class="pull-right tiny">
+                        <small class="float-end tiny">
                             By {>userName}<br />
                             {date}
                         </small>

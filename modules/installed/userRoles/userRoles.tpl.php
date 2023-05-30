@@ -79,13 +79,13 @@
                 <div class="row">
                     <div class="col-md-10">
                         <div class="form-group">
-                            <label class="pull-left">Name</label>
+                            <label class="fw-bold mb-1">Name</label>
                             <input type="text" class="form-control" name="name" value="{name}">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="pull-left">
+                            <label class="fw-bold mb-1">
                                 Color <br />
                                 <input type="color" name="color" value="{color}">
                             </label> 
@@ -103,7 +103,7 @@
                 </ul>
                 <div class="clearfix"></div>
 
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">
                         Save
                     </button>

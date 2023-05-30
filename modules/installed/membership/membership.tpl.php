@@ -4,18 +4,18 @@
 		public $memberships = '
 			<div class="row">
 				<div class="col-md-7">
-					<div class="panel panel-default">
-						<div class="panel-heading">
+					<div class="card">
+						<div class="card-header">
 							{_setting "membershipLinkName"} Benefits
 						</div>
-						<div class="panel-body">
+						<div class="card-body">
 							<p>
 								By becoming a {_setting "membershipName"} you get the following benefits:
 							</p>
 
 							<hr />
 							{#each benefits}
-								<p class="text-left">
+								<p class="text-start">
 									<strong>{title}</strong><br />
 									{description}
 								</p>
@@ -25,11 +25,11 @@
 
 				</div>
 				<div class="col-md-5">
-					<div class="panel panel-default">
-						<div class="panel-heading">
+					<div class="card">
+						<div class="card-header">
 							Packages
 						</div>
-						<div class="panel-body">
+						<div class="card-body">
 
 		                    {#unless packages}
 		                        <div class="text-center">
@@ -98,19 +98,19 @@
         public $premiumMembershipForm = '
             <form method="post" action="?page=admin&module=membership&action={editType}&id={id}">
                 <div class="form-group">
-                    <label class="pull-left">Package Description</label>
+                    <label class="fw-bold mb-1">Package Description</label>
                     <input type="text" class="form-control" name="desc" value="{desc}">
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">Cost Of Package ({_setting "pointsName"})</label>
+                    <label class="fw-bold mb-1">Cost Of Package ({_setting "pointsName"})</label>
                     <input type="text" class="form-control" name="cost" value="{cost}">
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">Membership time (seconds)</label>
+                    <label class="fw-bold mb-1">Membership time (seconds)</label>
                     <input type="number" class="form-control" name="seconds" value="{seconds}">
                 </div>
                 
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
                 </div>
             </form>
@@ -123,16 +123,16 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="pull-left">PayPal Email address</label>
+                            <label class="fw-bold mb-1">PayPal Email address</label>
                             <input type="text" class="form-control" name="membershipLinkName" value="{membershipLinkName}" />
                         </div>
                         <div class="form-group">
-                            <label class="pull-left">Currency Code (e.g. GBP or USD)</label>
+                            <label class="fw-bold mb-1">Currency Code (e.g. GBP or USD)</label>
                             <input type="text" class="form-control" name="membershipName" value="{membershipName}" />
                         </div>
                     </div>
                 </div>
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
                 </div>
             </form>

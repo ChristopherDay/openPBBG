@@ -7,9 +7,9 @@
             <div class="row">
                 <div class="col-md-7">
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">New Players</div>
-                        <div class="panel-body">
+                    <div class="card">
+                        <div class="card-header">New Players</div>
+                        <div class="card-body">
                             <table class="table table-condensed table-responsive table-bordered table-striped stats-table">
                                 <thead>
                                     <tr>
@@ -39,9 +39,9 @@
                     </div>
 
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Recently Killed</div>
-                        <div class="panel-body">
+                    <div class="card">
+                        <div class="card-header">Recently Killed</div>
+                        <div class="card-body">
                             <table class="table table-condensed table-responsive table-bordered table-striped stats-table">
                                 <thead>
                                     <tr>
@@ -74,10 +74,10 @@
 
                 <div class="col-md-5">
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Game Stats</div>
-                        <div class="panel-body">
-                            <ul class="list-group text-left">
+                    <div class="card">
+                        <div class="card-header">Game Stats</div>
+                        <div class="card-body">
+                            <ul class="list-group text-start">
                                 <li class="list-group-item">
                                     Players Alive
                                     <span class="badge">{alive}</span>

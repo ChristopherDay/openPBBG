@@ -10,7 +10,7 @@
             <a href="?page=admin&module=moduleManager&action=install&view={id}" class="btn btn-default">
                 Go back to module overview
             </a>
-            <div class="pull-right">
+            <div class="float-end">
                 <em>This may cause other issues </em>
                 <a href="?page=admin&module=moduleManager&action=install&installModule={id}&force=true" class="btn btn-danger">
                     Continue with install
@@ -31,7 +31,7 @@
         {/unless}';
 
         public $moduleOverview = '
-            <div class="pull-right">
+            <div class="float-end">
                 {#if _installing}
                     <a href="?page=admin&module=moduleManager&action=install&installModule={id}" class="btn btn-default">Install Module</a>
                 {/if}
@@ -299,12 +299,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="pull-left">Module File (Zipped)</label>
+                            <label class="fw-bold mb-1">Module File (Zipped)</label>
                             <input type="file" class="form-control" name="file" />
                         </div>
                     </div>
                 </div>
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">Upload</button>
                 </div>
 

@@ -4,9 +4,9 @@
 
         public $validateAccount = '
 
-            <div class="panel panel-default">
-                <div class="panel-heading">Account Activation</div>
-                <div class="panel-body">
+            <div class="card">
+                <div class="card-header">Account Activation</div>
+                <div class="card-body">
                     <div class="text-center">
                         <p class="text-center">
                             Before you can play you need to activate your account. Please check your email for your validation code. This may be in your spam folder.
@@ -45,12 +45,12 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="form-group">
-                            <label class="pull-left">Username, ID or Email</label>
+                            <label class="fw-bold mb-1">Username, ID or Email</label>
                             <input type="text" class="form-control" name="user" value="{user}">
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <label class="pull-left col-md-12">&nbsp;</label>
+                        <label class="fw-bold mb-1">&nbsp;</label>
                         <button class="btn btn-default" type="submit">
                             Search for users
                         </button>
@@ -109,13 +109,13 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="pull-left">User Name</label>
+                            <label class="fw-bold mb-1">User Name</label>
                             <input type="text" class="form-control" name="name" value="{name}">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="pull-left">User Status</label>
+                            <label class="fw-bold mb-1">User Status</label>
                             <select class="form-control" name="userStatus" data-value="{userStatus}">
                                 <option {#if isDead}selected{/if} value="0">Dead</option>
                                 <option {#if isValidated}selected{/if} value="1">Alive</option>
@@ -125,7 +125,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="pull-left">User Level</label>
+                            <label class="fw-bold mb-1">User Level</label>
                             <select class="form-control" name="userLevel" data-value="{userLevel}">
                                 {#each userRoles}
                                     <option value="{id}">{name}</option>
@@ -137,7 +137,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="pull-left">Email</label>
+                            <label class="fw-bold mb-1">Email</label>
                             <input type="text" class="form-control" name="email" value="{email}">
                         </div>
                     </div>
@@ -145,13 +145,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="pull-left">Cash</label>
+                            <label class="fw-bold mb-1">Cash</label>
                             <input type="number" class="form-control" name="money" value="{money}">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="pull-left">Bank</label>
+                            <label class="fw-bold mb-1">Bank</label>
                             <input type="number" class="form-control" name="bank" value="{bank}">
                         </div>
                     </div>
@@ -159,13 +159,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="pull-left">EXP</label>
+                            <label class="fw-bold mb-1">EXP</label>
                             <input type="number" class="form-control" name="exp" value="{exp}">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="pull-left">Points</label>
+                            <label class="fw-bold mb-1">Points</label>
                             <input type="number" class="form-control" name="points" value="{points}">
                         </div>
                     </div>
@@ -173,22 +173,22 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="pull-left">Bullets</label>
+                            <label class="fw-bold mb-1">Bullets</label>
                             <input type="text" class="form-control" name="bullets" value="{bullets}">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="pull-left">Profile Picture</label>
+                            <label class="fw-bold mb-1">Profile Picture</label>
                             <input type="text" class="form-control" name="pic" value="{pic}">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">Bio</label>
+                    <label class="fw-bold mb-1">Bio</label>
                     <textarea rows="8" class="form-control" name="bio">{bio}</textarea>
                 </div>
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
                 </div>
             </form>

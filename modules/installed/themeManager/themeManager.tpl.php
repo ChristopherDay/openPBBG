@@ -9,31 +9,31 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="pull-left">Game Name</label>
+                            <label class="fw-bold mb-1">Game Name</label>
                             <input type="text" class="form-control" name="game_name" value="{game_name}" />
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="pull-left">From Email</label>
+                            <label class="fw-bold mb-1">From Email</label>
                             <input type="text" class="form-control" name="from_email" value="{from_email}" />
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="pull-left">Points Name</label>
+                            <label class="fw-bold mb-1">Points Name</label>
                             <input type="text" class="form-control" name="pointsName" value="{pointsName}" />
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="pull-left">Gang Name</label>
+                            <label class="fw-bold mb-1">Gang Name</label>
                             <input type="text" class="form-control" name="gangName" value="{gangName}" />
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="pull-left">Landing Module</label>
+                            <label class="fw-bold mb-1">Landing Module</label>
                             <select class="form-control" name="landingPage">
                                 {#each modules}
                                     <option value="{id}" {#if selected}selected{/if}>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="pull-left">Game Theme</label>
+                            <label class="fw-bold mb-1">Game Theme</label>
                             <select class="form-control" name="theme">
                                 {#each themes}
                                     <option value="{id}" {#if selected}selected{/if}>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="pull-left">Admin Theme</label>
+                            <label class="fw-bold mb-1">Admin Theme</label>
                             <select class="form-control" name="adminTheme">
                                 {#each adminThemes}
                                     <option value="{id}" {#if selected}selected{/if}>
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
                 </div>
             </form>
@@ -133,12 +133,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="pull-left">Theme File (Zipped)</label>
+                            <label class="fw-bold mb-1">Theme File (Zipped)</label>
                             <input type="file" class="form-control" name="file" />
                         </div>
                     </div>
                 </div>
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submitInstall" type="submit" value="1">Upload</button>
                 </div>
             </form>

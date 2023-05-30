@@ -66,19 +66,19 @@
         public $roundsForm = '
             <form method="post" action="?page=admin&module=rounds&action={editType}&id={id}">
                 <div class="form-group">
-                    <label class="pull-left">Round Name</label>
+                    <label class="fw-bold mb-1">Round Name</label>
                     <input type="text" class="form-control" name="name" value="{name}">
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">Start Date</label>
+                    <label class="fw-bold mb-1">Start Date</label>
                     <input type="datetime-local" class="form-control" name="start" value="{start}">
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">Value ($)</label>
+                    <label class="fw-bold mb-1">Value ($)</label>
                     <input type="datetime-local" class="form-control" name="end" value="{end}">
                 </div>
                 
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
                 </div>
             </form>

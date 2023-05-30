@@ -4,13 +4,13 @@
         
         public $notifications = '
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="card">
+                <div class="card-header">
                     Notifications
                 </div>
-                <div class="panel-body-">
+                <div class="card-body-">
 
-                     <ul class="list-group text-left">
+                     <ul class="list-group text-start">
         
                         {#each userNotifications}
                             <li class="list-group-item"> 
@@ -20,7 +20,7 @@
                                     {/unless}
                                     {date}
 
-                                    <a class="pull-right" href="?page=notifications&action=delete&id={id}">
+                                    <a class="float-end" href="?page=notifications&action=delete&id={id}">
                                         Delete
                                     </a>
 
