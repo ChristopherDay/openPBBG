@@ -114,15 +114,19 @@
 
             if (isset($this->info->U_name)) {
                 $this->user = array(
-                    "name" => $this->info->U_name,
-                    "id" => $this->info->U_id,
-                    "userLevel" => $this->info->U_userLevel,
-                    "status" => $this->info->U_status, 
-                    "color" => $this->info->UR_color, 
-                    "gang" => $this->info->US_gang, 
-                    "profilePicture" => $pic, 
-                    "onlineStatus" => $this->getStatus(false)
+                        "status" => $this->info->U_status, 
+                        "name" => $this->info->U_name,
+                        "id" => $this->info->U_id,
+                        "userLevel" => $this->info->U_userLevel,
+                        "color" => $this->info->UR_color, 
+                        "profilePicture" => $pic, 
+                        "onlineStatus" => $this->getStatus(false)
+
                 );
+
+                $userNameObject = new Hook("alterUserNameObject");
+                $userNameObject->run($this);
+
             }
 
             $this->applyItemEffects();
@@ -333,19 +337,10 @@
             
             $pic = $this->getProfilePicture();
 
-            $maxHealth = $this->rank->R_health;
-
-            $health = ($maxHealth - $this->info->US_health) / $maxHealth * 100; 
-            if ($health < 0) $health = 0;
 
             $page->addToTemplate('pic', $pic);
             $page->addToTemplate('money', $page->money($this->info->US_money));
-            $page->addToTemplate('bullets', number_format($this->info->US_bullets));
-            $page->addToTemplate('backfire', number_format($this->info->US_backfire));
             $page->addToTemplate('points', $this->info->US_points);
-            $page->addToTemplate('health', number_format($health, 2));
-            $page->addToTemplate('location', $this->getLocation());
-            $page->addToTemplate('locationID', $this->info->US_location);
             $page->addToTemplate('username', $this->info->U_name);
             $page->addToTemplate('userStatus', $this->info->U_status);
             $page->addToTemplate('user', $this->user);
@@ -353,10 +348,6 @@
             $page->addToTemplate('isAdmin', count($this->adminModules) != 0);
             
             $rank = $this->getRank();
-            $gang = $this->getGang();
-            $weapon = $this->getWeapon();
-            $armor = $this->getArmor();
-
             
             if (isset($this->nextRank->R_exp)) {
                 $this->info->maxRank = false;
@@ -375,9 +366,6 @@
             $page->addToTemplate('maxRank', $this->info->maxRank);
             $page->addToTemplate('rank', $rank->R_name);
             @$page->addToTemplate('exp_perc', $expperc);
-            $page->addToTemplate('gang', $gang);
-            $page->addToTemplate('weapon', $weapon->I_name);
-            $page->addToTemplate('armor', $armor->I_name);
             if (isset($this->nextRank->R_name)) $page->addToTemplate('nextRank', $this->nextRank->R_name);
 
             $hook = new Hook("userInformation");
@@ -403,55 +391,6 @@
             $query->execute();
             $result = $query->fetchObject();
             
-            return $result;
-            
-        }
-        
-        public function getGang() {
-            
-            if (!$this->info->US_gang) {
-                return array(
-                    "id" => 0, 
-                    "name" => "None"
-                );
-            }
-
-
-            $query = $this->db->prepare("SELECT G_id as 'id', G_name as 'name' FROM gangs WHERE G_id = :gang");
-            $query->bindParam(":gang", $this->info->US_gang);
-            $query->execute();
-            $result = $query->fetch(PDO::FETCH_ASSOC);
-            
-            return $result;
-            
-        }
-        
-        public function getWeapon() {
-            
-            $query = $this->db->prepare("SELECT * FROM items WHERE I_id = :weapon");
-            $query->bindParam(":weapon", $this->info->US_weapon);
-            $query->execute();
-            $result = $query->fetchObject();
-            
-            if (!$result) {
-                return (object) array("I_name" => "None");
-            } 
-
-            return $result;
-            
-        }
-        
-        public function getArmor() {
-            
-            $query = $this->db->prepare("SELECT * FROM items WHERE I_id = :armor");
-            $query->bindParam(":armor", $this->info->US_armor);
-            $query->execute();
-            $result = $query->fetchObject();
-            
-            if (!$result) {
-                return (object) array("I_name" => "None");
-            } 
-
             return $result;
             
         }
@@ -520,7 +459,6 @@
                 $this->counter++;
 
                 $this->set("US_rank", $newRank->R_id);
-                $this->set("US_bullets", $this->info->US_bullets + $newRank->R_bulletReward);
                 $this->set("US_money", $this->info->US_money + $newRank->R_cashReward);
 
                 $rewards = array();
@@ -577,17 +515,6 @@
             $notification->bindParam(":id", $this->info->U_id);
             $notification->bindParam(":text", $text);
             $notification->execute();
-        }
-
-        public function getLocation() {
-            
-            $location = $this->db->prepare("SELECT L_name FROM locations WHERE L_id = :location");
-            $location->bindParam(':location', $this->info->US_location);
-            $location->execute();
-            
-            $return = $location->fetch(PDO::FETCH_ASSOC);
-            
-            return $return['L_name'];
         }
         
         public function checkTimer($timer) {

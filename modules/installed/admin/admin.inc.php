@@ -88,6 +88,8 @@
             if (file_exists($moduleJSFile)) {
                 $this->page->registerTemplateFile($moduleJSFile);
             }
+            
+            $this->page->addToTemplate("adminModule", $adminModule);
 
             $adminModule = new adminModule();
             $adminModule->db = $this->db;
@@ -108,8 +110,32 @@
         private function viewModules() {
 
             $this->moduleLinks = array();
-            
+                
+
             new hook("menus", function ($menus) {
+
+                $icons = array(
+                    'Dashboard'=> "fa-solid fa-chart-line",
+                    'Help Desk'=> "fa-solid fa-circle-question",
+                    'Items'=> "fa-solid fa-shirt",
+                    'Lottery'=> "fa-solid fa-ticket",
+                    'Organized Crime'=> "fa-solid fa-people-line",
+                    'Admin Panel'=> "fas fa-home",
+                    'Game Mechanics'=> "fas fa-cog",
+                    'Vehicles'=> "fas fa-car",
+                    'Points'=> "fa-solid fa-coins",
+                    'Killing'=> "fa-solid fa-gun",
+                    'Pages'=> "fas fa-copy",
+                    'Communication'=> "fas fa-comments",
+                    'User Management'=> "fas fa-users",
+                    'Rounds'=> "fas fa-timeline",
+                    'Modules & Themes'=> "fas fa-puzzle-piece",
+                );
+
+                $hook = new Hook("adminGroupIcons", function ($icons) {
+                    return $icons;
+                });
+                $icons = $hook->run($icons, true);
             
                 foreach ($this->page->modules as $moduleName => $moduleInfo) {
                     if (!isset($moduleInfo["adminGroup"])) continue;
@@ -119,8 +145,13 @@
                     ) continue;
 
                     if (!isset($menus[$moduleInfo["adminGroup"]])) {
+                        $icon = "fas fa-circle";
+                        if (isset($icons[$moduleInfo["adminGroup"]])) {
+                            $icon = $icons[$moduleInfo["adminGroup"]];
+                        }
                         $menus[$moduleInfo["adminGroup"]] = array(
                             "title" => $moduleInfo["adminGroup"], 
+                            "icon" => $icon,
                             "items" => array(), 
                             "sort" => 300
                         );

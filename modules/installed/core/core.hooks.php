@@ -5,13 +5,13 @@
         return array(
             "sort" => 10000000,
             "size" => 12, 
-            "html" => '<hr /><div class="text-center"><small>Gangster Legends V'.$page->modules["glCore"]["version"]."</small></div>",
+            "html" => '<hr /><div class="text-center"><small>Open PBBG V'.$page->modules["core"]["version"]."</small></div>",
             "type" => "html", 
             "title" => false
         );
     });
     
-    new hook("adminWidget-html", function ($user) {
+    new hook("adminWidget-html-OLD", function ($user) {
         
         global $db, $page;
 
@@ -44,7 +44,7 @@
 
     });
 
-    new hook("adminWidget-html", function ($user) {
+    new hook("adminWidget-html-OLD", function ($user) {
         
         global $db, $page;
 

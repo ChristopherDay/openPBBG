@@ -47,7 +47,6 @@
 
         $stats = $db->select("
             SELECT 
-                SUM(US_bullets) as 'bullets',
                 SUM(US_points) as 'points',
                 SUM(US_money) + SUM(US_bank) as 'cash', 
                 COUNT(U_id) as 'alive'
@@ -78,7 +77,7 @@
     <div class="col-md-3">
         <div class="card-counter danger">
             <i class="fa fa-shield"></i>
-            <span class="count-numbers">'.number_shorten($stats["bullets"], 0) .'</span>
+            <span class="count-numbers"></span>
             <span class="count-name">Bullets</span>
         </div>
     </div>
@@ -101,4 +100,99 @@
             "type" => "html", 
             "title" => "Game Statistics"
         );
+    });
+
+
+
+    new hook("adminWidget-table", function ($user) {
+        
+        global $db, $page;
+
+        $stats = $db->select("
+            SELECT 
+                SUM(US_points) as 'points',
+                SUM(US_money) + SUM(US_bank) as 'cash', 
+                COUNT(U_id) as 'alive'
+            FROM users 
+            INNER JOIN userStats ON (US_id = U_id) 
+            WHERE U_status != 0 AND U_userLevel = 1
+            ORDER BY U_id DESC LIMIT 0, 20
+        ");
+
+        $items = $db->select("SELECT IFNULL(SUM(UI_qty), 0) as 'count' FROM userInventory WHERE UI_user NOT IN (SELECT U_id FROM users WHERE U_userLevel != 1)")["count"];
+
+        return array(
+            "size" => 4, 
+            "title" => "Statistics",
+            "type" => "table", 
+            "header" => array(
+                "columns" => array(
+                    array( "name" => "Stat"),
+                    array( "name" => "#")
+                )
+            ),
+            "data" => array(
+                array(
+                    "columns" => array(
+                        array( "value" => "Items" ),
+                        array( "value" => number_format($items) ),
+                    )
+                ), 
+                array(
+                    "columns" => array(
+                        array( "value" => "Money" ),
+                        array( "value" => number_format($stats["cash"]) ),
+                    )
+                ), 
+                array(
+                    "columns" => array(
+                        array( "value" => _setting("pointsName") ),
+                        array( "value" => number_format($stats["points"]) ),
+                    )
+                )
+            )
+        );
+
+    });
+
+    new hook("adminWidget-table", function ($user) {
+        
+        global $db, $page, $user;
+
+        $users = $db->selectAll("
+            SELECT
+                U_id as 'id', 
+                U_name as 'name', 
+                FROM_UNIXTIME(UT_time) as 'date'
+            FROM users
+            INNER JOIN userTimers on (UT_user = U_id AND UT_desc = 'signup')
+            ORDER BY UT_time DESC
+            LIMIT 0, 5
+        ");
+
+        $data = array();
+
+        foreach ($users as $u) {
+            $data[] = array(
+                "columns" => array(
+                    array( "value" => "<a href='/page/admin/edit?module=users&id=".$u["id"]."'>".$u["name"]."</a>" ),
+                    array( "value" => $u["date"] )
+                )
+            );
+        }
+
+        return array(
+            "size" => 4,
+            "sort" => 1, 
+            "title" => "New Users",
+            "type" => "table", 
+            "header" => array(
+                "columns" => array(
+                    array( "name" => "Username"),
+                    array( "name" => "Registered")
+                )
+            ),
+            "data" => $data
+        );
+
     });
