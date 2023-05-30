@@ -13,36 +13,30 @@ function checkTimer(interval) {
         
         if (time > 0) {
             if ((time - interval) == -1) {
-                var removeClass = 'timer-active';
-                var addClass = 'timer-done';
+                var removeClass = 'text-danger';
+                var addClass = 'text-success';
             } else {
-                var removeClass = 'timer-done';
-                var addClass = 'timer-active';
+                var removeClass = 'text-success';
+                var addClass = 'text-danger';
             }
         } else {
-            var removeClass = 'timer-active';
-            var addClass = 'timer-done';
+            var removeClass = 'text-danger';
+            var addClass = 'text-success';
         }
 
-        if(addClass == 'timer-done' && $(this).attr('data-reload-when-done') != undefined) {
+        if(addClass == 'text-success' && $(this).attr('data-reload-when-done') != undefined) {
             setTimeout(function () {
                 document.location.reload();
             }, 2500);
         }
 
-        if(addClass == 'timer-done' && $(this).attr('data-remove-when-done') != undefined) {
+        if(addClass == 'text-success' && $(this).attr('data-remove-when-done') != undefined) {
             $(this).parent().remove();
         }
-
-        var days = Math.floor(time / 86400);
-
+            
         var hours = Math.floor(time/3600);
         var mins = Math.floor((time - (hours * 3600))/60);
         var sec = time % 60;
-
-        if (days > 0) {
-            hours -= days * 24;
-        }
 
         if (hours < 10) hours = '0' + hours;
         if (mins < 10) mins = '0' + mins;
@@ -54,16 +48,10 @@ function checkTimer(interval) {
             var sec = "00";
         }
 
-        var output = hours+":"+mins+":"+sec;
-
-        if (days > 0) {
-            output = days + " Day"+(days>1?"s":"")+" " + output
-        }
-
         if ($(this).attr('data-timer-type') == 'name') {
-            $(this).removeClass(removeClass).addClass(addClass).find('span').eq(1).html(output);
+            $(this).removeClass(removeClass).addClass(addClass).find('span').eq(1).html(hours+":"+mins+":"+sec);
         } else {
-            $(this).removeClass(removeClass).addClass(addClass).html(output);
+            $(this).removeClass(removeClass).addClass(addClass).html(hours+":"+mins+":"+sec);
         }
         
     });

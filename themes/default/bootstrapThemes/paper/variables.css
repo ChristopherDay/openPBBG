@@ -1,0 +1,13 @@
+:root {
+	--gray-base:              #000;
+	--gray-darker:            #222;
+	--gray-dark:              #212121;
+	--gray:                   #666;
+	--gray-light:             #bbb;
+	--gray-lighter:           #eee;
+	--brand-primary:         #2196F3;
+	--brand-success:         #4CAF50;
+	--brand-info:            #9C27B0;
+	--brand-warning:         #ff9800;
+	--brand-danger:          #e51c23;
+}

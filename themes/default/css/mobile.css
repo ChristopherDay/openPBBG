@@ -1,0 +1,41 @@
+/****** MOBILE STYLES ******/
+.side-bar.mobile-user-info {
+	display: none;
+}
+
+@media (max-width: 767px) {
+
+	.game-container {
+		display: flex;
+		flex-direction: column;
+		padding-bottom: 50px;
+	}
+
+	.side-bar {
+		min-width: 100% !important;
+		max-width: 100% !important;
+		flex-grow: 1;
+	}
+
+	.game-area {
+		flex-grow: 1;
+	}
+
+	.navbar-fixed-bottom .navbar-header {
+		text-align: center;
+	}
+
+	.navbar-fixed-bottom .navbar-toggle {
+		float: none;
+		display: inline-block;
+	}
+
+	.navbar-toggle.active {
+		background-color: var(--gray-lighter);
+	}
+
+	.side-bar {
+		display: none;
+	}
+
+}
