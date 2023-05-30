@@ -1,0 +1,7 @@
+@media (max-width: 767px) {
+    .news-info {
+        float: none !important;
+        display: block;
+    }
+
+}
