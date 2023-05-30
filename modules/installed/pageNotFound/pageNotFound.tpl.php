@@ -4,9 +4,9 @@
         
         public $pageNotFound = '
 
-            <div class="panel panel-default">
-                <div class="panel-heading">Something went wrong</div>
-                <div class="panel-body">
+            <div class="card">
+                <div class="card-header">Something went wrong</div>
+                <div class="card-body">
                     <p> We could not find the page you requested!</p>
                 </div>
             </div>

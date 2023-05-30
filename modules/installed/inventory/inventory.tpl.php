@@ -8,23 +8,23 @@
     class inventoryTemplate extends template {
 
 		public $information = '
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="card">
+                <div class="card-header">
                     {name}
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
                     <p>
                         [{description}]
                     </p>
                 </div>  
             </div>
-            <div class="row text-left">
+            <div class="row text-start">
                 <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="card">
+                        <div class="card-header">
                             Information
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             {#each information}
                                 {#if label}<strong>{label}:</strong>{/if} <{value}><br />
                             {/each}
@@ -33,11 +33,11 @@
                 </div>
                 <div class="col-md-6">
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="card">
+                        <div class="card-header">
                             Effects
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             <ul>
                                 {#each effects}
                                     <li>[{desc}]</li>
@@ -52,11 +52,11 @@
         public $inventory = '
 			<div class="row">
 				<div class="col-md-7">
-					<div class="panel panel-default">
-						<div class="panel-heading">
+					<div class="card">
+						<div class="card-header">
 							Inventory
 						</div>
-						<div class="panel-body">
+						<div class="card-body">
 							{#unless inventory}
 								<p class="text-center">
 									<em>You don\'t have any items!</em>
@@ -69,11 +69,11 @@
 					</div>
 				</div>
 				<div class="col-md-5">
-					<div class="panel panel-default">
-						<div class="panel-heading">
+					<div class="card">
+						<div class="card-header">
 							Equiped
 						</div>
-						<div class="panel-body">
+						<div class="card-body">
 							{#each equipSlots}
 								{>equipSlot}
 							{/each}
@@ -207,7 +207,7 @@
         public $weaponSelect = '
             <form method="post" action="?page=admin&module=inventory&action=calculator">
                 <div class="form-group">
-                    <label class="pull-left">What weapon is the user shooting with</label>
+                    <label class="fw-bold mb-1">What weapon is the user shooting with</label>
                     <select class="form-control" name="weapon">
                         <option disabled selected value="0">Select a weapon</option>
                         {#each weapons}
@@ -215,7 +215,7 @@
                         {/each}
                     </select>
                 </div>
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">View</button>
                 </div>
             </form>
@@ -224,7 +224,7 @@
         public $formSelect = '
             <div class="col-md-{width}">
                 <div class="form-group">
-                    <label class="pull-left">{label}</label>
+                    <label class="fw-bold mb-1">{label}</label>
                     <select class="form-control" name="meta[ {id} ]" data-value="{value}">
                         {#each options}
                             <option value="{id}">{name}</option>
@@ -237,7 +237,7 @@
         public $formText = '
             <div class="col-md-{width}">
                 <div class="form-group">
-                    <label class="pull-left">{label}</label>
+                    <label class="fw-bold mb-1">{label}</label>
                     <input type="text" class="form-control" name="meta[ {id} ]" value="{value}">
                 </div>
             </div>
@@ -246,7 +246,7 @@
         public $formNumber = '
             <div class="col-md-{width}">
                 <div class="form-group">
-                    <label class="pull-left">{label}</label>
+                    <label class="fw-bold mb-1">{label}</label>
                     <input type="number" class="form-control" name="meta[ {id} ]" value="{value}">
                 </div>
             </div>
@@ -255,7 +255,7 @@
         public $formTextarea = '
             <div class="col-md-{width}">
                 <div class="form-group">
-                    <label class="pull-left">{label}</label>
+                    <label class="fw-bold mb-1">{label}</label>
                     <textarea class="form-control" name="meta[ {id} ]">{value}</textarea>
                 </div>
             </div>
@@ -268,13 +268,13 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="form-group">
-                            <label class="pull-left">Item Name</label>
+                            <label class="fw-bold mb-1">Item Name</label>
                             <input type="text" class="form-control" name="name" value="{name}">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="pull-left">
+                            <label class="fw-bold mb-1">
                                 Item Type
                             </label>
                             <select class="form-control" name="type" data-value="{type}">
@@ -294,7 +294,7 @@
 
                 <h5>
                     Effects
-                    <a href="#" class="btn btn-success btn-xs pull-right new-effect">
+                    <a href="#" class="btn btn-success btn-xs float-end new-effect">
                         New Effect
                     </a>
                 </h5>
@@ -314,7 +314,7 @@
 
                 <div class="effects"></div>
 
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
                 </div>
             </form>

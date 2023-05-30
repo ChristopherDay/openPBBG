@@ -7,7 +7,7 @@
                 <p>
                     <input class="form-control" type="email" name="email" placeholder="Email Address" />
                 </p>
-                <p class="text-right">
+                <p class="text-end">
                     <button type="submit" class="btn btn-default">Reset Password</button>
                 </p>
             </form>
@@ -24,7 +24,7 @@
                 <p>
                     <input class="form-control" type="password" name="cpassword" placeholder="Confirm Password" />
                 </p>
-                <p class="text-right">
+                <p class="text-end">
                     <button type="submit" class="btn btn-default">Reset Password</button>
                 </p>
             </form>

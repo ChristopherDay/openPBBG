@@ -4,14 +4,14 @@
         
         public $newsArticle = '
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="card">
+                <div class="card-header">
                     Game News
                 </div>
-                <div class="panel-body text-left">
+                <div class="card-body text-start">
                     {#each news}
                         <strong>{title}</strong>
-                        <small class="pull-right news-info">
+                        <small class="float-end news-info">
                             By {>userName} {date}
                         </small>
                         <div class="well well-sm">
@@ -68,14 +68,14 @@
         public $loggedinNewForm = '
             <form method="post" action="?page=admin&module=loggedin&action={editType}&id={id}">
                 <div class="form-group">
-                    <label class="pull-left">Title</label>
+                    <label class="fw-bold mb-1">Title</label>
                     <input type="text" class="form-control" name="gntitle" value="{gntitle}">
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">Text</label>
+                    <label class="fw-bold mb-1">Text</label>
                     <textarea rows="8" type="text" class="form-control" name="gntext">{gntext}</textarea>
                 </div>
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
                 </div>
             </form>

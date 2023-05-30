@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label class="pull-left">Bootstrap Theme</label>
+                            <label class="fw-bold mb-1">Bootstrap Theme</label>
                             <select class="form-control" name="bootstrap" data-value="{bootstrap}">
                                 <option>default</option>
                             	<optgroup label="Dark Themes">
@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label class="pull-left">Page Width</label>
+                            <label class="fw-bold mb-1">Page Width</label>
                             <select class="form-control" name="layoutContainer" data-value="{layoutContainer}">
                             	<option value="container">Fixed Width</option>
                             	<option value="container-fluid">Dynamic Width</option>
@@ -55,13 +55,13 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label class="pull-left">Sidebar Width</label>
+                            <label class="fw-bold mb-1">Sidebar Width</label>
                             <input type="text" class="form-control" name="sidebarWidth" value="{sidebarWidth}">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label class="pull-left">Shoutbox Width (0 to disable)</label>
+                            <label class="fw-bold mb-1">Shoutbox Width (0 to disable)</label>
                             <div class="input-group" style="width: 100%">
                                 <input type="text" class="form-control" name="shoutbox" value="{shoutbox}">
                                 <span class="input-group-addon">px</span>
@@ -75,13 +75,13 @@
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="pull-left">Background Color</label>
+                            <label class="fw-bold mb-1">Background Color</label>
                             <input type="text" class="form-control" name="backgroundColor" value="{backgroundColor}">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="pull-left">Background Image Repeat</label>
+                            <label class="fw-bold mb-1">Background Image Repeat</label>
                             <select class="form-control" name="backgroundRepeat" data-value="{backgroundRepeat}">
                                 <option value="background-no-repeat">No Repeat</option>
                                 <option value="background-repeat">Repeat X + Y</option>
@@ -92,7 +92,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="pull-left">Background Image Size</label>
+                            <label class="fw-bold mb-1">Background Image Size</label>
                             <select class="form-control" name="backgroundSize" data-value="{backgroundSize}">
                                 <option value="background-size-auto">Auto</option>
                                 <option value="background-size-contain">Contain</option>
@@ -102,7 +102,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="pull-left">Background Position</label>
+                            <label class="fw-bold mb-1">Background Position</label>
                             <select class="form-control" name="backgroundPosition" data-value="{backgroundPosition}">
                                 <optgroup label="Top">
                                     <option value="background-pos-tl">Left</option>
@@ -124,7 +124,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="pull-left">Background Image URL</label>
+                            <label class="fw-bold mb-1">Background Image URL</label>
                             <input type="text" class="form-control" name="backgroundURL" value="{backgroundURL}">
                         </div>
                     </div>
@@ -134,7 +134,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label class="pull-left">Menu Location</label>
+                            <label class="fw-bold mb-1">Menu Location</label>
                             <select class="form-control" name="menuPosition" data-value="{menuPosition}">
                                 <option value="top">Top of page</option>
                                 <option value="left">Left Sidebar</option>
@@ -144,7 +144,7 @@
                     </div>
                     <div class="col-md-9">
                         <div class="form-group">
-                            <label class="pull-left">Logo URL</label>
+                            <label class="fw-bold mb-1">Logo URL</label>
                             <input type="text" class="form-control" name="logoURL" value="{logoURL}">
                         </div>
                     </div>
@@ -155,7 +155,7 @@
                     <textarea class="form-control" rows="8" name="customCSS">{customCSS}</textarea>
                 </p>
 
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
                 </div>
 
@@ -169,7 +169,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label class="pull-left">Bootstrap Theme</label>
+                            <label class="fw-bold mb-1">Bootstrap Theme</label>
                             <select class="form-control" name="bootstrap" data-value="{bootstrap}">
                                 <option>default</option>
                                 <optgroup label="Dark Themes">
@@ -197,7 +197,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label class="pull-left">Page Width</label>
+                            <label class="fw-bold mb-1">Page Width</label>
                             <select class="form-control" name="layoutContainer" data-value="{layoutContainer}">
                                 <option value="container">Fixed Width</option>
                                 <option value="container-fluid">Dynamic Width</option>
@@ -206,13 +206,13 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label class="pull-left">Sidebar Width</label>
+                            <label class="fw-bold mb-1">Sidebar Width</label>
                             <input type="text" class="form-control" name="sidebarWidth" value="{sidebarWidth}">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label class="pull-left">Shoutbox Width (0 to disable)</label>
+                            <label class="fw-bold mb-1">Shoutbox Width (0 to disable)</label>
                             <div class="input-group" style="width: 100%">
                                 <input type="text" class="form-control" name="shoutbox" value="{shoutbox}">
                                 <span class="input-group-addon">px</span>
@@ -226,13 +226,13 @@
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="pull-left">Background Color</label>
+                            <label class="fw-bold mb-1">Background Color</label>
                             <input type="text" class="form-control" name="backgroundColor" value="{backgroundColor}">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="pull-left">Background Image Repeat</label>
+                            <label class="fw-bold mb-1">Background Image Repeat</label>
                             <select class="form-control" name="backgroundRepeat" data-value="{backgroundRepeat}">
                                 <option value="background-no-repeat">No Repeat</option>
                                 <option value="background-repeat">Repeat X + Y</option>
@@ -243,7 +243,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="pull-left">Background Image Size</label>
+                            <label class="fw-bold mb-1">Background Image Size</label>
                             <select class="form-control" name="backgroundSize" data-value="{backgroundSize}">
                                 <option value="background-size-auto">Auto</option>
                                 <option value="background-size-contain">Contain</option>
@@ -253,7 +253,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="pull-left">Background Position</label>
+                            <label class="fw-bold mb-1">Background Position</label>
                             <select class="form-control" name="backgroundPosition" data-value="{backgroundPosition}">
                                 <optgroup label="Top">
                                     <option value="background-pos-tl">Left</option>
@@ -275,7 +275,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="pull-left">Background Image URL</label>
+                            <label class="fw-bold mb-1">Background Image URL</label>
                             <input type="text" class="form-control" name="backgroundURL" value="{backgroundURL}">
                         </div>
                     </div>
@@ -285,19 +285,19 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="form-group">
-                            <label class="pull-left">Left Sidebar Menus</label>
+                            <label class="fw-bold mb-1">Left Sidebar Menus</label>
                             <input type="text" class="form-control" name="sidebarLeft" value="{sidebarLeft}">
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="form-group">
-                            <label class="pull-left">Right Sidebar Menus</label>
+                            <label class="fw-bold mb-1">Right Sidebar Menus</label>
                             <input type="text" class="form-control" name="sidebarRight" value="{sidebarRight}">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="pull-left">User Information Position</label>
+                            <label class="fw-bold mb-1">User Information Position</label>
                             <select class="form-control" name="userInfoPosition" data-value="{userInfoPosition}">
                                 <option value="left">Left</option>
                                 <option value="right">Right</option>
@@ -311,7 +311,7 @@
                     <textarea class="form-control" rows="8" name="customCSS">{customCSS}</textarea>
                 </p>
 
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
                 </div>
 

@@ -3,30 +3,30 @@
     class mailTemplate extends template {
         
         public $mail = '
-            <div class="panel panel-default">
-                <div class="panel-heading">Mail</div>
-                <div class="panel-body">
+            <div class="card">
+                <div class="card-header">Mail</div>
+                <div class="card-body">
                     <div class="well well-sm read-mail">
                         <h4>
                             {subject} 
-                            <small class="pull-right tiny">
+                            <small class="float-end tiny">
                                 By {>userName} {date}
                             </small>
                         </h4>
                         <hr />
                         <p>[{text}]</p>
                     </div>
-                    <h4 class="text-left">Reply to {>userName}</h4>
+                    <h4 class="text-start">Reply to {>userName}</h4>
                     {>mailForm}
                 </div>
             </div>
         ';
 
         public $newMail = '
-            <div class="panel panel-default">
-                <div class="panel-heading">New Mail</div>
-                <div class="panel-body">
-                    <h4 class="text-left">Message {>userName}</h4>
+            <div class="card">
+                <div class="card-header">New Mail</div>
+                <div class="card-body">
+                    <h4 class="text-start">Message {>userName}</h4>
                     {>mailForm}
                 </div>
             </div>
@@ -41,7 +41,7 @@
                 <br />
                 <textarea rows="6" name="message" class="form-control" placeholder="Your reply ..."></textarea>
                 <br />
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default">
                         Send
                     </button>
@@ -102,17 +102,17 @@
 
         public $mailInbox = '
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="card">
+                <div class="card-header">
                     Inbox
-                    <span class="small pull-left">
+                    <span class="small float-start">
                         &nbsp;&nbsp;<a class="btn btn-info btn-xs" href="?page=mail&action=outbox">Outbox</a>
                     </span>
-                    <span class="small pull-right">
+                    <span class="small float-end">
                         <a class="btn btn-success btn-xs" href="?page=mail&action=new">New Mail</a>&nbsp;&nbsp;
                     </span> 
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
                     {>mailTable}
                 </div>
             </div>
@@ -121,17 +121,17 @@
 
         public $mailOutbox = '
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="card">
+                <div class="card-header">
                     Outbox
-                    <span class="small pull-left">
+                    <span class="small float-start">
                         &nbsp;&nbsp;<a class="btn btn-info btn-xs" href="?page=mail">Inbox</a>
                     </span>
-                    <span class="small pull-right">
+                    <span class="small float-end">
                         <a class="btn btn-success btn-xs" href="?page=mail&action=new">New Mail</a>&nbsp;&nbsp;
                     </span> 
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
                     {>mailTable}
                 </div>
             </div>

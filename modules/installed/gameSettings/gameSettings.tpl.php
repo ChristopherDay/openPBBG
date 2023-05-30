@@ -47,30 +47,30 @@
         public $rankForm = '
             <form method="post" action="?page=admin&module=gameSettings&action={editType}Rank&id={id}">
                 <div class="form-group">
-                    <label class="pull-left">Rank Name</label>
+                    <label class="fw-bold mb-1">Rank Name</label>
                     <input type="text" class="form-control" name="name" value="{name}">
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">Limit how many users can be at this rank (if there us no limit put 0)</label>
+                    <label class="fw-bold mb-1">Limit how many users can be at this rank (if there us no limit put 0)</label>
                     <input type="number" class="form-control" name="limit" value="{limit}">
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">EXP needed to get this rank</label>
+                    <label class="fw-bold mb-1">EXP needed to get this rank</label>
                     <input type="number" class="form-control" name="exp" value="{exp}">
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">Money reward for reaching this rank</label>
+                    <label class="fw-bold mb-1">Money reward for reaching this rank</label>
                     <input type="number" class="form-control" name="cash" value="{cash}">
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">Bullet reward for reaching this rank</label>
+                    <label class="fw-bold mb-1">Bullet reward for reaching this rank</label>
                     <input type="number" class="form-control" name="bullets" value="{bullets}">
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">Max Health</label>
+                    <label class="fw-bold mb-1">Max Health</label>
                     <input type="number" class="form-control" name="health" value="{health}">
                 </div>
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
                 </div>
             </form>
@@ -115,14 +115,14 @@
         public $moneyRankForm = '
             <form method="post" action="?page=admin&module=gameSettings&action={editType}MoneyRank&id={id}">
                 <div class="form-group">
-                    <label class="pull-left">Rank Name</label>
+                    <label class="fw-bold mb-1">Rank Name</label>
                     <input type="text" class="form-control" name="name" value="{name}">
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">Money needed to get this rank</label>
+                    <label class="fw-bold mb-1">Money needed to get this rank</label>
                     <input type="number" class="form-control" name="money" value="{money}">
                 </div>
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
                 </div>
             </form>

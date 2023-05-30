@@ -10,11 +10,11 @@
                     <input autocomplete="new-password" type="password" class="form-control" name="password" placeholder="Password" /><br />
 
                     <div class="row">
-                        <div class="col-xs-8 text-left">
+                        <div class="col-xs-8 text-start">
                             <a href="?page=forgotPassword">Forgot Password?</a>
                         </div>
                         <div class="col-xs-4">
-                            <div class="text-right">
+                            <div class="text-end">
                                 <button type="submit" class="btn btn-default">Login</button>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
 
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
                 </div>
             </form>

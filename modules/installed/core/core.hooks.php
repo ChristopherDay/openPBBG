@@ -28,7 +28,7 @@
             foreach ($posts as $post) {
                 $html .= '<div class="list-group-item">';
                 $html .= '  <a href="'.$post["link"].'" target="_blank">'.$post["title"]["rendered"].'</a>';
-                $html .= '  <small class="pull-right">'.date("jS M Y", strtotime($post["date"])).'</small>';
+                $html .= '  <small class="float-end">'.date("jS M Y", strtotime($post["date"])).'</small>';
                 $html .= $post["excerpt"]["rendered"];
                 $html .= '</div>';
             }
