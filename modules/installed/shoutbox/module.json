@@ -1,0 +1,12 @@
+{
+    "name": "Shoutbox",
+    "version": "1.0.0",
+    "description": "A very simple shoutbox",
+    "author": {
+        "name": "Chris Day",
+        "url": "http:\/\/glscript.cdcoding.com"
+    },
+    "pageName": "Shoutbox",
+    "accessInJail": true,
+    "requireLogin": true
+}

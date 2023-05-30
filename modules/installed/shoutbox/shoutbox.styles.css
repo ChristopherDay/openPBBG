@@ -1,0 +1,24 @@
+.cooldown.spacer {
+	width: 100px !important;
+	margin: 0px !important;
+	padding: 0px !important;
+	color: #aaa;
+	font-size: 10px;
+}
+
+.cooldown.pull-left {
+	display: inline-block;
+	width: 120px;
+}
+
+.history .crime-holder .action {
+	font-size: 12px;
+}
+
+.history .crime-holder {
+	margin-bottom: 5px;
+}
+
+.history .crime-holder p {
+	padding: 5px;
+}
