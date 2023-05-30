@@ -31,6 +31,8 @@
 
 			}
 
+			$settings = new Settings();
+
 			$hash = hashDirectory("../class/");
 			$settings = new Settings();
 			$settings->update("glCoreHash", $hash);
