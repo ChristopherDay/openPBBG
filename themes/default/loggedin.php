@@ -35,6 +35,9 @@
 
             $page->addToTemplate("sidebarLeft", $sidebars["left"]);
             $page->addToTemplate("sidebarRight", $sidebars["right"]);
+            if ($sidebars["right"] || $settings["userInfoPosition"] == "right") {
+                $page->addToTemplate("showSidebarRight", true);
+            }
 
         });
 
@@ -328,38 +331,40 @@
                     </div>
 
 
-                    {#if sidebarRight}
+                    {#if showSidebarRight}
                         <div class="side-bar right" style="min-width: {_themeSettings.sidebarWidth}; max-width: {_themeSettings.sidebarWidth}">
                             <div class="hidden-xs">
                                 '.$userInfoRight.'
                             </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <i class="fa-solid fa-link"></i> Navigation
+                            {#if sidebarRight}
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i class="fa-solid fa-link"></i> Navigation
+                                    </div>
+                                    <ul class="navigation-menu">
+                                        {#each sidebarRight}
+                                            <li>
+                                                <a href="#">{title}</a>
+                                                <ul>   
+                                                    {#each items}
+                                                        <li>
+                                                            <a href="{url}" {#if notAjax}data-not-ajax{/if}>
+                                                                {text}
+                                                                <small class="pull-right">
+                                                                    {extra}
+                                                                    {#if timer}
+                                                                        <span data-timer-type="inline" data-timer="{timer}"></span>
+                                                                    {/if}
+                                                                </small>
+                                                            </a>
+                                                        </li>
+                                                    {/each}
+                                                </ul>
+                                            </li>
+                                        {/each}
+                                    </ul>
                                 </div>
-                                <ul class="navigation-menu">
-                                    {#each sidebarRight}
-                                        <li>
-                                            <a href="#">{title}</a>
-                                            <ul>   
-                                                {#each items}
-                                                    <li>
-                                                        <a href="{url}" {#if notAjax}data-not-ajax{/if}>
-                                                            {text}
-                                                            <small class="pull-right">
-                                                                {extra}
-                                                                {#if timer}
-                                                                    <span data-timer-type="inline" data-timer="{timer}"></span>
-                                                                {/if}
-                                                            </small>
-                                                        </a>
-                                                    </li>
-                                                {/each}
-                                            </ul>
-                                        </li>
-                                    {/each}
-                                </ul>
-                            </div>
+                            {/if}
                         </div>
                     {/if}
                     {#if _themeSettings.shoutbox}
