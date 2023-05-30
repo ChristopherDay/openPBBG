@@ -1,0 +1,25 @@
+{
+    "name": "Theme Editor",
+    "version": "1.0.0",
+    "description": "This module allows you to edit the Gangster Legends default template",
+    "author": {
+        "name": "Chris Day",
+        "url": "https:\/\/glscript.net"
+    },
+    "pageName": "Theme Editor",
+    "moduleCantBeDisabled": false,
+    "accessInJail": false,
+    "requireLogin": true,
+    "adminGroup": "Modules & Themes",
+    "admin": [
+        {
+            "text": "Ingame Layout",
+            "method": "layout",
+            "hide": false
+        }, {
+            "text": "Login Layout",
+            "method": "login",
+            "hide": false
+        }
+    ]
+}
