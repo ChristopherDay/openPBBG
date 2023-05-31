@@ -31,10 +31,13 @@
         {/unless}';
 
         public $moduleOverview = '
+<<<<<<< HEAD
         
         <div class="card mb-3">
             <div class="card-body">
 
+=======
+>>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
             <div class="float-end">
                 {#if _installing}
                     <a href="?page=admin&module=moduleManager&action=install&installModule={id}" class="btn btn-primary">Install Module</a>
@@ -310,16 +313,26 @@
 
         public $moduleForm = '
             <form method="post" action="?page=admin&module=moduleManager&action=install" enctype="multipart/form-data">
+<<<<<<< HEAD
                 <div class="card mb-3">
                     <div class="card-body">
                         <div class="form-group mb-3">
+=======
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+>>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
                             <label class="fw-bold mb-1">Module File (Zipped)</label>
                             <input type="file" class="form-control" name="file" />
                         </div>
                     </div>
                 </div>
                 <div class="text-end">
+<<<<<<< HEAD
                     <button class="btn btn-primary" name="submit" type="submit" value="1">Upload</button>
+=======
+                    <button class="btn btn-default" name="submit" type="submit" value="1">Upload</button>
+>>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
                 </div>
             </form>
 
