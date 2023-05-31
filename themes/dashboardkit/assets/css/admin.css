@@ -1,0 +1,22 @@
+@media (min-width: 1025px){
+	.pc-header[class*="bg-"] .pc-head-link,
+	.pc-header.dark-header .pc-head-link {
+		color: #fff;
+	}
+
+	.pc-header[class*="bg-"] .pc-head-link.active,
+	.pc-header[class*="bg-"] .pc-head-link:active,
+	.pc-header[class*="bg-"] .pc-head-link:focus,
+	.pc-header[class*="bg-"] .pc-head-link:hover,
+	.pc-header.dark-header .pc-head-link.active,
+	.pc-header.dark-header .pc-head-link:active,
+	.pc-header.dark-header .pc-head-link:focus,
+	.pc-header.dark-header .pc-head-link:hover {
+		color: #fff;
+		background: rgba(255, 255, 255, 0.15);
+	}
+	.pc-header[class*="bg-"] .pc-head-link .user-desc,
+	.pc-header.dark-header .pc-head-link .user-desc {
+		color: rgba(255, 255, 255, 0.7);
+	}
+}

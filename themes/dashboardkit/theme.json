@@ -1,0 +1,10 @@
+{
+    "name": "DashboardKit Admin Panel Theme", 
+    "version": "1.0.0", 
+    "description": "The default admin panel for GL Open PBBG",
+    "themeType": "admin",
+    "author": {
+        "name": "PHPkiller", 
+        "url": "https://phpkiller.me"
+    }
+}
