@@ -13,7 +13,7 @@
                         </p>
                         <form method="post" action="?page=users">
                             <input type="text" name="code" class="form-control activation-code" value="{code}" /> 
-                            <button type="submit" class="btn btn-default">
+                            <button type="submit" class="btn btn-primary">
                                 Activate
                             </button>
                         </form>
@@ -44,14 +44,14 @@
 
                 <div class="row">
                     <div class="col-md-8">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="fw-bold mb-1">Username, ID or Email</label>
                             <input type="text" class="form-control" name="user" value="{user}">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <label class="fw-bold mb-1">&nbsp;</label>
-                        <button class="btn btn-default" type="submit">
+                        <button class="btn btn-primary" type="submit">
                             Search for users
                         </button>
                     </div>
@@ -108,13 +108,13 @@
             <form method="post" action="?page=admin&module=users&action={editType}&id={id}">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="fw-bold mb-1">User Name</label>
                             <input type="text" class="form-control" name="name" value="{name}">
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="fw-bold mb-1">User Status</label>
                             <select class="form-control" name="userStatus" data-value="{userStatus}">
                                 <option {#if isDead}selected{/if} value="0">Dead</option>
@@ -124,7 +124,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="fw-bold mb-1">User Level</label>
                             <select class="form-control" name="userLevel" data-value="{userLevel}">
                                 {#each userRoles}
@@ -136,7 +136,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="fw-bold mb-1">Email</label>
                             <input type="text" class="form-control" name="email" value="{email}">
                         </div>
@@ -144,13 +144,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="fw-bold mb-1">Cash</label>
                             <input type="number" class="form-control" name="money" value="{money}">
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="fw-bold mb-1">Bank</label>
                             <input type="number" class="form-control" name="bank" value="{bank}">
                         </div>
@@ -158,13 +158,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="fw-bold mb-1">EXP</label>
                             <input type="number" class="form-control" name="exp" value="{exp}">
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="fw-bold mb-1">Points</label>
                             <input type="number" class="form-control" name="points" value="{points}">
                         </div>
@@ -172,24 +172,24 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="fw-bold mb-1">Bullets</label>
                             <input type="text" class="form-control" name="bullets" value="{bullets}">
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="fw-bold mb-1">Profile Picture</label>
                             <input type="text" class="form-control" name="pic" value="{pic}">
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-3">
                     <label class="fw-bold mb-1">Bio</label>
                     <textarea rows="8" class="form-control" name="bio">{bio}</textarea>
                 </div>
                 <div class="text-end">
-                    <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
+                    <button class="btn btn-primary" name="submit" type="submit" value="1">Save</button>
                 </div>
             </form>
         ';

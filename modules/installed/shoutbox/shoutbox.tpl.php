@@ -55,7 +55,7 @@
 	        		</div>
 	        		<div class="col-md-2">
 	        			<p>
-		        			<button class="btn btn-default text-center">
+		        			<button class="btn btn-primary text-center">
 		        				Reply
 	        				</button>
 	        			</p>

@@ -1,38 +1,36 @@
 <?php
-
-    class themeManagerTemplate extends template {
-
-        public $themeOptions = '
-
-            <form method="post" action="?page=admin&module=themeManager&action=options">
-
+class themeManagerTemplate extends template {
+    public $themeOptions = '
+        <form method="post" action="?page=admin&module=themeManager&action=options">
+        <div class="card mb-3">
+            <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="fw-bold mb-1">Game Name</label>
                             <input type="text" class="form-control" name="game_name" value="{game_name}" />
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="fw-bold mb-1">From Email</label>
                             <input type="text" class="form-control" name="from_email" value="{from_email}" />
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="fw-bold mb-1">Points Name</label>
                             <input type="text" class="form-control" name="pointsName" value="{pointsName}" />
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="fw-bold mb-1">Gang Name</label>
                             <input type="text" class="form-control" name="gangName" value="{gangName}" />
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="fw-bold mb-1">Landing Module</label>
                             <select class="form-control" name="landingPage">
                                 {#each modules}
@@ -44,7 +42,7 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="fw-bold mb-1">Game Theme</label>
                             <select class="form-control" name="theme">
                                 {#each themes}
@@ -56,7 +54,7 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label class="fw-bold mb-1">Admin Theme</label>
                             <select class="form-control" name="adminTheme">
                                 {#each adminThemes}
@@ -68,29 +66,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-end">
-                    <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
-                </div>
-            </form>
-        ';
-
-        public $themeHolder = '
-        {#each themes}
-        <div class="theme-holder">
-            <p>{name} ({cooldown}) <span class="commit"><a href="?page=themes&action=commit&theme={id}">Commit</a></span></p>
-            <div class="theme-perc">
-                <div class="perc" style="width:{percent}%;"></div>
             </div>
         </div>
-        {/each}
-        {#unless themes}
-            <div class="text-center"><em>There are no themes</em></div>
-        {/unless}';
+        <div class="text-end">
+            <button class="btn btn-primary" name="submit" type="submit" value="1">Save</button>
+        </div>
+    </form>
+    ';
 
-        public $themeList = '
-
-
-            <table class="table table-condensed table-responsive table-striped table-bordered">
+    public $themeList = '
+    <div class="card mb-3">
+        <div class="card-body">
+            <table class="table">
                 <thead>
                     <tr>
                         <th width="200px">Name</th>
@@ -114,34 +101,37 @@
                     {/each}
                 </tbody>
             </table>
-        ';
+        </div>
+    </div>
+    ';
 
-        public $themeDelete = '
-            <form method="post" action="?page=admin&module=themes&action=delete&id={id}&commit=1">
-                <div class="text-center">
-                    <p> Are you sure you want to delete this theme?</p>
+    public $themeDelete = '
+        <form method="post" action="?page=admin&module=themes&action=delete&id={id}&commit=1">
+            <div class="text-center">
+                <p> Are you sure you want to delete this theme?</p>
+                <p><em>"{name}"</em></p>
+                <button class="btn btn-danger" name="submit" type="submit" value="1">Yes delete this theme</button>
+            </div>
+        </form>
+    ';
 
-                    <p><em>"{name}"</em></p>
-
-                    <button class="btn btn-danger" name="submit" type="submit" value="1">Yes delete this theme</button>
-                </div>
-            </form>
-        
-        ';
-        public $themeForm = '
-            <form method="post" action="?page=admin&module=themeManager&action=install" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="fw-bold mb-1">Theme File (Zipped)</label>
-                            <input type="file" class="form-control" name="file" />
+    public $themeForm = '
+        <form method="post" action="?page=admin&module=themeManager&action=install" enctype="multipart/form-data">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group mb-3">
+                                <label class="fw-bold mb-1">Theme File (Zipped)</label>
+                                <input type="file" class="form-control" name="file" />
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="text-end">
-                    <button class="btn btn-default" name="submitInstall" type="submit" value="1">Upload</button>
-                </div>
-            </form>
-        ';
-    }
-
+            </div>
+            <div class="text-end">
+                <button class="btn btn-primary" name="submitInstall" type="submit" value="1">Upload</button>
+            </div>
+        </form>
+    ';
+}
