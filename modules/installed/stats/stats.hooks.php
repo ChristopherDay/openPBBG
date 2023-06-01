@@ -40,11 +40,7 @@
     }
 
     new hook("adminWidget-html", function ($user) {
-
         global $page, $db;
-
-        $page->registerTemplateFile("modules/installed/stats/widgetStyles.css");
-
         $stats = $db->select("
             SELECT 
                 SUM(US_points) as 'points',
@@ -54,53 +50,57 @@
             WHERE U_status != 0 AND U_userLevel = 1
             ORDER BY U_id DESC LIMIT 0, 20
         ");
-
-        $html = '
-<!-- thanks https://bootsnipp.com/snippets/rljEW -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-<div class="row">
-    <div class="col-md-3">
-        <div class="card-counter info">
-            <i class="fa fa-users"></i>
-            <span class="count-numbers">'.number_format($stats["alive"]).'</span>
-            <span class="count-name">Users Alive</span>
+        $html = '<div class="card flat-card">
+        <div class="row-table">
+            <div class="col-sm-6 card-body br">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <i class="material-icons-two-tone text-primary mb-1">group</i>
+                    </div>
+                    <div class="col-sm-8 text-md-center">
+                        <h5>'.number_format($stats["alive"]).'</h5>
+                        <span>Players Alive</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 d-none d-md-table-cell d-lg-table-cell d-xl-table-cell card-body br">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <i class="material-icons-two-tone text-primary mb-1">language</i>
+                    </div>
+                    <div class="col-sm-8 text-md-center">
+                        <h5>'.number_shorten($stats["cash"], 2) .'</h5>
+                        <span>Money</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 card-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <i class="material-icons-two-tone text-primary mb-1">unarchive</i>
+                    </div>
+                    <div class="col-sm-8 text-md-center">
+                        <h5>'.number_shorten($stats["points"], 0) .'</h5>
+                        <span>'. _setting("pointsName") .'</span>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card-counter primary">
-            <i class="fa fa-money"></i>
-            <span class="count-numbers">'.number_shorten($stats["cash"], 2) .'</span>
-            <span class="count-name">Money</span>
-        </div>
-    </div>
-
-    <div class="col-md-3">
-        <div class="card-counter danger">
-            <i class="fa fa-shield"></i>
-            <span class="count-numbers"></span>
-            <span class="count-name">Bullets</span>
-        </div>
-    </div>
-
-    <div class="col-md-3">
-        <div class="card-counter success">
-            <i class="fa fa-ticket"></i>
-            <span class="count-numbers">'.number_shorten($stats["points"], 0) .'</span>
-            <span class="count-name">Points</span>
-        </div>
-    </div>
-
-</div>
-        ';
-
+    </div>';
         return array(
-            "sort" => 0,
-            "size" => 12, 
+            "sort" => -1,
+            "size" => 6, 
             "html" => $html,
             "type" => "html", 
             "title" => "Game Statistics"
         );
     });
+
+
+
+
+
+
 
 
 
@@ -122,7 +122,7 @@
         $items = $db->select("SELECT IFNULL(SUM(UI_qty), 0) as 'count' FROM userInventory WHERE UI_user NOT IN (SELECT U_id FROM users WHERE U_userLevel != 1)")["count"];
 
         return array(
-            "size" => 4, 
+            "size" => 6, 
             "title" => "Statistics",
             "type" => "table", 
             "header" => array(

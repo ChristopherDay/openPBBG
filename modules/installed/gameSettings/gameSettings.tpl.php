@@ -1,9 +1,10 @@
 <?php
+class gameSettingsTemplate extends template {
 
-    class gameSettingsTemplate extends template {
-
-        public $rankList = '
-            <table class="table table-condensed table-responsive table-striped table-bordered">
+    public $rankList = '
+    <div class="card mb-3">
+        <div class="card-body">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Rank</th>
@@ -30,13 +31,56 @@
                     {/each}
                 </tbody>
             </table>
-        ';
+        </div>
+    </div>
+    ';
 
-        public $rankDelete = '
-            <form method="post" action="?page=admin&module=gameSettings&action=deleteRank&id={id}&commit=1">
-                <div class="text-center">
-                    <p> Are you sure you want to delete this rank?</p>
-
+<<<<<<< HEAD
+    public $rankDelete = '
+        <form method="post" action="?page=admin&module=gameSettings&action=deleteRank&id={id}&commit=1">
+            <div class="text-center">
+                <p> Are you sure you want to delete this rank?</p>
+                <p><em>"{name}"</em></p>
+                <button class="btn btn-danger" name="submit" type="submit" value="1">Yes delete this rank</button>
+            </div>
+        </form>
+    ';
+    public $rankForm = '
+        <form method="post" action="?page=admin&module=gameSettings&action={editType}Rank&id={id}">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="form-group mb-3">
+                        <label class="fw-bold mb-1">Rank Name</label>
+                        <input type="text" class="form-control" name="name" value="{name}">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="fw-bold mb-1">Limit how many users can be at this rank (if there us no limit put 0)</label>
+                        <input type="number" class="form-control" name="limit" value="{limit}">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="fw-bold mb-1">EXP needed to get this rank</label>
+                        <input type="number" class="form-control" name="exp" value="{exp}">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="fw-bold mb-1">Money reward for reaching this rank</label>
+                        <input type="number" class="form-control" name="cash" value="{cash}">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="fw-bold mb-1">Bullet reward for reaching this rank</label>
+                        <input type="number" class="form-control" name="bullets" value="{bullets}">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="fw-bold mb-1">Max Health</label>
+                        <input type="number" class="form-control" name="health" value="{health}">
+                    </div>
+                </div>
+            </div>
+            <div class="text-end">
+                <button class="btn btn-primary" name="submit" type="submit" value="1">Save</button>
+            </div>
+        </form>
+    ';
+=======
                     <p><em>"{name}"</em></p>
 
                     <button class="btn btn-danger" name="submit" type="submit" value="1">Yes delete this rank</button>
@@ -47,64 +91,95 @@
         public $rankForm = '
             <form method="post" action="?page=admin&module=gameSettings&action={editType}Rank&id={id}">
                 <div class="form-group">
-                    <label class="pull-left">Rank Name</label>
+                    <label class="fw-bold mb-1">Rank Name</label>
                     <input type="text" class="form-control" name="name" value="{name}">
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">Limit how many users can be at this rank (if there us no limit put 0)</label>
+                    <label class="fw-bold mb-1">Limit how many users can be at this rank (if there us no limit put 0)</label>
                     <input type="number" class="form-control" name="limit" value="{limit}">
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">EXP needed to get this rank</label>
+                    <label class="fw-bold mb-1">EXP needed to get this rank</label>
                     <input type="number" class="form-control" name="exp" value="{exp}">
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">Money reward for reaching this rank</label>
+                    <label class="fw-bold mb-1">Money reward for reaching this rank</label>
                     <input type="number" class="form-control" name="cash" value="{cash}">
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">Bullet reward for reaching this rank</label>
+                    <label class="fw-bold mb-1">Bullet reward for reaching this rank</label>
                     <input type="number" class="form-control" name="bullets" value="{bullets}">
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">Max Health</label>
+                    <label class="fw-bold mb-1">Max Health</label>
                     <input type="number" class="form-control" name="health" value="{health}">
                 </div>
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
                 </div>
             </form>
         ';
+>>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
 
-        public $moneyRankList = '
-            <table class="table table-condensed table-responsive table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th width="100px">Money Needed</th>
-                        <th width="100px">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {#each moneyRanks}
+    public $moneyRankList = '
+        <div class="card mb-3">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>{name}</td>
-                            <td>${money}</td>
-                            <td>
-                                [<a href="?page=admin&module=gameSettings&action=editMoneyRank&id={id}">Edit</a>] 
-                                [<a href="?page=admin&module=gameSettings&action=deleteMoneyRank&id={id}">Delete</a>]
-                            </td>
+                            <th>Rank</th>
+                            <th width="100px">Money Needed</th>
+                            <th width="100px">Actions</th>
                         </tr>
-                    {/each}
-                </tbody>
-            </table>
-        ';
+                    </thead>
+                    <tbody>
+                        {#each moneyRanks}
+                            <tr>
+                                <td>{name}</td>
+                                <td>${money}</td>
+                                <td>
+                                    [<a href="?page=admin&module=gameSettings&action=editMoneyRank&id={id}">Edit</a>] 
+                                    [<a href="?page=admin&module=gameSettings&action=deleteMoneyRank&id={id}">Delete</a>]
+                                </td>
+                            </tr>
+                        {/each}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    ';
 
-        public $moneyRankDelete = '
-            <form method="post" action="?page=admin&module=gameSettings&action=deleteMoneyRank&id={id}&commit=1">
-                <div class="text-center">
-                    <p> Are you sure you want to delete this money rank?</p>
-
+<<<<<<< HEAD
+    public $moneyRankDelete = '
+        <form method="post" action="?page=admin&module=gameSettings&action=deleteMoneyRank&id={id}&commit=1">
+            <div class="text-center">
+                <p> Are you sure you want to delete this money rank?</p>
+                <p><em>"{name}"</em></p>
+                <button class="btn btn-danger" name="submit" type="submit" value="1">Yes delete this money rank</button>
+            </div>
+        </form>
+    ';
+    public $moneyRankForm = '
+        <form method="post" action="?page=admin&module=gameSettings&action={editType}MoneyRank&id={id}">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="form-group mb-3">
+                        <label class="fw-bold mb-1">Rank Name</label>
+                        <input type="text" class="form-control" name="name" value="{name}">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="fw-bold mb-1">Money needed to get this rank</label>
+                        <input type="number" class="form-control" name="money" value="{money}">
+                    </div>
+                </div>
+            </div>
+            <div class="text-end">
+                <button class="btn btn-primary" name="submit" type="submit" value="1">Save</button>
+            </div>
+        </form>
+    ';
+}
+=======
                     <p><em>"{name}"</em></p>
 
                     <button class="btn btn-danger" name="submit" type="submit" value="1">Yes delete this money rank</button>
@@ -115,17 +190,18 @@
         public $moneyRankForm = '
             <form method="post" action="?page=admin&module=gameSettings&action={editType}MoneyRank&id={id}">
                 <div class="form-group">
-                    <label class="pull-left">Rank Name</label>
+                    <label class="fw-bold mb-1">Rank Name</label>
                     <input type="text" class="form-control" name="name" value="{name}">
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">Money needed to get this rank</label>
+                    <label class="fw-bold mb-1">Money needed to get this rank</label>
                     <input type="number" class="form-control" name="money" value="{money}">
                 </div>
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
                 </div>
             </form>
         ';
     }
 
+>>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd

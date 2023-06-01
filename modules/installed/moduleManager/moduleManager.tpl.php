@@ -7,10 +7,10 @@
             </div>
             <h3>Error Output</h3>
             {error.output}
-            <a href="?page=admin&module=moduleManager&action=install&view={id}" class="btn btn-default">
+            <a href="?page=admin&module=moduleManager&action=install&view={id}" class="btn btn-primary">
                 Go back to module overview
             </a>
-            <div class="pull-right">
+            <div class="float-end">
                 <em>This may cause other issues </em>
                 <a href="?page=admin&module=moduleManager&action=install&installModule={id}&force=true" class="btn btn-danger">
                     Continue with install
@@ -31,9 +31,16 @@
         {/unless}';
 
         public $moduleOverview = '
-            <div class="pull-right">
+<<<<<<< HEAD
+        
+        <div class="card mb-3">
+            <div class="card-body">
+
+=======
+>>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
+            <div class="float-end">
                 {#if _installing}
-                    <a href="?page=admin&module=moduleManager&action=install&installModule={id}" class="btn btn-default">Install Module</a>
+                    <a href="?page=admin&module=moduleManager&action=install&installModule={id}" class="btn btn-primary">Install Module</a>
                 {/if}
                 {#if _activated}
                     <a href="?page=admin&module=moduleManager&action=deactivate&moduleName={id}" class="btn btn-danger">Deactivate Module</a>
@@ -69,7 +76,7 @@
                 <div class="col-md-6">
 
                     {#if bundle}
-                        <table class="table table-condensed table-striped table-bordered no-dt">
+                        <table class="table no-dt">
                             <thead>
                                 <tr>
                                     <th>Module</th>
@@ -99,7 +106,7 @@
                         </table>
                     {/if}
                     {#unless bundle}
-                        <table class="table table-condensed table-striped table-bordered no-dt">
+                        <table class="table no-dt">
                             <thead>
                                 <tr>
                                     <th>Option</th>
@@ -154,6 +161,10 @@
                         </ul>
                     {/if}
                 </div>
+            </div>
+
+
+            </div>
             </div>
         ';
 
@@ -215,68 +226,74 @@
         ';
 
         public $moduleList = '
-
-            <table class="table table-condensed table-responsive table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th width="190px">Name</th>
-                        <th>Description</th>
-                        <th width="70px">Version</th>
-                        <th width="90px">Author</th>
-                        <th width="100px">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {#each modules}
+        <div class="card mb-3">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>
-                                {name}
-                            </td>
-                            <td>{description}</td>
-                            <td>{version}</td>
-                            <td><a href="{author.url}" target="_blank">{author.name}</a></td>
-                            <td>
-                                [<a href="?page=admin&module=moduleManager&action=view&moduleName={id}">View</a>] 
-                                {#unless moduleCantBeDisabled}
-                                [<a href="?page=admin&module=moduleManager&action=deactivate&moduleName={id}">Deactivate</a>]
-                                {/unless}
-                            </td>
+                            <th width="190px">Name</th>
+                            <th>Description</th>
+                            <th width="70px">Version</th>
+                            <th width="90px">Author</th>
+                            <th width="100px">Actions</th>
                         </tr>
-                    {/each}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {#each modules}
+                            <tr>
+                                <td>
+                                    {name}
+                                </td>
+                                <td>{description}</td>
+                                <td>{version}</td>
+                                <td><a href="{author.url}" target="_blank">{author.name}</a></td>
+                                <td>
+                                    [<a href="?page=admin&module=moduleManager&action=view&moduleName={id}">View</a>] 
+                                    {#unless moduleCantBeDisabled}
+                                    [<a href="?page=admin&module=moduleManager&action=deactivate&moduleName={id}">Deactivate</a>]
+                                    {/unless}
+                                </td>
+                            </tr>
+                        {/each}
+                    </tbody>
+                </table>
+            </div>
+        </div>
         ';
 
         public $deactivatedModuleList = '
-
-            <table class="table table-condensed table-responsive table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th width="90px">Name</th>
-                        <th>Description</th>
-                        <th width="70px">Version</th>
-                        <th width="90px">Author</th>
-                        <th width="100px">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {#each modules}
+        <div class="card mb-3">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>{name}</td>
-                            <td>{description}</td>
-                            <td>{version}</td>
-                            <td><a href="{author.url}" target="_blank">{author.name}</a></td>
-                            <td>
-                                [<a href="?page=admin&module=moduleManager&action=deactivated&moduleName={id}">View</a>] 
-                                {#unless moduleCantBeDisabled}
-                                [<a href="?page=admin&module=moduleManager&action=reactivate&moduleName={id}">Reactivate</a>]
-                                [<a href="?page=admin&module=moduleManager&action=remove&moduleName={id}">Remove</a>]
-                                {/unless}
-                            </td>
+                            <th width="90px">Name</th>
+                            <th>Description</th>
+                            <th width="70px">Version</th>
+                            <th width="90px">Author</th>
+                            <th width="100px">Actions</th>
                         </tr>
-                    {/each}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {#each modules}
+                            <tr>
+                                <td>{name}</td>
+                                <td>{description}</td>
+                                <td>{version}</td>
+                                <td><a href="{author.url}" target="_blank">{author.name}</a></td>
+                                <td>
+                                    [<a href="?page=admin&module=moduleManager&action=deactivated&moduleName={id}">View</a>] 
+                                    {#unless moduleCantBeDisabled}
+                                    [<a href="?page=admin&module=moduleManager&action=reactivate&moduleName={id}">Reactivate</a>]
+                                    [<a href="?page=admin&module=moduleManager&action=remove&moduleName={id}">Remove</a>]
+                                    {/unless}
+                                </td>
+                            </tr>
+                        {/each}
+                    </tbody>
+                </table>
+            </div>
+        </div>
         ';
 
         public $alterModuleConfirm = '
@@ -296,49 +313,58 @@
 
         public $moduleForm = '
             <form method="post" action="?page=admin&module=moduleManager&action=install" enctype="multipart/form-data">
+<<<<<<< HEAD
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="form-group mb-3">
+=======
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="pull-left">Module File (Zipped)</label>
+>>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
+                            <label class="fw-bold mb-1">Module File (Zipped)</label>
                             <input type="file" class="form-control" name="file" />
                         </div>
                     </div>
                 </div>
-                <div class="text-right">
+                <div class="text-end">
+<<<<<<< HEAD
+                    <button class="btn btn-primary" name="submit" type="submit" value="1">Upload</button>
+=======
                     <button class="btn btn-default" name="submit" type="submit" value="1">Upload</button>
+>>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
                 </div>
-
             </form>
 
             {#if modules}
-
-                <hr />
-
-                <h3>Continue Installation</h3>
-
-                <table class="table table-responsive table-bordered table-striped table-condensed">
-                    <thead>
-                        <th width="90px">Name</th>
-                        <th>Description</th>
-                        <th width="70px">Version</th>
-                        <th width="90px">Author</th>
-                        <th width="115px">Actions</th>
-                    </thead>
-                    <tbody>
-                        {#each modules}
-                            <tr>
-                                <td>{name}</td>
-                                <td>{description}</td>
-                                <td>{version}</td>
-                                <td><a href="{author.url}" target="_blank">{author.name}</a></td>
-                                <td>
-                                    [<a href="?page=admin&module=moduleManager&action=install&view={id}">Continue</a>] 
-                                    [<a href="?page=admin&module=moduleManager&action=install&remove={id}">Remove</a>] 
-                                </td>
-                            </tr>
-                        {/each}
-                    </tbody>
-                </table>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h4 class="card-title">Continue Installation</h4>
+                    <table class="table">
+                        <thead>
+                            <th width="90px">Name</th>
+                            <th>Description</th>
+                            <th width="70px">Version</th>
+                            <th width="90px">Author</th>
+                            <th width="115px">Actions</th>
+                        </thead>
+                        <tbody>
+                            {#each modules}
+                                <tr>
+                                    <td>{name}</td>
+                                    <td>{description}</td>
+                                    <td>{version}</td>
+                                    <td><a href="{author.url}" target="_blank">{author.name}</a></td>
+                                    <td>
+                                        [<a href="?page=admin&module=moduleManager&action=install&view={id}">Continue</a>] 
+                                        [<a href="?page=admin&module=moduleManager&action=install&remove={id}">Remove</a>] 
+                                    </td>
+                                </tr>
+                            {/each}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             {/if}
         ';
     }

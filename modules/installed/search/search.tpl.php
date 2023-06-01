@@ -4,19 +4,19 @@
 
         public $userSearch = '
 
-            <div class="panel panel-default">
-                <div class="panel-heading">Find User</div>
-                <div class="panel-body">
+            <div class="card">
+                <div class="card-header">Find User</div>
+                <div class="card-body">
                     <form method="post" action="#">
                         <input type="text" name="user" class="form-control form-control-inline" placeholder="Username ..." />
-                        <button class="btn btn-default">Search</button>
+                        <button class="btn btn-primary">Search</button>
                     </form>
                 </div>
             </div>
 
-            <div class="panel panel-default">
-                <div class="panel-heading">Results</div>
-                <div class="panel-body">
+            <div class="card">
+                <div class="card-header">Results</div>
+                <div class="card-body">
                     {#unless results}
                         <em> No users found </em>
                     {/unless}

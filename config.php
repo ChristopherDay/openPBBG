@@ -1,14 +1,12 @@
 <?php
 
-    $config = array();
+$config = array();
 
-    $config["debug"] = 0;
+$config["debug"] = true;
 
-    $config["db"] = array(
-        "host" => "localhost", 
-        "database" => "",
-        "user" => "",
-        "pass" => ""
-    );
-
-?>
+$config["db"] = array(
+    "host" => "localhost", 
+    "database" => "glv2_2.6",
+    "user" => "root",
+    "pass" => "123"
+);

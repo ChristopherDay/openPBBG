@@ -6,10 +6,9 @@
             <div class="row">
                 {#each durations}
                     <div class="col-md-6">
-
-                        <div class="panel panel-default">
-                            <div class="panel-heading">{title}</div>
-                            <div class="panel-body">
+                        <div class="card">
+                            <div class="card-header">{title}</div>
+                            <div class="card-body">
                                 {#each users}
                                     <div class="crime-holder">
                                         <p>

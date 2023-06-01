@@ -1,17 +1,33 @@
 <?php
+<<<<<<< HEAD
+class loggedinTemplate extends template {
+    public $newsArticle = '
+        <div class="card">
+            <div class="card-header">Game News</div>
+            <div class="card-body text-start">
+                {#each news}
+                    <strong>{title}</strong>
+                    <small class="float-end news-info">
+                        By {>userName} {date}
+                    </small>
+                    <div class="well well-sm">
+                        [{text}]
+                    </div>
+                {/each}
+=======
 
     class loggedinTemplate extends template {
         
         public $newsArticle = '
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="card">
+                <div class="card-header">
                     Game News
                 </div>
-                <div class="panel-body text-left">
+                <div class="card-body text-start">
                     {#each news}
                         <strong>{title}</strong>
-                        <small class="pull-right news-info">
+                        <small class="float-end news-info">
                             By {>userName} {date}
                         </small>
                         <div class="well well-sm">
@@ -19,14 +35,15 @@
                         </div>
                     {/each}
                 </div>
+>>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
             </div>
+        </div>
+    ';
 
-
-        ';
-  
-
-        public $loggedinList = '
-            <table class="table table-condensed table-responsive table-striped table-bordered">
+    public $loggedinList = '
+    <div class="card mb-3">
+        <div class="card-body">
+            <table class="table">
                 <thead>
                     <tr>
                         <th width="150px">Author</th>
@@ -49,36 +66,57 @@
                     {/each}
                 </tbody>
             </table>
-        ';
+        </div>
+    </div>
+    ';
 
-        public $loggedinDelete = '
-            <form method="post" action="?page=admin&module=loggedin&action=delete&id={id}&commit=1">
-                <div class="text-center">
-                    <p> Are you sure you want to delete this news post?</p>
+    public $loggedinDelete = '
+        <form method="post" action="?page=admin&module=loggedin&action=delete&id={id}&commit=1">
+            <div class="text-center">
+                <p> Are you sure you want to delete this news post?</p>
+                <p><em>"{gntitle}"</em></p>
+                <button class="btn btn-danger" name="submit" type="submit" value="1">Yes delete this news post</button>
+            </div>
+        </form>
+    ';
 
-                    <p><em>"{gntitle}"</em></p>
-
-                    <button class="btn btn-danger" name="submit" type="submit" value="1">Yes delete this news post</button>
+<<<<<<< HEAD
+    public $loggedinNewForm = '
+        <form method="post" action="?page=admin&module=loggedin&action={editType}&id={id}">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="form-group mb-3">
+                        <label class="fw-bold mb-1">Title</label>
+                        <input type="text" class="form-control" name="gntitle" value="{gntitle}">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="fw-bold mb-1">Text</label>
+                        <textarea rows="8" type="text" class="form-control" name="gntext">{gntext}</textarea>
+                    </div>
                 </div>
-            </form>
-        
-        ';
-
-
+            </div>
+            <div class="text-end">
+                <button class="btn btn-primary" name="submit" type="submit" value="1">Save</button>
+            </div>
+        </form>
+    ';
+}
+=======
         public $loggedinNewForm = '
             <form method="post" action="?page=admin&module=loggedin&action={editType}&id={id}">
                 <div class="form-group">
-                    <label class="pull-left">Title</label>
+                    <label class="fw-bold mb-1">Title</label>
                     <input type="text" class="form-control" name="gntitle" value="{gntitle}">
                 </div>
                 <div class="form-group">
-                    <label class="pull-left">Text</label>
+                    <label class="fw-bold mb-1">Text</label>
                     <textarea rows="8" type="text" class="form-control" name="gntext">{gntext}</textarea>
                 </div>
-                <div class="text-right">
+                <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
                 </div>
             </form>
         ';
     }
 
+>>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd

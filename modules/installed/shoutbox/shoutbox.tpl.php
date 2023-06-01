@@ -5,7 +5,7 @@
         public $chatLine = '
         	<div class="crime-holder">
                 <p>
-                    <span class="cooldown pull-left">
+                    <span class="cooldown float-start">
                         {>userName} 
                     </span>
                     <span class="action">
@@ -22,7 +22,7 @@
         	{#each history}
                 <div class="list-group-item">
                     <h5 class="list-group-item-heading">
-                        {>userName} <small class="pull-right">{_ago time} ago</small>
+                        {>userName} <small class="float-end">{_ago time} ago</small>
                     </h5>
                     <p>[{text}]</p>
                 </div>
@@ -55,7 +55,7 @@
 	        		</div>
 	        		<div class="col-md-2">
 	        			<p>
-		        			<button class="btn btn-default text-center">
+		        			<button class="btn btn-primary text-center">
 		        				Reply
 	        				</button>
 	        			</p>
@@ -66,14 +66,14 @@
 
         public $shoutbox = '
 
-        	<div class="panel panel-default">
-        		<div class="panel-heading">
+        	<div class="card">
+        		<div class="card-header">
         			Shoutbox
         		</div>
-        		<div class="panel-body history">
+        		<div class="card-body history">
         			{>chatHistory}
         		</div>
-        		<div class="panel-body">
+        		<div class="card-body">
         			{>form}
         		</div>
         	</div>
