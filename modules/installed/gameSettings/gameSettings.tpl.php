@@ -35,7 +35,6 @@ class gameSettingsTemplate extends template {
     </div>
     ';
 
-<<<<<<< HEAD
     public $rankDelete = '
         <form method="post" action="?page=admin&module=gameSettings&action=deleteRank&id={id}&commit=1">
             <div class="text-center">
@@ -80,46 +79,6 @@ class gameSettingsTemplate extends template {
             </div>
         </form>
     ';
-=======
-                    <p><em>"{name}"</em></p>
-
-                    <button class="btn btn-danger" name="submit" type="submit" value="1">Yes delete this rank</button>
-                </div>
-            </form>
-        
-        ';
-        public $rankForm = '
-            <form method="post" action="?page=admin&module=gameSettings&action={editType}Rank&id={id}">
-                <div class="form-group">
-                    <label class="fw-bold mb-1">Rank Name</label>
-                    <input type="text" class="form-control" name="name" value="{name}">
-                </div>
-                <div class="form-group">
-                    <label class="fw-bold mb-1">Limit how many users can be at this rank (if there us no limit put 0)</label>
-                    <input type="number" class="form-control" name="limit" value="{limit}">
-                </div>
-                <div class="form-group">
-                    <label class="fw-bold mb-1">EXP needed to get this rank</label>
-                    <input type="number" class="form-control" name="exp" value="{exp}">
-                </div>
-                <div class="form-group">
-                    <label class="fw-bold mb-1">Money reward for reaching this rank</label>
-                    <input type="number" class="form-control" name="cash" value="{cash}">
-                </div>
-                <div class="form-group">
-                    <label class="fw-bold mb-1">Bullet reward for reaching this rank</label>
-                    <input type="number" class="form-control" name="bullets" value="{bullets}">
-                </div>
-                <div class="form-group">
-                    <label class="fw-bold mb-1">Max Health</label>
-                    <input type="number" class="form-control" name="health" value="{health}">
-                </div>
-                <div class="text-end">
-                    <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
-                </div>
-            </form>
-        ';
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
 
     public $moneyRankList = '
         <div class="card mb-3">
@@ -149,7 +108,6 @@ class gameSettingsTemplate extends template {
         </div>
     ';
 
-<<<<<<< HEAD
     public $moneyRankDelete = '
         <form method="post" action="?page=admin&module=gameSettings&action=deleteMoneyRank&id={id}&commit=1">
             <div class="text-center">
@@ -179,29 +137,3 @@ class gameSettingsTemplate extends template {
         </form>
     ';
 }
-=======
-                    <p><em>"{name}"</em></p>
-
-                    <button class="btn btn-danger" name="submit" type="submit" value="1">Yes delete this money rank</button>
-                </div>
-            </form>
-        
-        ';
-        public $moneyRankForm = '
-            <form method="post" action="?page=admin&module=gameSettings&action={editType}MoneyRank&id={id}">
-                <div class="form-group">
-                    <label class="fw-bold mb-1">Rank Name</label>
-                    <input type="text" class="form-control" name="name" value="{name}">
-                </div>
-                <div class="form-group">
-                    <label class="fw-bold mb-1">Money needed to get this rank</label>
-                    <input type="number" class="form-control" name="money" value="{money}">
-                </div>
-                <div class="text-end">
-                    <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
-                </div>
-            </form>
-        ';
-    }
-
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd

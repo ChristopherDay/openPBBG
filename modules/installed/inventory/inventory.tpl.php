@@ -210,11 +210,7 @@
         ';
         public $weaponSelect = '
             <form method="post" action="?page=admin&module=inventory&action=calculator">
-<<<<<<< HEAD
                 <div class="form-group mb-3">
-=======
-                <div class="form-group">
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
                     <label class="fw-bold mb-1">What weapon is the user shooting with</label>
                     <select class="form-control" name="weapon">
                         <option disabled selected value="0">Select a weapon</option>
@@ -224,22 +220,14 @@
                     </select>
                 </div>
                 <div class="text-end">
-<<<<<<< HEAD
                     <button class="btn btn-primary" name="submit" type="submit" value="1">View</button>
-=======
-                    <button class="btn btn-default" name="submit" type="submit" value="1">View</button>
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
                 </div>
             </form>
         ';
             
         public $formSelect = '
             <div class="col-md-{width}">
-<<<<<<< HEAD
                 <div class="form-group mb-3">
-=======
-                <div class="form-group">
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
                     <label class="fw-bold mb-1">{label}</label>
                     <select class="form-control" name="meta[ {id} ]" data-value="{value}">
                         {#each options}
@@ -252,11 +240,7 @@
             
         public $formText = '
             <div class="col-md-{width}">
-<<<<<<< HEAD
                 <div class="form-group mb-3">
-=======
-                <div class="form-group">
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
                     <label class="fw-bold mb-1">{label}</label>
                     <input type="text" class="form-control" name="meta[ {id} ]" value="{value}">
                 </div>
@@ -265,11 +249,7 @@
             
         public $formNumber = '
             <div class="col-md-{width}">
-<<<<<<< HEAD
                 <div class="form-group mb-3">
-=======
-                <div class="form-group">
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
                     <label class="fw-bold mb-1">{label}</label>
                     <input type="number" class="form-control" name="meta[ {id} ]" value="{value}">
                 </div>
@@ -278,11 +258,7 @@
             
         public $formTextarea = '
             <div class="col-md-{width}">
-<<<<<<< HEAD
                 <div class="form-group mb-3">
-=======
-                <div class="form-group">
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
                     <label class="fw-bold mb-1">{label}</label>
                     <textarea class="form-control" name="meta[ {id} ]">{value}</textarea>
                 </div>
@@ -290,7 +266,6 @@
         ';
 
         public $itemForm = '
-<<<<<<< HEAD
         <form method="post" action="?page=admin&module=inventory&action={editType}&id={id}">
             <div class="row g-3">
                 <div class="col-md-6">
@@ -336,73 +311,19 @@
                                         <div class="value">{value}</div>
                                         <div class="desc">{desc}</div>
                                     </div>
-=======
-            <form method="post" action="?page=admin&module=inventory&action={editType}&id={id}">
 
-                <h5>Item Information</h5>
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="form-group">
-                            <label class="fw-bold mb-1">Item Name</label>
-                            <input type="text" class="form-control" name="name" value="{name}">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="fw-bold mb-1">
-                                Item Type
-                            </label>
-                            <select class="form-control" name="type" data-value="{type}">
-                                {#each itemTypes}
-                                    <option value="{id}" data-item-type="{type}">{name}</option>
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
                                 {/each}
                             </div>
                             <div class="effects"></div>
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
             </div>
             <div class="text-end">
                 <button class="btn btn-primary" name="submit" type="submit" value="1">Save</button>
             </div>
         </form>
-=======
 
-                <div class="row">
-                    <{inputs}>
-                </div>
-
-                <hr />
-
-                <h5>
-                    Effects
-                    <a href="#" class="btn btn-success btn-xs float-end new-effect">
-                        New Effect
-                    </a>
-                </h5>
-
-                <div class="effect-data" style="display: none;">
-                    {#each effectTypes}{name}.--.{type}.-.{/each}
-                </div>
-                <div class="item-effects" style="display: none;">
-                    {#each effect}
-                        <div class="item-effect">
-                            <div class="effect">{id} </div>
-                            <div class="value">{value}</div>
-                            <div class="desc">{desc}</div>
-                        </div>
-                    {/each}
-                </div>
-
-                <div class="effects"></div>
-
-                <div class="text-end">
-                    <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
-                </div>
-            </form>
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
         ';
 
 	}

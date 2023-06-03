@@ -1396,6 +1396,7 @@ $(function () {
 		if (search.length) {
 			$.get("?page=admin&action=search&module=admin&search=" + search, function (html) {
 				if (!el.data('bs.popover')) {
+					console.log(html)
 					el.popover({
 						title: "Search Results", 
 						content: html, 

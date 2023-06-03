@@ -7,6 +7,66 @@
             {/if}
         ';
 
+        public $searchResults = '
+            <table class="table table-condensed table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {#each users[0:3]}
+                        <tr>    
+                            <td>
+                                <a href="/page/admin/edit?module=users&id={U_id}">{U_name}</a>
+                            </td>
+                            <td>
+                                <small>{U_email}</small>
+                            </td>
+                        </tr>
+                    {else}
+                        <tr>    
+                            <td colspan="2">
+                                <em> No users found!</em>
+                            </td>
+                        </tr>
+                    {/each}
+
+                    {#if userCount}
+                        <tr>
+                            <td colspan="2">
+                                <small><em>{count users} results found, <a href="/page/admin/view?module=users&user={search}">view all results ... </a></em></small>
+                            </td>
+                        </tr>
+                    {/if}
+                </tbody>
+            </table>
+
+            <table class="table table-condensed table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Settings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {#each acpOptions}
+                        <tr>    
+                            <td>
+                                <a href="{url}">{label}</a>
+                            </td>
+                        </tr>
+                    {else}
+                        <tr>    
+                            <td>
+                                <em> No settings found!</em>
+                            </td>
+                        </tr>
+                    {/each}
+                </tbody>
+            </table>
+        ';
+
         public $widgetTable = '
             <div class="col-md-{size}">
                 <div class="card">

@@ -1,6 +1,47 @@
 <?php
     class adminModule {
 
+        public function method_search() {
+
+            $users = $this->db->selectAll("SELECT * FROM users WHERE U_name LIKE :search OR U_email LIKE :search", array(
+                ":search" => "%" . $this->methodData->search . "%"
+            ));
+
+
+            $links = array();
+
+            foreach ($this->page->modules as $key => $val) {
+                if (isset($val["admin"])) {
+                    foreach ($val["admin"] as $k => $link) {
+                        if (isset($link["hide"]) && $link["hide"]) continue;
+
+                        $links[] = array(
+                            "label" => $val["name"] . ' - ' . $link["text"], 
+                            "url" => "/page/admin/" . $link["method"] ."?module=".$val["id"]
+                        );
+
+                    }
+                }
+            }
+
+            $acpOptions = array();
+            foreach ($links as $acpOption) {
+                if (strpos(strtolower($acpOption["label"]), strtolower($this->methodData->search)) > -1) {
+                    $acpOptions[] = $acpOption;
+                } 
+            }
+
+            echo $this->page->buildElement("searchResults", array(
+                "search" => $this->methodData->search, 
+                "users" => $users, 
+                "acpOptions" => $acpOptions, 
+                "userCount" => count($users) > 3
+            ));
+
+            exit;
+
+        }
+
         public function method_view() {
 
             $widgets = array();
