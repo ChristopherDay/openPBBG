@@ -85,7 +85,7 @@
 .navigation-menu > li > ul > li > a {
 	display: block;
 	padding: 1px 6px;
-	border-bottom: 1px solid var(--gray-lighter);
+	border-bottom: 1px solid var(--bs-gray-900);
 	line-height: 21px;
 	font-size: 90%;
 }	
@@ -100,7 +100,7 @@
 
 /* TIMERS */
 [data-timer] {
-	background-color: var(--gray-lighter);
+	background-color: var(--bs-gray-900);
 	padding: 2px 4px;
 	border-radius: 4px;
 }
@@ -109,8 +109,8 @@
 
 .crime-holder {
     position: relative;
-    background-color: var(--gray-lighter);
-    border: 1px solid var(--gray-light);
+    background-color: var(--bs-gray-900);
+    border: 1px solid var(--bs-gray-700);
     border-radius: 4px;
     margin-bottom: 15px;
 	overflow: hidden;
@@ -137,7 +137,7 @@
 }
 
 .crime-holder .commit {
-	background-color: var(--gray-light);
+	background-color: var(--bs-gray-700);
 	padding: 0px 10px;
 	border-radius: 4px;
 	justify-content: flex-end;
@@ -150,7 +150,7 @@
 	left: 0px;
 	right: 0px;
 	height: 4px;
-	background-color: var(--gray-light);
+	background-color: var(--bs-gray-700);
 	overflow: hidden;
 }
 

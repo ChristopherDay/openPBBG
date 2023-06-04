@@ -1,3 +1,10 @@
+#acpSearch,
+.admin-search .popover {
+	max-width: 100%;
+	width: 400px;
+}
+
+
 @media (min-width: 1025px){
 	.pc-header[class*="bg-"] .pc-head-link,
 	.pc-header.dark-header .pc-head-link {
@@ -20,3 +27,4 @@
 		color: rgba(255, 255, 255, 0.7);
 	}
 }
+

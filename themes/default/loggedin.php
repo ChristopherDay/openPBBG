@@ -133,7 +133,7 @@
 
                 $this->pageMain = '
 <!DOCTYPE html>
-    <html>
+    <html data-bs-theme="dark">
         <head>
             
             <meta name="timestamp" content="{timestamp}">
@@ -162,124 +162,125 @@
         </head>
         <body class="user-status-{userStatus} {_themeSettings.backgroundRepeat} {_themeSettings.backgroundSize} {_themeSettings.backgroundPosition}" style="{#if _themeSettings.backgroundColor}background-color: {_themeSettings.backgroundColor};{/if} {#if _themeSettings.backgroundURL}background-image: url(\'{_themeSettings.backgroundURL}\');{/if} ">
 
-            <nav class="navbar navbar-default">
+            <nav class="navbar navbar-expand-lg bg-primary mb-2">
                 <div class="{_themeSettings.layoutContainer}">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#">{game_name}</a>
-                    </div>
+                    <a class="navbar-brand" href="#">{game_name}</a>
 
-                        <ul class="nav navbar-nav navbar-right hidden-xs">
-                            <li>
-                                <a href="#" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Notifications" data-content=\'
-                                    <div class="list-group">
-                                        {#each notificationItems}
-                                            <div class="list-group-item">
-                                                {#unless read}<small><i class="fa-solid fa-star text-success"></i></small>{/unless}
-                                                {{text}}<br />
-                                                <small>
-                                                    <a href="?page=notifications&action=delete&id={id}">
-                                                        <i class="fa-solid fa-trash-can"></i> Delete
-                                                    </a>
-                                                </small>
-                                                <small class="pull-right">{_ago time} ago</small>
-                                            </div>
-                                        {else}
-                                            <div class="list-group-item">
-                                                <em>You dont have any notifications</em>
-                                            </div>
-                                        {/each}
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    </ul>
+
+                    <ul class="navbar-nav d-flex mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Notifications" data-content=\'
+                                <div class="list-group">
+                                    {#each notificationItems}
                                         <div class="list-group-item">
-                                            <a class="btn btn-sm btn-block btn-default" href="?page=notifications">
-                                                <i class="fa-solid fa-bell"></i> All Notifications
-                                            </a>
+                                            {#unless read}<small><i class="fa-solid fa-star text-success"></i></small>{/unless}
+                                            {{text}}<br />
+                                            <small>
+                                                <a href="?page=notifications&action=delete&id={id}">
+                                                    <i class="fa-solid fa-trash-can"></i> Delete
+                                                </a>
+                                            </small>
+                                            <small class="pull-right">{_ago time} ago</small>
                                         </div>
+                                    {else}
+                                        <div class="list-group-item">
+                                            <em>You dont have any notifications</em>
+                                        </div>
+                                    {/each}
+                                    <div class="list-group-item">
+                                        <a class="btn btn-sm btn-block btn-default" href="?page=notifications">
+                                            <i class="fa-solid fa-bell"></i> All Notifications
+                                        </a>
                                     </div>
-                                \'>
-                                    <span class="badge"> 
-                                        <i class="fa-solid fa-bell"></i> {notificationCount}
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Mail Inbox" data-content=\'
-                                    <div class="list-group">
-                                        {#each mailItems}
-                                            <div class="list-group-item">
-                                                <div class="media">
-                                                    <div class="media-left">
-                                                        <a href="#">
-                                                            <img class="media-object img-thumbnail" src="{user.profilePicture}" height="42px" width="42px" />
+                                </div>
+                            \'>
+                                <span class="badge"> 
+                                    <i class="fa-solid fa-bell"></i> {notificationCount}
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Mail Inbox" data-content=\'
+                                <div class="list-group">
+                                    {#each mailItems}
+                                        <div class="list-group-item">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <a href="#">
+                                                        <img class="media-object img-thumbnail" src="{user.profilePicture}" height="42px" width="42px" />
+                                                    </a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h5 class="media-heading">
+                                                        <a href="?page=mail&action=read&id={id}">
+                                                            {subject}
                                                         </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h5 class="media-heading">
-                                                            <a href="?page=mail&action=read&id={id}">
-                                                                {subject}
-                                                            </a>
-                                                            {#unless read}<small class="pull-right"><i class="fa-solid fa-star text-success"></i></small>{/unless}
-                                                        </h5>
-                                                        <small>{>userName}</small><br />
-                                                    </div>
+                                                        {#unless read}<small class="pull-right"><i class="fa-solid fa-star text-success"></i></small>{/unless}
+                                                    </h5>
+                                                    <small>{>userName}</small><br />
                                                 </div>
-                                                <small>
-                                                    <a href="?page=mail&action=delete&id={id}">
-                                                        <i class="fa-solid fa-trash-can"></i> Delete
-                                                    </a>
-                                                </small>
-                                                <small class="pull-right">{_ago time} ago</small>
                                             </div>
-                                        {else}
-                                            <div class="list-group-item">
-                                                <em>You dont have any mail</em>
-                                            </div>
-                                        {/each}
+                                            <small>
+                                                <a href="?page=mail&action=delete&id={id}">
+                                                    <i class="fa-solid fa-trash-can"></i> Delete
+                                                </a>
+                                            </small>
+                                            <small class="pull-right">{_ago time} ago</small>
+                                        </div>
+                                    {else}
                                         <div class="list-group-item">
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <a class="btn btn-sm btn-block btn-default" href="?page=mail">
-                                                        <i class="fa-solid fa-inbox"></i> Inbox
-                                                    </a>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <a class="btn btn-sm btn-block btn-default" href="?page=mail&action=new">
-                                                        <i class="fa-solid fa-file-pen"></i> New
-                                                    </a>
-                                                </div>
+                                            <em>You dont have any mail</em>
+                                        </div>
+                                    {/each}
+                                    <div class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <a class="btn btn-sm btn-block btn-default" href="?page=mail">
+                                                    <i class="fa-solid fa-inbox"></i> Inbox
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <a class="btn btn-sm btn-block btn-default" href="?page=mail&action=new">
+                                                    <i class="fa-solid fa-file-pen"></i> New
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
-                                \'>
-                                    <span class="badge"> 
-                                        <i class="fa-solid fa-envelope"></i> {mail}
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa-solid fa-circle-user"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="?page=profile&action=password">
-                                            <i class="fa-solid fa-key"></i> Change Password
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="?page=profile&action=edit">
-                                            <i class="fa-solid fa-user-pen"></i> Edit Profile
-                                        </a>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li>
-                                        <a href="?page=logout">
-                                            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
+                                </div>
+                            \'>
+                                <span class="badge"> 
+                                    <i class="fa-solid fa-envelope"></i> {mail}
+                                </span>
+                            </a>
+                        </li>
+                        <li class="dropdown nav-item">
+                            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa-solid fa-circle-user"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="?page=profile&action=password">
+                                        <i class="fa-solid fa-key"></i> Change Password
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="?page=profile&action=edit">
+                                        <i class="fa-solid fa-user-pen"></i> Edit Profile
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="?page=logout">
+                                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div><!-- /.container-fluid -->
             </nav>
 
@@ -291,8 +292,8 @@
                                 '.$userInfoLeft.'
                             </div>
 
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
+                            <div class="card card-default">
+                                <div class="card-header">
                                     <i class="fa-solid fa-link"></i> Navigation
                                 </div>
                                 <ul class="navigation-menu">
@@ -337,8 +338,8 @@
                                 '.$userInfoRight.'
                             </div>
                             {#if sidebarRight}
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
+                                <div class="card card-default">
+                                    <div class="card-header">
                                         <i class="fa-solid fa-link"></i> Navigation
                                     </div>
                                     <ul class="navigation-menu">
@@ -369,13 +370,13 @@
                     {/if}
                     {#if _themeSettings.shoutbox}
                         <div class="side-bar shoutbox" style="min-width: {_themeSettings.shoutbox}px; max-width: {_themeSettings.shoutbox}px">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
+                            <div class="card card-default">
+                                <div class="card-header">
                                     <i class="fa-solid fa-comment"></i> Shoutbox
                                 </div>
-                                <div class="shoutbox-messages list-group">
+                                <div class="shoutbox-messages list-group list-group-flush">
                                 </div>
-                                <div class="panel-body">    
+                                <div class="card-body">    
                                     <input type="text" class="form-control shoutbox-message" placeholder="message" />
                                 </div>
                         </div>
@@ -383,7 +384,7 @@
 
                 </div>
 
-                <nav class="navbar navbar-default navbar-fixed-bottom">
+                <nav class="navbar navbar-default fixed-bottom">
                     <div class="container visible-xs">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-mobile-show=".side-bar.left">
@@ -433,11 +434,11 @@
 
             public $userInfo = '
                             
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                <div class="card card-default">
+                    <div class="card-header">
                         <i class="fa-solid fa-user"></i> Character
                     </div>
-                    <div class="panel-body character-information">
+                    <div class="card-body character-information">
                         <div class="media">
                             <div class="media-left">
                                 <a href="#">

@@ -17,7 +17,7 @@
 
                         $links[] = array(
                             "label" => $val["name"] . ' - ' . $link["text"], 
-                            "url" => "/page/admin/" . $link["method"] ."?module=".$val["id"]
+                            "url" => "?page=admin&action=" . $link["method"] ."&module=".$val["id"]
                         );
 
                     }

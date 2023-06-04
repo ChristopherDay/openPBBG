@@ -23,6 +23,7 @@ if (!class_exists("mainTemplate")) {
 	<!-- vendor css -->
 	<link rel="stylesheet" href="themes/{_theme}/assets/css/style.css" />
 	<link rel="stylesheet" href="themes/{_theme}/assets/css/admin.css?ver={timestamp}" />
+	<link rel="stylesheet" href="themes/{_theme}/assets/css/chosen.css?ver={timestamp}" />
 	<link rel="stylesheet" href="themes/{_theme}/3rdparty/datatables.net-bs5/css/dataTables.bootstrap5.min.css" />
 	<link rel="stylesheet" href="themes/{_theme}/3rdparty/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" />
 	<link rel="stylesheet" href="themes/{_theme}/3rdparty/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" />
@@ -104,43 +105,22 @@ if (!class_exists("mainTemplate")) {
 <!-- [ Header ] start -->
 <header class="pc-header bg-dark">
 	<div class="header-wrapper">
-		<div class="me-auto pc-mob-drp">
+		
+		<div class="me-auto">
+			<ul class="list-unstyled">
+				<li class="pc-h-item admin-search">
+        			<input class="form-control" type="search" placeholder="Search" aria-label="Search"id="acpSearch" />
+				</li>
+			<ul>
+		</div>
+
+		<div class="ms-auto">
 			<ul class="list-unstyled">
 				<li class="pc-h-item">
 					<a class="pc-head-link" href="?page={_setting "landingPage"}"><i class="fa fa-circle-chevron-left fa-fw me-2"></i>The Game</a>
 				</li>
 				<li class="pc-h-item">
 					<a class="pc-head-link" href="?page={adminModule}"><i class="fa fa-eye fa-fw me-2"></i>View Module</a>
-				</li>
-			</ul>
-		</div>
-		<div class="ms-auto">
-			<ul class="list-unstyled">
-				<li class="dropdown pc-h-item">
-					<a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button"
-						aria-haspopup="false" aria-expanded="false">
-						<i class="material-icons-two-tone">search</i>
-					</a>
-					<div class="dropdown-menu dropdown-menu-end pc-h-dropdown drp-search">
-						<form class="px-3 admin-search">
-							<div class="form-group mb-0 d-flex align-items-center">
-								<i class="fa fa-search fa-fw"></i>
-								<input type="search" class="form-control border-0 shadow-none" placeholder="Username, Email, Setting ...">
-							</div>
-						</form>
-					</div>
-				</li>
-				<li class="dropdown pc-h-item">
-					<a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-						<img src="{user.profilePicture}" alt="user-image" class="user-avtar">
-						<span>
-							<span class="user-name">{user.name}</span>
-							<span class="user-desc"><strong>ID:</strong> {user.id}</span>
-						</span>
-					</a>
-					<div class="dropdown-menu dropdown-menu-end pc-h-dropdown">
-						<a class="dropdown-item" href="?page=logout"><i class="fa fa-arrow-right-from-bracket"></i> Logout</a>
-					</div>
 				</li>
 			</ul>
 		</div>

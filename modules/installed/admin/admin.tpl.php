@@ -19,7 +19,7 @@
                     {#each users[0:3]}
                         <tr>    
                             <td>
-                                <a href="/page/admin/edit?module=users&id={U_id}">{U_name}</a>
+                                <a href="?page=admin&action=edit&module=users&id={U_id}">{U_name}</a>
                             </td>
                             <td>
                                 <small>{U_email}</small>
@@ -36,7 +36,7 @@
                     {#if userCount}
                         <tr>
                             <td colspan="2">
-                                <small><em>{count users} results found, <a href="/page/admin/view?module=users&user={search}">view all results ... </a></em></small>
+                                <small><em>{count users} results found, <a href="?page=admin&action=view&module=users&user={search}">view all results ... </a></em></small>
                             </td>
                         </tr>
                     {/if}
