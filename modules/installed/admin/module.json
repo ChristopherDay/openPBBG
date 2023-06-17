@@ -11,6 +11,7 @@
     "accessInJail": true,
     "requireLogin": true,
     "adminGroup": "Dashboard",
+    "bootstrapVersion": 5,
     "admin": [
         {
             "text": "Admin Dashboard",
