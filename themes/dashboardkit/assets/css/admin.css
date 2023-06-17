@@ -4,6 +4,36 @@
 	width: 400px;
 }
 
+.table.table-xs td, .table.table-xs th {
+	padding: 0.2rem 0.4rem;
+	line-height: 27px;
+}
+
+.btn-table {
+	border: none;
+	padding: 0px 10px; 
+	height: 27px;
+	line-height: 27px;
+
+}
+.btn-table i {
+	font-size: 12px;
+	line-height: 27px;
+
+}
+
+
+
+.code-editor-flush .note-editor.note-frame.card {
+	border-radius: 0px;
+	margin-bottom: 0px !important;
+}
+
+.card-feature {
+	height: 180px;
+	background-size: cover;
+	background-position: center;
+}
 
 @media (min-width: 1025px){
 	.pc-header[class*="bg-"] .pc-head-link,

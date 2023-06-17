@@ -28,6 +28,7 @@ if (!class_exists("mainTemplate")) {
 	<link rel="stylesheet" href="themes/{_theme}/3rdparty/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" />
 	<link rel="stylesheet" href="themes/{_theme}/3rdparty/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" />
 	<link rel="stylesheet" href="themes/{_theme}/3rdparty/summernote/summernote.css" />
+	<link rel="stylesheet" href="themes/{_theme}/3rdparty/codemirror/codemirror.min.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
 	{#if moduleCSSFile}
 	<link href="{moduleCSSFile}" rel="stylesheet" />
@@ -151,6 +152,7 @@ if (!class_exists("mainTemplate")) {
         <!-- [ tabs ] end -->
         <!-- [ Main Content ] start -->
 		<div class="py-5">
+			{{alerts}}
 			{{game}}
 		</div>
         <!-- [ Main Content ] end -->
@@ -182,6 +184,7 @@ if (!class_exists("mainTemplate")) {
 <script src="themes/{_theme}/3rdparty/jszip/dist/jszip.min.js"></script>
 
 <script src="themes/{_theme}/3rdparty/summernote/summernote.js"></script>
+<script src="themes/{_theme}/3rdparty/codemirror/codemirror.min.js"></script>
 <script src="themes/{_theme}/assets/js/admin.js?ver={timestamp}"></script>
 {#if moduleJSFile}
 <script src="{moduleJSFile}"></script>
