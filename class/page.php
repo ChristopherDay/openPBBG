@@ -81,7 +81,53 @@ class page {
     }
         
     public function htmlOutput($module) {
-        return $module->html;
+
+        $html = $module->html;
+
+        if (!isset($module->page->loadedModule["bootstrapVersion"])) {
+            $module->page->loadedModule["bootstrapVersion"] = 3;
+        }
+
+        if ($module->page->loadedModule["bootstrapVersion"] == 3) {
+            $html = preg_replace_callback('|class=[\'"].*[\]+[\'"]|U', function ($matches) {
+                $replace = array(
+                    'btn-xs' => 'btn-sm',
+                    'btn-default' => 'btn-secondary',
+                    'input-lg' => 'form-control-lg',
+                    'input-sm' => 'form-control-sm',
+                    'hidden-xs' => 'd-none d-sm-block',
+                    'visible-xs' => 'd-block d-sm-none',
+                    'panel-heading' => 'card-header',
+                    'panel-primary' => 'bg-primary text-white',
+                    'panel-success' => 'bg-success text-white',
+                    'panel-info' => 'bg-info text-white',
+                    'panel-warning' => 'bg-warning text-white',
+                    'panel-danger' => 'bg-danger text-white',
+                    'progress-bar-primary' => 'bg-primary text-white',
+                    'progress-bar-success' => 'bg-success text-white',
+                    'progress-bar-info' => 'bg-info text-white',
+                    'progress-bar-warning' => 'bg-warning text-white',
+                    'progress-bar-danger' => 'bg-danger text-white',
+                    'panel' => 'card',
+                    'ml-' => 'ms-',
+                    'mr-' => 'me-',
+                    'pl-' => 'ps-',
+                    'pr-' => 'pe-',
+                    'text-left' => 'text-start',
+                    'text-right' => 'text-end',
+                    'pull-left' => 'float-start',
+                    'pull-right' => 'float-end',
+                    'rounded-left' => 'rounded-start',
+                    'rounded-right' => 'rounded-end',
+                    'border-left' => 'border-start',
+                    'border-right' => 'border-end',
+                );
+                return str_replace(array_keys($replace), array_values($replace), $matches[0]);
+            }, $html);
+            
+        }
+
+        return $html;
     }
 
     public function alertsOutput($module) {
@@ -123,48 +169,12 @@ class page {
         $this->moduleController = 'modules/installed/' . $page . '/' . $page . '.inc.php';
         $this->moduleView = 'modules/installed/' . $page . '/' . $page . '.tpl.php';
 
+        $preLoad = new Hook("pagePreLoad");
+        $preLoad->run($this);
+
         if (file_exists($this->moduleController)) {
             if (file_exists($this->moduleView)) {
-                
-                include_once 'class/template.php';
-                include_once $this->moduleView;
-                
-                $moduleCSSFile = "modules/installed/" . $page . "/" . $page . ".styles.css";
-                if (file_exists($moduleCSSFile)) {
-                    $this->registerTemplateFile($moduleCSSFile);
-                }
-                
-                $moduleJSFile = "modules/installed/" . $page . "/" . $page . ".script.js";
-                if (file_exists($moduleJSFile)) {
-                    $this->registerTemplateFile($moduleJSFile);
-                }
 
-                $templateMethod = $page . 'Template';
-                
-                $this->template = new $templateMethod($page);
-
-                if (!$this->template) {
-                    $this->template = new template();
-                }
-
-                $this->loginPage = $moduleInfo["requireLogin"];
-                $this->jailPage = $moduleInfo["accessInJail"];
-                
-                if ($this->dontRun) {
-                    return $this;
-                }
-
-                include $this->moduleController;
-                
-                $this->module = new $page();
-
-                $pageName = $page;
-
-                if (isset($moduleInfo["pageName"])) {   
-                    $pageName = $moduleInfo["pageName"];
-                }
-                    
-                $this->addToTemplate('page', $pageName);
 
                 $locationName = "";
 
@@ -197,13 +207,62 @@ class page {
                     );
                 }
 
-                $customMenus = array();
                 $customMenu = new hook("customMenus");
-                foreach ($customMenu->run($user) as $key => $menu) {
+                $customMenus = $customMenu->run($user);
+                if (!$customMenus) {
+                    $customMenus = array();
+                }
+                foreach ($customMenus as $key => $menu) {
                     if ($menu) {
                         $menus[$key] = $menu;
                         $customMenus[$key] = $menu;
                     }
+                }
+                
+                include_once 'class/template.php';
+                include_once $this->moduleView;
+                
+                $moduleCSSFile = "modules/installed/" . $page . "/" . $page . ".styles.css";
+                if (file_exists($moduleCSSFile)) {
+                    $this->registerTemplateFile($moduleCSSFile);
+                }
+                
+                $moduleJSFile = "modules/installed/" . $page . "/" . $page . ".script.js";
+                if (file_exists($moduleJSFile)) {
+                    $this->registerTemplateFile($moduleJSFile);
+                }
+
+                $templateMethod = $page . 'Template';
+                
+                $this->template = new $templateMethod($page);
+
+                if (!$this->template) {
+                    $this->template = new template();
+                }
+
+
+                $this->loginPage = $moduleInfo["requireLogin"];
+                $this->jailPage = $moduleInfo["accessInJail"];
+                
+                if ($this->dontRun) {
+                    return $this;
+                }
+
+                include $this->moduleController;
+                
+                $this->module = new $page();
+
+                $pageName = $page;
+
+                if (isset($moduleInfo["pageName"])) {   
+                    $pageName = $moduleInfo["pageName"];
+                }
+                    
+                $this->addToTemplate('page', $pageName);
+
+                if (isset($this->module)) {
+                    $this->addToTemplate('game', $this->htmlOutput($this->module));
+                    $this->addToTemplate('alerts', $this->alertsOutput($this->module));
                 }
     
                 $allMenus = new hook("menus", function ($menus) {
@@ -213,11 +272,6 @@ class page {
                 $allMenus = $allMenus->run($menus, true);
 
                 $customMenus = $this->sortArray($customMenus);
-
-                if (isset($this->module)) {
-                    $this->addToTemplate('game', $this->htmlOutput($this->module));
-                    $this->addToTemplate('alerts', $this->alertsOutput($this->module));
-                }
 
                 $this->addToTemplate('menus', $this->setActiveLinks($allMenus));
                 $this->addToTemplate('customMenus', $this->setActiveLinks($customMenus));
