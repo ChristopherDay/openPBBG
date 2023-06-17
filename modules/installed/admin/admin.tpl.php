@@ -8,7 +8,7 @@
         ';
 
         public $searchResults = '
-            <table class="table table-condensed table-bordered table-striped">
+            <table class="table table-xs table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Username</th>
@@ -43,7 +43,7 @@
                 </tbody>
             </table>
 
-            <table class="table table-condensed table-bordered table-striped">
+            <table class="table table-xs table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Settings</th>
@@ -69,10 +69,10 @@
 
         public $widgetTable = '
             <div class="col-md-{size}">
+                {>title}
                 <div class="card">
-                    <div class="card-body">
-                        {>title}
-                        <table class="table table-condensed table-striped table-bordered no-dt">
+                    <div class="card-body p-2">
+                        <table class="table table-xs table-striped table-bordered no-dt mb-0">
                             <thead>
                                 <tr>
                                     {#each header.columns}
@@ -97,9 +97,9 @@
 
         public $widgetChart = '
             <div class="col-md-{size}">
+                {>title}
                 <div class="card">
-                    <div class="card-body">
-                        {>title}
+                    <div class="card-body p-2">
                         <div class="admin-chart">
                             {#if data}
                                 {json_encode data}
