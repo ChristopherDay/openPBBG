@@ -10,7 +10,8 @@
     "moduleCantBeDisabled": false,
     "accessInJail": false,
     "requireLogin": true,
-    "adminGroup": "Modules & Themes",
+    "adminGroup": "Plugins & Themes",
+    "bootstrapVersion": 5,
     "admin": [
         {
             "text": "Ingame Layout",
@@ -19,6 +20,10 @@
         }, {
             "text": "Login Layout",
             "method": "login",
+            "hide": false
+        }, {
+            "text": "Export / Import",
+            "method": "export",
             "hide": false
         }
     ]

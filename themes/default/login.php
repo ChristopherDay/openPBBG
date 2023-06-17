@@ -83,51 +83,23 @@
 
 
             {#if _themeSettings.menuTop}
-                <nav class="navbar navbar-default">
+
+                <nav class="navbar bg-primary mb-2">
                     <div class="{_themeSettings.layoutContainer}">
                         <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="#">{game_name}</a>
-                        </div>
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        
+                        <a class="navbar-brand" href="#">{game_name}</a>
 
-                            <ul class="nav navbar-nav navbar-right">
-                                {#each menus.login.items}
-                                    <li>
-                                        <a href="{url}" {#if notAjax}data-not-ajax{/if}>
-                                            {text}
-                                        </a>
-                                    </li>
-                                {/each}
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
-                    </div><!-- /.container-fluid -->
-                </nav>
-            {else}
-                <nav class="navbar navbar-default visible-xs">
-                    <div class="{_themeSettings.layoutContainer}">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="#">{game_name}</a>
-                        </div>
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNav" aria-controls="topNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        
+                        <div class="collapse navbar-collapse" id="topNav">
 
-                            <ul class="nav navbar-nav navbar-right">
+                            <ul class="navbar-nav me-auto">
                                 {#each menus.login.items}
-                                    <li>
-                                        <a href="{url}" {#if notAjax}data-not-ajax{/if}>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{url}" {#if notAjax}data-not-ajax{/if}>
                                             {text}
                                         </a>
                                     </li>
@@ -138,7 +110,7 @@
                 </nav>
             {/if}
 
-            <p class="text-center">
+            <p class="text-center m-5">
                 <img src="{_themeSettings.logoURL}" />
             </p>
 
@@ -146,69 +118,54 @@
                 <div class="game-container">
                     {#if _themeSettings.menuLeft}
                         <div class="side-bar" style="min-width: {_themeSettings.sidebarWidth}; max-width: {_themeSettings.sidebarWidth}">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
+                            <div class="card card-default">
+                                <div class="card-header">
                                     <i class="fa-solid fa-link"></i> Navigation
                                 </div>
-                                <ul class="navigation-menu">
-                                    <li>
-                                        <ul>   
-                                            {#each menus.login.items}
-                                                <li>
-                                                    <a href="{url}" {#if notAjax}data-not-ajax{/if}>
-                                                        {text}
-                                                        <small class="pull-right">
-                                                            {extra}
-                                                            {#if timer}
-                                                                <span data-timer-type="inline" data-timer="{timer}"></span>
-                                                            {/if}
-                                                        </small>
-                                                    </a>
-                                                </li>
-                                            {/each}
-                                        </ul>
-                                    </li>
+                                <ul class="list-group list-group-flush">
+                                    {#each menus.login.items}
+                                        <li class="list-group-item">
+                                            <a href="{url}" {#if notAjax}data-not-ajax{/if}>
+                                                {text}
+                                                <small class="pull-right">
+                                                    {extra}
+                                                    {#if timer}
+                                                        <span data-timer-type="inline" data-timer="{timer}"></span>
+                                                    {/if}
+                                                </small>
+                                            </a>
+                                        </li>
+                                    {/each}
                                 </ul>
                             </div>
                         </div>
                     {/if}
 
                     <div class="game-area text-center">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                {page}
-                            </div>
-                            <div class="panel-body">
-                                {{alerts}}
-                                {{game}}
-                            </div>
-                        </div>
+                        {{alerts}}
+                        {{game}}
                     </div>
 
                     {#if _themeSettings.menuRight}
                         <div class="side-bar" style="min-width: {_themeSettings.sidebarWidth}; max-width: {_themeSettings.sidebarWidth}">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
+                            <div class="card card-default">
+                                <div class="card-header">
                                     <i class="fa-solid fa-link"></i> Navigation
                                 </div>
-                                <ul class="navigation-menu">
-                                    <li>
-                                        <ul>   
-                                            {#each menus.login.items}
-                                                <li>
-                                                    <a href="{url}" {#if notAjax}data-not-ajax{/if}>
-                                                        {text}
-                                                        <small class="pull-right">
-                                                            {extra}
-                                                            {#if timer}
-                                                                <span data-timer-type="inline" data-timer="{timer}"></span>
-                                                            {/if}
-                                                        </small>
-                                                    </a>
-                                                </li>
-                                            {/each}
-                                        </ul>
-                                    </li>
+                                <ul class="list-group list-group-flush">
+                                    {#each menus.login.items}
+                                        <li class="list-group-item">
+                                            <a href="{url}" {#if notAjax}data-not-ajax{/if}>
+                                                {text}
+                                                <small class="pull-right">
+                                                    {extra}
+                                                    {#if timer}
+                                                        <span data-timer-type="inline" data-timer="{timer}"></span>
+                                                    {/if}
+                                                </small>
+                                            </a>
+                                        </li>
+                                    {/each}
                                 </ul>
                             </div>
                         </div>

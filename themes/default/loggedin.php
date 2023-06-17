@@ -13,7 +13,15 @@
                 "right" => array()
             );
 
-            foreach (explode(",", $settings["sidebarLeft"]) as $menu) {
+            if (!is_array($settings["sidebarLeft"])) {
+                $settings["sidebarLeft"] = explode(",", $settings["sidebarLeft"]);
+            }
+
+            if (!is_array($settings["sidebarRight"])) {
+                $settings["sidebarRight"] = explode(",", $settings["sidebarRight"]);
+            }
+
+            foreach ($settings["sidebarLeft"] as $menu) {
                 if (trim($menu) == "custom") {
                     foreach ($menus as $key => $m) {
                         if (is_numeric($key)) $sidebars["left"][] = $m;
@@ -23,7 +31,7 @@
                 }
             }
 
-            foreach (explode(",", $settings["sidebarRight"]) as $menu) {
+            foreach ($settings["sidebarRight"] as $menu) {
                 if (trim($menu) == "custom") {
                     foreach ($menus as $key => $m) {
                         if (is_numeric($key)) $sidebars["right"][] = $m;
@@ -45,7 +53,59 @@
 
             public $globalTemplates = array();
 
+            public function sidebar($pos) {
+
+                if ($pos == "Left" && $this->settings["userInfoPosition"] == "left") {
+                    $userInfo = $this->userInfo;
+                } else if ($pos == "Right" && $this->settings["userInfoPosition"] == "right") {
+                    $userInfo = $this->userInfo;
+                } else {
+                    $userInfo = "";
+                }
+
+                return '
+                    {#if sidebar'.$pos.'}
+                        <div class="side-bar '.strtolower($pos).'" style="min-width: {_themeSettings.sidebarWidth}; max-width: {_themeSettings.sidebarWidth}; font-size: {_themeSettings.navigationFontSize}px">
+                            <div class="hidden-xs">
+                                '.$userInfo.'
+                            </div>
+
+                            <div class="card card-default">
+                                <div class="card-header">
+                                    <i class="fa-solid fa-link"></i> Navigation
+                                </div>
+                                <ul class="navigation-menu">
+                                    {#each sidebar'.$pos.'}
+                                        <li>
+                                            <a href="#">{title}</a>
+                                            <ul>   
+                                                {#each items}
+                                                    <li>
+                                                        <a href="{url}" {#if notAjax}data-not-ajax{/if}>
+                                                            {text}
+                                                            <small class="float-end">
+                                                                {extra}
+                                                                {#if timer}
+                                                                    <span data-timer-type="inline" data-timer="{timer}"></span>
+                                                                {/if}
+                                                            </small>
+                                                        </a>
+                                                    </li>
+                                                {/each}
+                                            </ul>
+                                        </li>
+                                    {/each}
+                                </ul>
+                            </div>
+                        </div>
+                    {/if}
+                ';
+            }
+
             public $settings = array(
+                "navigationFontSize" => "14",
+                "navigationHeadingColor" => "primary",
+                "navigationPadding" => 1,
                 "shoutbox" => "300",
                 "bootstrap" => "default",
                 "layoutContainer" => "container", 
@@ -93,14 +153,6 @@
                     );
                 }
 
-                if ($this->settings["userInfoPosition"] == "left") {
-                    $userInfoLeft = $this->userInfo;
-                    $userInfoRight = "";
-                } else {
-                    $userInfoLeft = "";
-                    $userInfoRight = $this->userInfo;
-                }
-
                 $page->addToTemplate("_themeSettings", $this->settings);
                 $page->addToTemplate("mailItems", $mailItems);
                 $page->addToTemplate("notificationItems", $notificationItems);
@@ -133,7 +185,7 @@
 
                 $this->pageMain = '
 <!DOCTYPE html>
-    <html data-bs-theme="dark">
+    <html data-bs-theme="{_themeSettings.bootstrapTheme}">
         <head>
             
             <meta name="timestamp" content="{timestamp}">
@@ -165,120 +217,22 @@
             <nav class="navbar navbar-expand-lg bg-primary mb-2">
                 <div class="{_themeSettings.layoutContainer}">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand" href="#">{game_name}</a>
+                    <a class="navbar-brand text-secondary" href="#">
+                        {game_name}
+                    </a>
 
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     </ul>
 
-                    <ul class="navbar-nav d-flex mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Notifications" data-content=\'
-                                <div class="list-group">
-                                    {#each notificationItems}
-                                        <div class="list-group-item">
-                                            {#unless read}<small><i class="fa-solid fa-star text-success"></i></small>{/unless}
-                                            {{text}}<br />
-                                            <small>
-                                                <a href="?page=notifications&action=delete&id={id}">
-                                                    <i class="fa-solid fa-trash-can"></i> Delete
-                                                </a>
-                                            </small>
-                                            <small class="pull-right">{_ago time} ago</small>
-                                        </div>
-                                    {else}
-                                        <div class="list-group-item">
-                                            <em>You dont have any notifications</em>
-                                        </div>
-                                    {/each}
-                                    <div class="list-group-item">
-                                        <a class="btn btn-sm btn-block btn-default" href="?page=notifications">
-                                            <i class="fa-solid fa-bell"></i> All Notifications
-                                        </a>
-                                    </div>
-                                </div>
-                            \'>
-                                <span class="badge"> 
-                                    <i class="fa-solid fa-bell"></i> {notificationCount}
-                                </span>
+                    <ul class="navbar-nav d-flex mb-0">
+                        <li class="nav-item d-block">
+                            <a class="btn btn-sm btn-secondary" href="?page=notifications">
+                                <i class="fa-solid fa-bell"></i> {notificationCount}
                             </a>
-                        </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" title="Mail Inbox" data-content=\'
-                                <div class="list-group">
-                                    {#each mailItems}
-                                        <div class="list-group-item">
-                                            <div class="media">
-                                                <div class="media-left">
-                                                    <a href="#">
-                                                        <img class="media-object img-thumbnail" src="{user.profilePicture}" height="42px" width="42px" />
-                                                    </a>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h5 class="media-heading">
-                                                        <a href="?page=mail&action=read&id={id}">
-                                                            {subject}
-                                                        </a>
-                                                        {#unless read}<small class="pull-right"><i class="fa-solid fa-star text-success"></i></small>{/unless}
-                                                    </h5>
-                                                    <small>{>userName}</small><br />
-                                                </div>
-                                            </div>
-                                            <small>
-                                                <a href="?page=mail&action=delete&id={id}">
-                                                    <i class="fa-solid fa-trash-can"></i> Delete
-                                                </a>
-                                            </small>
-                                            <small class="pull-right">{_ago time} ago</small>
-                                        </div>
-                                    {else}
-                                        <div class="list-group-item">
-                                            <em>You dont have any mail</em>
-                                        </div>
-                                    {/each}
-                                    <div class="list-group-item">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <a class="btn btn-sm btn-block btn-default" href="?page=mail">
-                                                    <i class="fa-solid fa-inbox"></i> Inbox
-                                                </a>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <a class="btn btn-sm btn-block btn-default" href="?page=mail&action=new">
-                                                    <i class="fa-solid fa-file-pen"></i> New
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            \'>
-                                <span class="badge"> 
-                                    <i class="fa-solid fa-envelope"></i> {mail}
-                                </span>
+                            <a class="btn btn-sm btn-secondary" href="?page=mail">
+                                <i class="fa-solid fa-envelope"></i> {mail}
                             </a>
-                        </li>
-                        <li class="dropdown nav-item">
-                            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa-solid fa-circle-user"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="?page=profile&action=password">
-                                        <i class="fa-solid fa-key"></i> Change Password
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="?page=profile&action=edit">
-                                        <i class="fa-solid fa-user-pen"></i> Edit Profile
-                                    </a>
-                                </li>
-                                <li role="separator" class="divider"></li>
-                                <li>
-                                    <a href="?page=logout">
-                                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                 </div><!-- /.container-fluid -->
@@ -286,41 +240,8 @@
 
             <div class="{_themeSettings.layoutContainer}">
                 <div class="game-container">
-                    {#if sidebarLeft}
-                        <div class="side-bar left" style="min-width: {_themeSettings.sidebarWidth}; max-width: {_themeSettings.sidebarWidth}">
-                            <div class="hidden-xs">
-                                '.$userInfoLeft.'
-                            </div>
-
-                            <div class="card card-default">
-                                <div class="card-header">
-                                    <i class="fa-solid fa-link"></i> Navigation
-                                </div>
-                                <ul class="navigation-menu">
-                                    {#each sidebarLeft}
-                                        <li>
-                                            <a href="#">{title}</a>
-                                            <ul>   
-                                                {#each items}
-                                                    <li>
-                                                        <a href="{url}" {#if notAjax}data-not-ajax{/if}>
-                                                            {text}
-                                                            <small class="pull-right">
-                                                                {extra}
-                                                                {#if timer}
-                                                                    <span data-timer-type="inline" data-timer="{timer}"></span>
-                                                                {/if}
-                                                            </small>
-                                                        </a>
-                                                    </li>
-                                                {/each}
-                                            </ul>
-                                        </li>
-                                    {/each}
-                                </ul>
-                            </div>
-                        </div>
-                    {/if}
+                    
+                    '.$this->sidebar("Left").'
 
                     <div class="game-area text-center">
                         {{alerts}}
@@ -331,45 +252,10 @@
                         '.$this->userInfo.'
                     </div>
 
+                    '.$this->sidebar("Right").'
 
-                    {#if showSidebarRight}
-                        <div class="side-bar right" style="min-width: {_themeSettings.sidebarWidth}; max-width: {_themeSettings.sidebarWidth}">
-                            <div class="hidden-xs">
-                                '.$userInfoRight.'
-                            </div>
-                            {#if sidebarRight}
-                                <div class="card card-default">
-                                    <div class="card-header">
-                                        <i class="fa-solid fa-link"></i> Navigation
-                                    </div>
-                                    <ul class="navigation-menu">
-                                        {#each sidebarRight}
-                                            <li>
-                                                <a href="#">{title}</a>
-                                                <ul>   
-                                                    {#each items}
-                                                        <li>
-                                                            <a href="{url}" {#if notAjax}data-not-ajax{/if}>
-                                                                {text}
-                                                                <small class="pull-right">
-                                                                    {extra}
-                                                                    {#if timer}
-                                                                        <span data-timer-type="inline" data-timer="{timer}"></span>
-                                                                    {/if}
-                                                                </small>
-                                                            </a>
-                                                        </li>
-                                                    {/each}
-                                                </ul>
-                                            </li>
-                                        {/each}
-                                    </ul>
-                                </div>
-                            {/if}
-                        </div>
-                    {/if}
                     {#if _themeSettings.shoutbox}
-                        <div class="side-bar shoutbox" style="min-width: {_themeSettings.shoutbox}px; max-width: {_themeSettings.shoutbox}px">
+                        <div class="side-bar shoutbox" style="min-width: {_themeSettings.shoutbox}px; max-width: {_themeSettings.shoutbox}px; font-size: {_themeSettings.navigationFontSize}px"">
                             <div class="card card-default">
                                 <div class="card-header">
                                     <i class="fa-solid fa-comment"></i> Shoutbox
@@ -384,30 +270,36 @@
 
                 </div>
 
-                <nav class="navbar navbar-default fixed-bottom">
-                    <div class="container visible-xs">
+                <nav class="navbar fixed-bottom bg-primary">
+                    <div class="container d-block d-sm-none text-center">
                         <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-mobile-show=".side-bar.left">
+                            <button type="button" class="btn btn-primary" data-mobile-show=".side-bar.left">
                                 <i class="fa-solid fa-bars"></i>
                             </button>
-                            <button type="button" class="navbar-toggle" data-mobile-show=".side-bar.mobile-user-info">
+                            <button type="button" class="btn btn-primary" data-mobile-show=".side-bar.mobile-user-info">
                                 <i class="fa-solid fa-user"></i>
                             </button>
-                            <button type="button" class="navbar-toggle active" data-mobile-show=".game-area">
+                            <button type="button" class="btn btn-primary active" data-mobile-show=".game-area">
                                 <i class="fa-solid fa-house"></i>
                             </button>
-                            <button type="button" class="navbar-toggle" data-mobile-show=".side-bar.shoutbox">
+                            <button type="button" class="btn btn-primary" data-mobile-show=".side-bar.shoutbox">
                                 <i class="fa-solid fa-comment"></i>
                             </button>
-                            <button type="button" class="navbar-toggle" data-mobile-show=".side-bar.right">
+                            <button type="button" class="btn btn-primary" data-mobile-show=".side-bar.right">
                                 <i class="fa-solid fa-bars"></i>
                             </button>
                         </div>
                     </div>
 
-                    <div class="container hidden-xs">
-                        <p class="navbar-text">&copy; {game_name} {date "Y"}</p>
-                        <p class="navbar-text navbar-right"><a href="https://glscript.net" target="_blank" class="text-muted">Gangster Legends V2</a></small></p>
+                    <div class="container d-none d-sm-flex">
+                        <div class="navbar-text text-secondary">
+                            &copy; {game_name} {date "Y"}
+                        </div>
+                        <div class="navbar-text navbar-right">
+                            <a href="https://openpbbg.com" target="_blank" class="text-muted">
+                                Gangster Legends V2
+                            </a>
+                        </div>
                     </div>
                 </nav>
             </div>
@@ -434,46 +326,36 @@
 
             public $userInfo = '
                             
-                <div class="card card-default">
+                <div class="card card-default mb-2">
                     <div class="card-header">
-                        <i class="fa-solid fa-user"></i> Character
+                        <i class="fa-solid fa-user"></i> {>userName}
                     </div>
-                    <div class="card-body character-information">
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object img-thumbnail" src="{user.profilePicture}" height="42px" width="42px" />
-                                </a>
+                    <img class="card-img-top" src="{user.profilePicture}" />
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item p-1">
+                            <strong>Money:</strong> <small class="float-end">{money}</small>
+                        </div>
+                        <div class="list-group-item p-1">
+                            <strong>Bullets:</strong> <small class="float-end">{bullets}</small>
+                        </div>
+                        <div class="list-group-item p-1">
+                            <strong>Location:</strong> <small class="float-end">{location}</small>
+                        </div>
+                        <div class="list-group-item p-1">
+                            <strong>{_setting "pointsName"}:</strong> <small class="float-end">{points}</small>
+                        </div>
+                        <div class="list-group-item p-1">
+                            <strong>Rank:</strong> <small class="float-end">{rank} {exp_perc}%</small>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info" style="width: {exp_perc}%"></div>
                             </div>
-                            <div class="media-body">
-                                <h5 class="media-heading">
-                                    {>userName}
-                                </h5>
-                                <small>{_setting "gangName"}: {gang.name}</small>
+                        </div>
+                        <div class="list-group-item p-1">
+                            <strong>Health:</strong> <small class="float-end">{health}%</small>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success" style="width: {health}%"></div>
                             </div>
                         </div>
-                        <hr />
-                        <p>
-                            <strong>Money:</strong> <small class="pull-right">{money}</small>
-                        </p>
-                        <p>
-                            <strong>Bullets:</strong> <small class="pull-right">{bullets}</small>
-                        </p>
-                        <p>
-                            <strong>Location:</strong> <small class="pull-right">{location}</small>
-                        </p>
-                        <p>
-                            <strong>{_setting "pointsName"}:</strong> <small class="pull-right">{points}</small>
-                        </p>
-                        <strong>Rank:</strong> <small class="pull-right">{rank} {exp_perc}%</small>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-info" style="width: {exp_perc}%"></div>
-                        </div>
-                        <strong>Health:</strong> <small class="pull-right">{health}%</small>
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success" style="width: {health}%"></div>
-                        </div>
-
                     </div>
                 </div>
             ';
