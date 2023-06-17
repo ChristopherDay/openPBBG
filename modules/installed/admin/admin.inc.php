@@ -130,6 +130,7 @@
                     'User Management'=> "fas fa-users",
                     'Rounds'=> "fas fa-timeline",
                     'Modules & Themes'=> "fas fa-puzzle-piece",
+                    'Plugins & Themes'=> "fas fa-puzzle-piece",
                 );
 
                 $hook = new Hook("adminGroupIcons", function ($icons) {
