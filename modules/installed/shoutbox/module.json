@@ -7,6 +7,7 @@
         "url": "http:\/\/glscript.cdcoding.com"
     },
     "pageName": "Shoutbox",
+    "bootstrapVersion": 5,
     "accessInJail": true,
     "requireLogin": true
 }

@@ -7,6 +7,7 @@
         "url": "http:\/\/glscript.cdcoding.com"
     },
     "pageName": "Game News",
+    "bootstrapVersion": 5,
     "accessInJail": true,
     "requireLogin": false
 }

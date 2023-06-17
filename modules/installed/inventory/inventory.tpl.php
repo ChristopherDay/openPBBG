@@ -270,8 +270,8 @@
             <div class="row g-3">
                 <div class="col-md-6">
                     <div class="card mb-3">
+                        <h4 class="card-header bg-dark text-white">Item Information</h4>
                         <div class="card-body">
-                            <h4 class="card-title">Item Information</h4>
                             <div class="form-group mb-3">
                                 <label class="fw-bold mb-1">Item Name</label>
                                 <input type="text" class="form-control" name="name" value="{name}">
@@ -294,13 +294,10 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card mb-3">
+                        <h4 class="card-header bg-dark text-white">
+                            Item Effects
+                        </h4>
                         <div class="card-body">
-                            <h5 class="card-title">
-                                Effects
-                                <a href="#" class="btn btn-success btn-xs float-end new-effect">
-                                    New Effect
-                                </a>
-                            </h5>
                             <div class="effect-data" style="display: none;">
                                 {#each effectTypes}{name}.--.{type}.-.{/each}
                             </div>
@@ -315,6 +312,9 @@
                                 {/each}
                             </div>
                             <div class="effects"></div>
+                            <a href="#" class="btn btn-success btn-sm float-end new-effect">
+                                New Effect
+                            </a>
                         </div>
                     </div>
                 </div>

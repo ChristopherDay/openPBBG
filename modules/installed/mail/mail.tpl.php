@@ -106,10 +106,10 @@
                 <div class="card-header">
                     Inbox
                     <span class="small float-start">
-                        &nbsp;&nbsp;<a class="btn btn-info btn-xs" href="?page=mail&action=outbox">Outbox</a>
+                        &nbsp;&nbsp;<a class="btn btn-info btn-sm" href="?page=mail&action=outbox">Outbox</a>
                     </span>
                     <span class="small float-end">
-                        <a class="btn btn-success btn-xs" href="?page=mail&action=new">New Mail</a>&nbsp;&nbsp;
+                        <a class="btn btn-success btn-sm" href="?page=mail&action=new">New Mail</a>&nbsp;&nbsp;
                     </span> 
                 </div>
                 <div class="card-body">

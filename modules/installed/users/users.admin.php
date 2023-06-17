@@ -25,7 +25,6 @@
                     US_exp as 'exp', 
                     US_bank as 'bank', 
                     US_points as 'points', 
-                    US_bullets as 'bullets', 
                     R_name as 'round',
                     US_bio as 'bio', 
                     US_pic as 'pic'
@@ -114,7 +113,6 @@
                         SET 
                             US_pic = :pic, 
                             US_bio = :bio, 
-                            US_bullets = :bullets, 
                             US_points = :points, 
                             US_bank = :bank, 
                             US_exp = :exp, 
@@ -124,7 +122,6 @@
                     ", array(
                         ":pic" => $this->methodData->pic,
                         ":bio" => $this->methodData->bio,
-                        ":bullets" => $this->methodData->bullets,
                         ":points" => $this->methodData->points,
                         ":bank" => $this->methodData->bank,
                         ":exp" => $this->methodData->exp,

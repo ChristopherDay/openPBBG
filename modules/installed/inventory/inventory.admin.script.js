@@ -37,9 +37,9 @@ $(function () {
 		var html = '<div class="effect-item">';
 		html += '	<div class="row">';
 		html += '		<div class="col-md-1">';
-		html += '			<a class="btn btn-danger btn-block remove">&cross;</a>';
+		html += '			<a class="btn btn-danger text-white btn-block remove"><i class="fa-solid fa-trash-can"></i></a>';
 		html += '		</div>';
-		html += '		<div class="col-md-2">';
+		html += '		<div class="col-md-4">';
 		html += '			<select class="form-control" name="effect['+id+'][id]">';
 
 		effects.filter(function (e) {
@@ -53,7 +53,7 @@ $(function () {
 		html += '		<div class="col-md-2">';
 		html += '			<input class="form-control" name="effect['+id+'][value]" placeholder="Value" />';
 		html += '		</div>';
-		html += '		<div class="col-md-7">';
+		html += '		<div class="col-md-5">';
 		html += '			<input class="form-control" name="effect['+id+'][desc]" placeholder="Description ..." />';
 		html += '		</div>';
 		html += '	</div>';

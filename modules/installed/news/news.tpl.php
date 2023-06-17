@@ -1,17 +1,18 @@
 <?php
 class newsTemplate extends template {
     public $newsArticle = '
-        {#each news}
-            <div class="well well-sm">
-                <h3>
+
+        {#each news}            
+            <div class="card mb-3">
+                <div class="card-header text-start">
                     {title} 
                     <small class="float-end tiny">
-                        By {>userName}<br />
-                        {date}
+                        By {>userName} {date}
                     </small>
-                </h3>
-                <hr />
-                <p>[{text}]</p>
+                </div>
+                <div class="card-body text-start">
+                    [{text}]
+                </div>
             </div>
         {/each}
     ';

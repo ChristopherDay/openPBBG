@@ -7,6 +7,7 @@
         "url": "http:\/\/glscript.cdcoding.com"
     },
     "pageName": "Register",
+    "bootstrapVersion": 5,
     "accessInJail": false,
     "requireLogin": false,
     "adminGroup": "Pages",

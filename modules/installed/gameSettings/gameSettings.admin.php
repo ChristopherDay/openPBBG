@@ -167,7 +167,8 @@
         public function method_viewRank () {
             
             $this->html .= $this->page->buildElement("rankList", array(
-                "ranks" => $this->getRank()
+                "ranks" => $this->getRank(), 
+                "editType" => "new"
             ));
 
         }
@@ -334,7 +335,8 @@
         public function method_viewMoneyRank () {
             
             $this->html .= $this->page->buildElement("moneyRankList", array(
-                "moneyRanks" => $this->getMoneyRank()
+                "moneyRanks" => $this->getMoneyRank(), 
+                "editType" => "new"
             ));
 
         }

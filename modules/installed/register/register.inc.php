@@ -21,8 +21,8 @@
             }
 
             $settings = new settings();
-            $this->page->addToTemplate("loginSuffix", $settings->loadSetting("registerSuffix"));
-            $this->page->addToTemplate("loginPostfix", $settings->loadSetting("registerPostfix"));
+            $this->page->addToTemplate("registerSuffix", $settings->loadSetting("registerSuffix"));
+            $this->page->addToTemplate("registerPostfix", $settings->loadSetting("registerPostfix"));
             
             $ref = false;
             if (isset($this->methodData->ref)) {
@@ -30,6 +30,8 @@
             }
             
             $this->html .= $this->page->buildElement('registerForm', array(
+                "info" => $settings->loadSetting("registerPostfix"),
+                "desc" => $settings->loadSetting("registerSuffix"), 
                 "text" => $this->regError, 
                 "ref" => $ref
             ));

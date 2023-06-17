@@ -8,6 +8,7 @@
     },
     "pageName": "Rounds",
     "moduleCantBeDisabled": false,
+    "bootstrapVersion": 5,
     "accessInJail": false,
     "requireLogin": false,
     "adminGroup": "Rounds",

@@ -18,7 +18,11 @@
             $this->page->addToTemplate("loginSuffix", $settings->loadSetting("loginSuffix"));
             $this->page->addToTemplate("loginPostfix", $settings->loadSetting("loginPostfix"));
 
-            $this->html .= $this->page->buildElement('loginForm');
+            
+            $this->html .= $this->page->buildElement('loginForm', array(
+                "desc" => $settings->loadSetting("loginSuffix"), 
+                "info" => $settings->loadSetting("loginPostfix")
+            ));
 
             
         }

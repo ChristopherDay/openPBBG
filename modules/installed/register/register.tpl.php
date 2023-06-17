@@ -1,23 +1,51 @@
 <?php
 class registerTemplate extends template {
     public $registerForm = '
-        {{text}}
-        <form action="?page=register&action=register{#if ref}&ref={ref}{/if}" method="post">
-            <input type="hidden" name="_CSFR" value="{_CSFRToken}" />
-            <input class="form-control" type="text" name="username" placeholder="Username" /><br />
-            <input class="form-control" type="text" autocomplete="off" name="email" placeholder="EMail" /><br />
-            <div class="row">
-                <div class="col-xs-6">
-                    <input class="form-control" type="password" name="password" placeholder="Password" />
-                </div>
-                <div class="col-xs-6">
-                    <input class="form-control" type="password" name="cpassword" placeholder="Confirm Password" />
-                </div>
-            </div><br />
-            <div class="text-end">
-                <button type="submit" class="btn btn-primary">Register</button>
+        <div class="card">
+            <div class="card-header">
+                Register
             </div>
-        </form>
+            <div class="card-body">
+                <div class="row">
+                    {#if desc}
+                        <div class="col-sm-8">
+                            {{desc}}
+                        </div>
+                    {else}
+                        <div class="col-sm-4"></div>
+                    {/if}
+                    <div class="col-sm-4">
+                        <div class="bg-light rounded border p-3">
+                            <form action="?page=register&action=register{#if ref}&ref={ref}{/if}" method="post">
+                                <input type="hidden" name="_CSFR" value="{_CSFRToken}" />
+                                <p>
+                                    <input class="form-control" type="text" name="username" placeholder="Username" />
+                                </p> 
+                                <p>
+                                    <input class="form-control" type="text" autocomplete="off" name="email" placeholder="EMail" />
+                                </p>
+                                <p>
+                                    <input class="form-control" type="password" name="password" placeholder="Password" />
+                                </p>
+                                <p>
+                                    <input class="form-control" type="password" name="cpassword" placeholder="Confirm Password" />
+                                </p>
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-primary">Register</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                {#if info}
+                    <hr />
+                    {{info}}
+                {/if}
+
+            </div>
+        </div>
+        {{text}}
     ';
 
     public $registerOptions = '

@@ -32,8 +32,11 @@ class userRolesTemplate extends template {
 
     public $roleList = '
     <div class="card">
+        <h4 class="card-header bg-dark text-white">
+            User Roles
+        </h4>
         <div class="card-body">
-            <table class="table">
+            <table class="table table-bordered table-xs">
                 <thead>
                     <tr>
                         <th width="50px">ID</th>
@@ -48,9 +51,13 @@ class userRolesTemplate extends template {
                             <td>{id}</td>
                             <td>{name}</td>
                             <td>{color}</td>
-                            <td>
-                                [<a href="?page=admin&module=userRoles&action=edit&id={id}">Edit</a>] 
-                                [<a href="?page=admin&module=userRoles&action=delete&id={id}">Delete</a>]
+                            <td class="text-end">
+                                <a href="?page=admin&module=userRoles&action=edit&id={id}" class="btn btn-table btn-success">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a href="?page=admin&module=userRoles&action=delete&id={id}" class="btn btn-table btn-danger">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </a>
                             </td>
                         </tr>
                     {/each}
@@ -75,28 +82,38 @@ class userRolesTemplate extends template {
     public $roleForm = '
         <form method="post" action="?page=admin&module=userRoles&action={editType}&id={id}">
             <div class="row g-3">
-                <div class="col-md-6 col-xl-7">
+                <div class="col-md-4">
                     <div class="card mb-3">
+                        <h4 class="card-header bg-dark text-white">Role Information</h4>
                         <div class="card-body">
-                            <h3 class="card-title">Main</h3>
-                            <div class="form-group mb-3">
-                                <label class="fw-bold mb-1">Name</label>
-                                <input type="text" class="form-control" name="name" value="{name}">
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group mb-3">
+                                        <label class="fw-bold mb-1">Color</label> 
+                                        <input type="color" name="color" value="{color}" class="form-control form-control-color" style="width: 100%">
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group mb-3">
+                                        <label class="fw-bold mb-1">Name</label>
+                                        <input type="text" class="form-control" name="name" value="{name}">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group mb-3">
-                                <label class="fw-bold mb-1">Color</label> 
-                                <input type="color" name="color" value="{color}" class="form-control form-control-color">
-                            </div>
+
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-xl-5">
+                <div class="col-md-8">
                     <div class="card mb-3">
+                        <h4 class="card-header bg-dark text-white">
+                            Plugin Access
+                        </h4>
                         <div class="card-body">
-                            <h3 class="card-title">Admin Modules</h3>
                             <div class="row flex-row">
                                 {#each modules}
-                                    <div class="col-lg-6 col-xl-6">
+                                    <div class="col-lg-4 col-xl-4">
                                     <div class="form-group mb-3 py-1">
                                         <input class="form-check-input me-1" type="checkbox" name="access[]" value="{id}" {#if selected}checked{/if} id="mod_{id}"/>
                                         <label class="form-check-label fw-bold" for="mod_{id}">{pageName}</label>

@@ -142,7 +142,8 @@
         public function method_view () {
 
             $this->html .= $this->page->buildElement("loggedinList", array(
-                "loggedin" => $this->getNews()
+                "loggedin" => $this->getNews(), 
+                "editType" => "new"
             ));
 
         }

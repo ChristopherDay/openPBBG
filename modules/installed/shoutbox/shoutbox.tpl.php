@@ -21,10 +21,10 @@
         public $chatSidebar = '
         	{#each history}
                 <div class="list-group-item">
-                    <h5 class="list-group-item-heading">
+                    <span class="list-group-item-heading">
                         {>userName} <small class="float-end">{_ago time} ago</small>
-                    </h5>
-                    <p>[{text}]</p>
+                    </span>
+                    <p class="mb-0">[{text}]</p>
                 </div>
         	{/each}
         	{#unless history}

@@ -33,10 +33,10 @@
             }
         }
 
-
+        global $page;
         // We found our match, or there were no matches.
         // Either way, use the last defined value for $divisor.
-        return number_format($number / $divisor, $precision) . $shorthand;
+        return $page->money($number / $divisor, $precision) . $shorthand;
     }
 
     new hook("adminWidget-html", function ($user) {
@@ -47,9 +47,10 @@
                 SUM(US_money) + SUM(US_bank) as 'cash', 
                 COUNT(U_id) as 'alive'
             FROM users INNER JOIN userStats ON (US_id = U_id) 
-            WHERE U_status != 0 AND U_userLevel = 1
+            WHERE U_status != 0 
             ORDER BY U_id DESC LIMIT 0, 20
         ");
+            //AND U_userLevel = 1
         $html = '<div class="card flat-card">
         <div class="row-table">
             <div class="col-sm-6 card-body br">

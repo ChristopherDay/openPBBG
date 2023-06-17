@@ -10,10 +10,15 @@
     "accessInJail": true,
     "requireLogin": false,
     "adminGroup": "Pages",
+    "bootstrapVersion": 5,
     "admin": [
         {
-            "text": "Page Settings",
-            "method": "settings"
+            "text": "Game Description",
+            "method": "desc"
+        },
+        {
+            "text": "Game Information",
+            "method": "info"
         }
     ]
 }

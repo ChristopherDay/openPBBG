@@ -1031,7 +1031,11 @@ pre {
 	padding: 0px 10px;
 }
 
-
+.note-editor.note-frame.card,
+.code-editor-flush {
+	border-radius: 0px;
+	margin-bottom: 0px !important;
+}
 
 
 
