@@ -95,13 +95,20 @@
                 foreach ($_POST as $key => $value) {
                     $this->methodData->$key = $value;
                 }
+                foreach ($_FILES as $key => $value) {
+                    $this->methodData->$key = $value;
+                }
 
                 return;
             }
 
             foreach ($data as $key => $val) {
                 
-                if (strtolower($val['type']) == 'get') {
+                if (strtolower($val['type']) == 'file') {
+                    if (isset($_FILES[$key])) {
+                      @$this->methodData->$key = $_FILES[$key];
+                    }
+                } elseif (strtolower($val['type']) == 'get') {
                     if (isset($_GET[$key])) {
                       @$this->methodData->$key = $_GET[$key];
                     }
