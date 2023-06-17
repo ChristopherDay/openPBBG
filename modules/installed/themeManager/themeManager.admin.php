@@ -18,6 +18,9 @@
 
             $themes = array();
 
+            $theme = _setting("theme");
+            $adminTheme = _setting("adminTheme");
+
             $themeDirectories = scandir("themes/");
             foreach ($themeDirectories as $themeName) {
                 if ($themeName[0] == ".") continue;
@@ -27,6 +30,11 @@
                     $info = json_decode(file_get_contents($themeInfoFile), true);
                     if ($type && $info["themeType"] != $type) continue;
                     $info["id"] = $themeName;
+
+                    if (in_array($themeName, array($theme, $adminTheme))) {
+                        $info["active"] = true;
+                    } 
+
                     $themes[$themeName] = $info;
                     if ($themeNameToLoad && $themeNameToLoad == $themeName) return $info;
                 }
@@ -82,9 +90,7 @@
                 if ($res === TRUE) {
                     $zip->extractTo($installLocation);
                     $zip->close();
-                    $this->html .= $this->page->buildElement("success", array(
-                        "text" => "Theme installed successfully!"
-                    ));
+                    $this->page->alert("Theme installed successfully!", "success");
                     return $this->method_options();
                 }
             } else {
@@ -98,6 +104,25 @@
             delete_files($dir);
         }
 
+        public function method_activate() {
+            $theme = $this->getTheme($this->methodData->id, $this->methodData->type);
+
+            if (!$theme) return $this->method_view();
+
+            if ($theme["themeType"] == "game") {
+                $settings = new Settings();
+                $settings->update("theme", $this->methodData->id);
+            } else if ($theme["themeType"] == "admin") {
+                $settings = new Settings();
+                $settings->update("adminTheme", $this->methodData->id);
+            }
+
+            $this->page->alert("Theme updated, if you have updated an admin tgheme you will need to reload the page!", "success");
+
+            unset($this->methodData->id);
+            $this->method_view();
+        }
+
         public function method_options() {
 
             $settings = new settings();
@@ -108,11 +133,7 @@
                 $settings->update("from_email", $this->methodData->from_email);
                 $settings->update("pointsName", $this->methodData->pointsName);
                 $settings->update("gangName", $this->methodData->gangName);
-                $settings->update("theme", $this->methodData->theme);
-                $settings->update("adminTheme", $this->methodData->adminTheme);
-                $this->html .= $this->page->buildElement("success", array(
-                    "text" => "Theme options updated."
-                ));
+                $this->page->alert("Theme options updated.", "success");
                 $this->page->addToTemplate("game_name", $this->methodData->game_name);
                 $this->page->addToTemplate("from_email", $this->methodData->from_email);
                 $this->page->addToTemplate("pointsName", $this->methodData->pointsName);
@@ -127,27 +148,13 @@
                 "from_email" => $settings->loadSetting("from_email"),
                 "pointsName" => $settings->loadSetting("pointsName"),
                 "gangName" => $settings->loadSetting("gangName"),
-                "theme" => $settings->loadSetting("theme"),
-                "adminTheme" => $settings->loadSetting("adminTheme"),
             );
 
             $output["modules"] = $this->page->modules;
-            $output["themes"] = $this->getTheme(false, "game");
-            $output["adminThemes"] = $this->getTheme(false, "admin");
 
             foreach ($output["modules"] as $key => $value) {
                 if ($value["id"] == $output["landingPage"]) {
                     $output["modules"][$key]["selected"] = true;
-                }
-            }
-            foreach ($output["themes"] as $key => $value) {
-                if ($value["id"] == $output["theme"]) {
-                    $output["themes"][$key]["selected"] = true;
-                }
-            }
-            foreach ($output["adminThemes"] as $key => $value) {
-                if ($value["id"] == $output["adminTheme"]) {
-                    $output["adminThemes"][$key]["selected"] = true;
                 }
             }
 

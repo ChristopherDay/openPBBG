@@ -42,30 +42,6 @@ class themeManagerTemplate extends template {
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <div class="form-group mb-3">
-                            <label class="fw-bold mb-1">Game Theme</label>
-                            <select class="form-control" name="theme">
-                                {#each themes}
-                                    <option value="{id}" {#if selected}selected{/if}>
-                                        {name}
-                                    </option>
-                                {/each}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group mb-3">
-                            <label class="fw-bold mb-1">Admin Theme</label>
-                            <select class="form-control" name="adminTheme">
-                                {#each adminThemes}
-                                    <option value="{id}" {#if selected}selected{/if}>
-                                        {name}
-                                    </option>
-                                {/each}
-                            </select>
-                        </div>
-                    </div>
                 </div>
                 <div class="text-end">
                     <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
@@ -88,34 +64,37 @@ class themeManagerTemplate extends template {
     ';
 
     public $themeList = '
-    <div class="card mb-3">
-        <div class="card-body">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th width="200px">Name</th>
-                        <th>Description</th>
-                        <th width="70px">Version</th>
-                        <th width="90px">Author</th>
-                        <th width="60px">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {#each themes}
-                        <tr>
-                            <td>{name}</td>
-                            <td>{description}</td>
-                            <td>{version}</td>
-                            <td><a href="{author.url}" target="_blank">{author.name}</a></td>
-                            <td>
-                                [<a href="?page=admin&module=themes&action=edit&themeName={id}">View</a>] 
-                            </td>
-                        </tr>
-                    {/each}
-                </tbody>
-            </table>
+
+        <div class="row">
+            {#each themes}
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-header text-center {#if active}bg-success{else}bg-dark{/if} text-white">
+                            {name}
+                        </div>
+                        <div class="text-center card-feature" style="background-image: url(\'themes/{id}/preview.png\')">
+                            <span class="float-end bg-dark text-white p-1 m-3 rounded">{ucfirst themeType}</span>
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                <a href="{author.url}" target="_blank">{author.name}</a>
+                                <span class="float-end bg-gray-300 p-1 rounded">{version}</span>
+                            </p>
+                            {#if active}
+                                <a href="" class="btn btn-link text d-block disabled">
+                                    Currently used as {themeType} theme
+                                </a>
+                            {else}
+                                <a href="?page=admin&module=themeManager&action=activate&type={themeType}&id={id}" class="btn btn-success d-block">
+                                    Activate
+                                </a>
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+            {/each}
         </div>
-    </div>
+
     ';
 
     public $themeDelete = '

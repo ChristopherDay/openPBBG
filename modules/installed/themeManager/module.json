@@ -7,8 +7,9 @@
         "url": "http:\/\/glscript.cdcoding.com"
     },
     "pageName": "Theme Manager",
+    "bootstrapVersion": 5,
     "moduleCantBeDisabled": true,
-    "adminGroup": "Modules & Themes",
+    "adminGroup": "Plugins & Themes",
     "admin": [
         {
             "text": "Theme Options",
