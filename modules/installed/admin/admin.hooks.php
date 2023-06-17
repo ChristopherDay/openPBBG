@@ -1,20 +1,26 @@
 <?php
 
-    new hook("customMenus", function ($user) {
-        global $page;
+    global $page;
+
+
+    new hook("pagePreLoad", function ($page) {
+        global $user;
 
         if (isset($_GET["page"]) && $_GET["page"] == "admin" && isset($_GET["module"])) {
             $page->addToTemplate("adminModule", $_GET["module"]);
         }
+        
+        $page->addMenu("admin", "Admin", "adminMenu", 100);
 
         if ($user && count($user->adminModules)) {
-            $items = array(
-                array(
+
+            new Hook("adminMenu", function () {
+                return array(
                     "url" => "?page=admin", 
                     "notAjax" => true,
                     "text" => "Admin"
-                )
-            );
+                );
+            });
 
             if (isset($page->loadedModule["admin"]) && $user->hasAdminAccessTo($page->loadedModule["id"])) {
                 foreach ($page->loadedModule["admin"] as $k => $v) {
@@ -28,12 +34,6 @@
 
             }
 
-            return array(
-                "title" => "Admin", 
-                "items" => $items,
-                "sort" => 1000
-            );
-        } else {
-            return false;
-        }
+            
+        } 
     });
