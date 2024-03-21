@@ -3,15 +3,15 @@
     "version": "1.0.0",
     "description": "This module allows a admin to edit users",
     "author": {
-        "name": "Chris Day",
-        "url": "http:\/\/glscript.cdcoding.com"
+        "name": "PHPkiller",
+        "url": "https:\/\/phpkiller.me"
     },
-    "pageName": "User Administration",
-    "accessInJail": false,
+    "pageName": "Users Management",
+    "accessInJail": true,
+    "accessInHospital": true,
     "requireLogin": true,
     "adminGroup": "User Management",
-    "admin": [
-        {
+    "admin": [{
             "text": "Find User",
             "method": "view"
         },
