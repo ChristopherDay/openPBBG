@@ -40,7 +40,6 @@
 
             $stats = $this->db->select("
                 SELECT 
-                    SUM(US_bullets) as 'bullets',
                     SUM(US_points) as 'points',
                     SUM(US_money) + SUM(US_bank) as 'cash', 
                     COUNT(U_id) as 'alive'
@@ -51,7 +50,6 @@
 
             $deadStats = $this->db->select("
                 SELECT 
-                    SUM(US_bullets) as 'bullets',
                     SUM(US_money) + SUM(US_bank) as 'cash', 
                     COUNT(U_id) as 'dead'
                 FROM users INNER JOIN userStats ON (US_id = U_id) 
@@ -66,7 +64,6 @@
                 "alive" => $stats["alive"],
                 "points" => (int) $stats["points"],
                 "cash" => (int) $stats["cash"],
-                "bullets" => (int) $stats["bullets"]
             ));
         }
         
