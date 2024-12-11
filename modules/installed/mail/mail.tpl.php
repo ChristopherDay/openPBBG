@@ -42,11 +42,7 @@
                 <textarea rows="6" name="message" class="form-control" placeholder="Your reply ..."></textarea>
                 <br />
                 <div class="text-end">
-<<<<<<< HEAD
                     <button class="btn btn-primary">
-=======
-                    <button class="btn btn-default">
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
                         Send
                     </button>
                 </div>

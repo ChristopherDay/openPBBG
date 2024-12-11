@@ -6,51 +6,31 @@ class themeManagerTemplate extends template {
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
-<<<<<<< HEAD
                         <div class="form-group mb-3">
-=======
-                        <div class="form-group">
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
                             <label class="fw-bold mb-1">Game Name</label>
                             <input type="text" class="form-control" name="game_name" value="{game_name}" />
                         </div>
                     </div>
                     <div class="col-md-12">
-<<<<<<< HEAD
                         <div class="form-group mb-3">
-=======
-                        <div class="form-group">
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
                             <label class="fw-bold mb-1">From Email</label>
                             <input type="text" class="form-control" name="from_email" value="{from_email}" />
                         </div>
                     </div>
                     <div class="col-md-12">
-<<<<<<< HEAD
                         <div class="form-group mb-3">
-=======
-                        <div class="form-group">
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
                             <label class="fw-bold mb-1">Points Name</label>
                             <input type="text" class="form-control" name="pointsName" value="{pointsName}" />
                         </div>
                     </div>
                     <div class="col-md-12">
-<<<<<<< HEAD
                         <div class="form-group mb-3">
-=======
-                        <div class="form-group">
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
                             <label class="fw-bold mb-1">Gang Name</label>
                             <input type="text" class="form-control" name="gangName" value="{gangName}" />
                         </div>
                     </div>
                     <div class="col-md-12">
-<<<<<<< HEAD
                         <div class="form-group mb-3">
-=======
-                        <div class="form-group">
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
                             <label class="fw-bold mb-1">Landing Module</label>
                             <select class="form-control" name="landingPage">
                                 {#each modules}
@@ -62,11 +42,7 @@ class themeManagerTemplate extends template {
                         </div>
                     </div>
                     <div class="col-md-12">
-<<<<<<< HEAD
                         <div class="form-group mb-3">
-=======
-                        <div class="form-group">
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
                             <label class="fw-bold mb-1">Game Theme</label>
                             <select class="form-control" name="theme">
                                 {#each themes}
@@ -78,11 +54,7 @@ class themeManagerTemplate extends template {
                         </div>
                     </div>
                     <div class="col-md-12">
-<<<<<<< HEAD
                         <div class="form-group mb-3">
-=======
-                        <div class="form-group">
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
                             <label class="fw-bold mb-1">Admin Theme</label>
                             <select class="form-control" name="adminTheme">
                                 {#each adminThemes}
@@ -94,21 +66,6 @@ class themeManagerTemplate extends template {
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
-=======
-                <div class="text-end">
-                    <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
-                </div>
-            </form>
-        ';
-
-        public $themeHolder = '
-        {#each themes}
-        <div class="theme-holder">
-            <p>{name} ({cooldown}) <span class="commit"><a href="?page=themes&action=commit&theme={id}">Commit</a></span></p>
-            <div class="theme-perc">
-                <div class="perc" style="width:{percent}%;"></div>
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
             </div>
         </div>
         <div class="text-end">
@@ -158,7 +115,6 @@ class themeManagerTemplate extends template {
         </form>
     ';
 
-<<<<<<< HEAD
     public $themeForm = '
         <form method="post" action="?page=admin&module=themeManager&action=install" enctype="multipart/form-data">
             <div class="card mb-3">
@@ -179,27 +135,3 @@ class themeManagerTemplate extends template {
         </form>
     ';
 }
-=======
-                    <button class="btn btn-danger" name="submit" type="submit" value="1">Yes delete this theme</button>
-                </div>
-            </form>
-        
-        ';
-        public $themeForm = '
-            <form method="post" action="?page=admin&module=themeManager&action=install" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="fw-bold mb-1">Theme File (Zipped)</label>
-                            <input type="file" class="form-control" name="file" />
-                        </div>
-                    </div>
-                </div>
-                <div class="text-end">
-                    <button class="btn btn-default" name="submitInstall" type="submit" value="1">Upload</button>
-                </div>
-            </form>
-        ';
-    }
-
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd

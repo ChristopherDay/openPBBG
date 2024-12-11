@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 class loggedinTemplate extends template {
     public $newsArticle = '
         <div class="card">
@@ -14,28 +13,6 @@ class loggedinTemplate extends template {
                         [{text}]
                     </div>
                 {/each}
-=======
-
-    class loggedinTemplate extends template {
-        
-        public $newsArticle = '
-
-            <div class="card">
-                <div class="card-header">
-                    Game News
-                </div>
-                <div class="card-body text-start">
-                    {#each news}
-                        <strong>{title}</strong>
-                        <small class="float-end news-info">
-                            By {>userName} {date}
-                        </small>
-                        <div class="well well-sm">
-                            [{text}]
-                        </div>
-                    {/each}
-                </div>
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
             </div>
         </div>
     ';
@@ -80,7 +57,6 @@ class loggedinTemplate extends template {
         </form>
     ';
 
-<<<<<<< HEAD
     public $loggedinNewForm = '
         <form method="post" action="?page=admin&module=loggedin&action={editType}&id={id}">
             <div class="card mb-3">
@@ -101,22 +77,3 @@ class loggedinTemplate extends template {
         </form>
     ';
 }
-=======
-        public $loggedinNewForm = '
-            <form method="post" action="?page=admin&module=loggedin&action={editType}&id={id}">
-                <div class="form-group">
-                    <label class="fw-bold mb-1">Title</label>
-                    <input type="text" class="form-control" name="gntitle" value="{gntitle}">
-                </div>
-                <div class="form-group">
-                    <label class="fw-bold mb-1">Text</label>
-                    <textarea rows="8" type="text" class="form-control" name="gntext">{gntext}</textarea>
-                </div>
-                <div class="text-end">
-                    <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
-                </div>
-            </form>
-        ';
-    }
-
->>>>>>> 6f4c9c97c9b74bec1896842bec19ed9d865a1afd
