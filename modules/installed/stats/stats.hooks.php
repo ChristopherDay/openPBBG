@@ -176,7 +176,7 @@
         foreach ($users as $u) {
             $data[] = array(
                 "columns" => array(
-                    array( "value" => "<a href='/page/admin/edit?module=users&id=".$u["id"]."'>".$u["name"]."</a>" ),
+                    array( "value" => "<a href='?page=admin&action=edit&module=users&id=".$u["id"]."'>".$u["name"]."</a>" ),
                     array( "value" => $u["date"] )
                 )
             );
