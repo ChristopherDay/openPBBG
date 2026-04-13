@@ -10,9 +10,7 @@ if (file_exists(__DIR__ . "/install.lock")) {
 
 $required = [
   'pdo',
-  // You can swap these based on your DB choice:
   'pdo_mysql',
-  // 'pdo_pgsql',
   'mbstring',
   'json',
   'openssl',

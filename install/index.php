@@ -105,8 +105,8 @@
                       <label class="form-label" for="dbDriver">Driver</label>
                       <select class="form-select" id="dbDriver" required>
                         <option value="mysql" selected>MySQL</option>
-                        <option value="pgsql">PostgreSQL</option>
-                        <option value="sqlite">SQLite</option>
+                        <!--<option value="pgsql">PostgreSQL</option>
+                        <option value="sqlite">SQLite</option>-->
                       </select>
                       <div class="invalid-feedback">Select a driver.</div>
                     </div>
