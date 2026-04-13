@@ -56,7 +56,7 @@
 
             public $pageMain = '
 <!DOCTYPE html>
-    <html>
+    <html data-bs-theme="{_themeSettings.bootstrapTheme}">
         <head>
             
             <meta name="timestamp" content="{timestamp}">
