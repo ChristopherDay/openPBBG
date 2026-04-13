@@ -1,5 +1,3 @@
 <?php
 
-    $db = NEW DB("mysql:host=" . $config["db"]["host"] . ";dbname=" . $config["db"]["database"], $config["db"]["user"], $config["db"]["pass"]);
-
-?>
+    $db = NEW DB($config["db"]["driver"] . ":host=" . $config["db"]["host"] . ";port=".$config["db"]["port" ].";dbname=" . $config["db"]["database"], $config["db"]["user"], $config["db"]["pass"]);
