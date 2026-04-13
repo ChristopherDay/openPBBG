@@ -15,7 +15,7 @@ class registerTemplate extends template {
                         <div class="col-sm-4"></div>
                     {/if}
                     <div class="col-sm-4">
-                        <div class="bg-light rounded border p-3">
+                        <div class="bg-body-tertiary rounded border p-3">
                             <form action="?page=register&action=register{#if ref}&ref={ref}{/if}" method="post">
                                 <input type="hidden" name="_CSFR" value="{_CSFRToken}" />
                                 <p>

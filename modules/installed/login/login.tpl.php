@@ -11,18 +11,26 @@ class loginTemplate extends template {
             <div class="card-body">
 
                 <div class="row">
-                    <div class="col-md-8">
-                        {{desc}}
-                    </div>
+                    {#if desc}
+                        <div class="col-md-8">
+                            {{desc}}
+                        </div>
+                    {else}
+                        <div class="col-md-4"></div>
+                    {/if}
                     <div class="col-md-4">
-                        <form action="?page=login&action=login" method="post" class="bg-light rounded border p-3">
+                        <form action="?page=login&action=login" method="post" class="bg-body-tertiary rounded border p-3">
                             <input type="hidden" name="_CSFR" value="{_CSFRToken}" />
-                            <input autocomplete="new-password" type="input" class="form-control" name="email" placeholder="Email" /><br />
-                            <input autocomplete="new-password" type="password" class="form-control" name="password" placeholder="Password" /><br />
+                            <input autocomplete="new-password" type="input" class="form-control" name="email" placeholder="Email" />
+                            <input autocomplete="new-password" type="password" class="my-2 form-control" name="password" placeholder="Password" />
 
                             <div class="row">
                                 <div class="col-sm-8 text-start">
-                                    <a href="?page=forgotPassword" class="btn btn-link">Forgot Password?</a>
+                                    <small>
+                                        <a href="?page=forgotPassword" class="text-muted">
+                                            Forgot Password?
+                                        </a>
+                                    </small>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="text-end">
