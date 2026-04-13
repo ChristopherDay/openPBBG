@@ -297,7 +297,7 @@
                         </div>
                         <div class="navbar-text navbar-right">
                             <a href="https://openpbbg.com" target="_blank" class="text-muted">
-                                Gangster Legends V2
+                                OpenPBBG
                             </a>
                         </div>
                     </div>

@@ -176,7 +176,7 @@
             <nav class="navbar navbar-default navbar-fixed-bottom">
                 <div class="container">
                     <p class="navbar-text">&copy; {game_name} {date "Y"}</p>
-                    <p class="navbar-text navbar-right hidden-xs"><a href="https://glscript.net" target="_blank" class="text-muted">Gangster Legends V2</a></small></p>
+                    <p class="navbar-text navbar-right hidden-xs"><a href="https://openpbbg.com" target="_blank" class="text-muted">OpenPBBG</a></small></p>
                 </div>
             </nav>
 
