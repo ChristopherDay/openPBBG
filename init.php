@@ -19,7 +19,7 @@
 
     session_start();
 
-    if (file_exists("install/index.php")) {
+    if (file_exists("install/index.php") && !file_exists("install/install.lock")) {
         header("Location: install/");
         exit;
     }
