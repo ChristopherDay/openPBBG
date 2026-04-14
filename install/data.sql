@@ -18,7 +18,7 @@ INSERT INTO `settings` (`S_desc`, `S_value`) VALUES
 ('pointsName', 'Points'),
 ('gangName', 'Gang'), 
 ('loginSettings', '{"logoURL":"themes\/default\/images\/logo.png","menuPosition":"left","bootstrap":"default","layoutContainer":"container","sidebarWidth":"250px","sidebarLocation":"250px","backgroundColor":"#4d4d4d","backgroundRepeat":"background-no-repeat","backgroundSize":"background-size-auto","backgroundPosition":"background-pos-tl","backgroundURL":"","customCSS":"","bootstrapTheme":"dark"}'), 
-('themeSettings', '{"navigationFontSize":"14","navigationHeadingColor":"primary","navigationPadding":"1","shoutbox":"300","bootstrap":"lux","layoutContainer":"container","sidebarWidth":"250px","userInfoPosition":"right","sidebarRight":["admin","points","account"],"sidebarLeft":["actions","money","casino","gang","kill"],"bootstrapTheme":"dark","backgroundColor":"#4d4d4d","backgroundRepeat":"background-no-repeat","backgroundSize":"background-size-auto","backgroundPosition":"background-pos-tl","backgroundURL":"","customCSS":""}');
+('themeSettings', '{"navigationFontSize":"14","navigationHeadingColor":"primary","navigationPadzding":"1","shoutbox":"300","bootstrap":"lux","layoutContainer":"container-fluid","sidebarWidth":"250px","userInfoPosition":"right","sidebarRight":["admin","points","account"],"sidebarLeft":["actions","money","casino","gang","kill"],"bootstrapTheme":"dark","backgroundColor":"#4d4d4d","backgroundRepeat":"background-no-repeat","backgroundSize":"background-size-auto","backgroundPosition":"background-pos-tl","backgroundURL":"","customCSS":""}');
 
 INSERT INTO `userRoles` (`UR_id`, `UR_desc`, `UR_color`) VALUES
 (1, 'User', '#777777'),
