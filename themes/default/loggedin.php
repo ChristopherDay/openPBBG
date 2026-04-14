@@ -76,24 +76,26 @@
                                 </div>
                                 <ul class="navigation-menu">
                                     {#each sidebar'.$pos.'}
-                                        <li>
-                                            <a href="#">{title}</a>
-                                            <ul>   
-                                                {#each items}
-                                                    <li>
-                                                        <a href="{url}" {#if notAjax}data-not-ajax{/if}>
-                                                            {text}
-                                                            <small class="float-end">
-                                                                {extra}
-                                                                {#if timer}
-                                                                    <span data-timer-type="inline" data-timer="{timer}"></span>
-                                                                {/if}
-                                                            </small>
-                                                        </a>
-                                                    </li>
-                                                {/each}
-                                            </ul>
-                                        </li>
+                                        {#if  items}
+                                            <li>
+                                                <a href="#">{title}</a>
+                                                <ul>   
+                                                    {#each items}
+                                                        <li>
+                                                            <a href="{url}" {#if notAjax}data-not-ajax{/if}>
+                                                                {text}
+                                                                <small class="float-end">
+                                                                    {extra}
+                                                                    {#if timer}
+                                                                        <span data-timer-type="inline" data-timer="{timer}"></span>
+                                                                    {/if}
+                                                                </small>
+                                                            </a>
+                                                        </li>
+                                                    {/each}
+                                                </ul>
+                                            </li>
+                                        {/if}
                                     {/each}
                                 </ul>
                             </div>
