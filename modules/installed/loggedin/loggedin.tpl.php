@@ -22,7 +22,7 @@ class loggedinTemplate extends template {
     <div class="row">
         <div class="col-md-8">
             <div class="card mb-3">
-                <h4 class="card-header bg-dark text-white">Game News</h4>
+                <h4 class="card-header">Game News</h4>
                 <div class="card-body">
                     <table class="table table-bordered table-xs" data-sort-col="2" data-sort-type="desc">
                         <thead>
@@ -62,7 +62,7 @@ class loggedinTemplate extends template {
 
     public $loggedinDelete = '
         <div class="card">
-            <div class="card-header bg-dark text-white">
+            <div class="card-header">
                 Delete News
             </div>
             <div class="card-body">
@@ -81,7 +81,7 @@ class loggedinTemplate extends template {
     public $loggedinNewForm = '
         <form method="post" action="?page=admin&module=loggedin&action={editType}&id={id}">
             <div class="card mb-3">
-                <h4 class="card-header bg-dark text-white">
+                <h4 class="card-header">
                     {#if gntitle}
                         Edit: {gntitle}
                     {else}

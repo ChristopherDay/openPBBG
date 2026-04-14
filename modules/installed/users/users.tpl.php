@@ -41,7 +41,7 @@
         public $userList = '
 
             <div class="card mb-3">
-                <h4 class="card-header bg-dark text-white">Current Users</h4>
+                <h4 class="card-header">Current Users</h4>
                 <div class="card-body">
                     <table class="table table-bordered table-xs">
                         <thead>
@@ -82,7 +82,7 @@
 
         public $userDelete = '
         <div class="card">
-            <div class="card-header bg-dark text-white">
+            <div class="card-header">
                 Delete User
             </div>
             <div class="card-body">
@@ -104,7 +104,7 @@
         public $userForm = '
 
             <div class="card">
-                <div class="card-header bg-dark text-white">
+                <div class="card-header">
                     Edit User
                 </div>
                 <div class="card-body">

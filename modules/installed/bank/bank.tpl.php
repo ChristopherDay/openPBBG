@@ -5,7 +5,7 @@ class bankTemplate extends template {
     public $options = '
         <form method="post" action="#">
             <div class="card mb-3">
-                <h4 class="card-header bg-dark text-white">Bank Settings</h4>
+                <h4 class="card-header">Bank Settings</h4>
                 <div class="card-body">
                     <div class="form-group mb-3">
                         <label class="fw-bold mb-1">Deposit tax (%)</label>

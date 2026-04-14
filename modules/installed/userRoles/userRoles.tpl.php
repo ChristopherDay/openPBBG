@@ -32,7 +32,7 @@ class userRolesTemplate extends template {
 
     public $roleList = '
     <div class="card">
-        <h4 class="card-header bg-dark text-white">
+        <h4 class="card-header">
             User Roles
         </h4>
         <div class="card-body">
@@ -84,7 +84,7 @@ class userRolesTemplate extends template {
             <div class="row g-3">
                 <div class="col-md-4">
                     <div class="card mb-3">
-                        <h4 class="card-header bg-dark text-white">Role Information</h4>
+                        <h4 class="card-header">Role Information</h4>
                         <div class="card-body">
 
                             <div class="row">
@@ -107,7 +107,7 @@ class userRolesTemplate extends template {
                 </div>
                 <div class="col-md-8">
                     <div class="card mb-3">
-                        <h4 class="card-header bg-dark text-white">
+                        <h4 class="card-header">
                             Plugin Access
                         </h4>
                         <div class="card-body">

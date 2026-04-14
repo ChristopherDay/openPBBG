@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center p-3">
+                        <div class="card-header d-flex justify-content-between align-items-center p-3">
                             <div>
                                 Import / Export
                             </div>
@@ -52,7 +52,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">
-                            <div class="card-header bg-dark text-white">
+                            <div class="card-header">
                                 Page Layout
                             </div>
                             <div class="card-body">
@@ -116,7 +116,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card">
-                            <div class="card-header bg-dark text-white">
+                            <div class="card-header">
                                 Background
                             </div>
                             <div class="card-body">
@@ -176,7 +176,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card">
-                            <div class="card-header bg-dark text-white">
+                            <div class="card-header">
                                 Menus
                             </div>
                             <div class="card-body">
@@ -197,7 +197,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-dark text-white">
+                    <div class="card-header">
                         custom CSS
                     </div>
                     <textarea data-code-editor="css" class="form-control" rows="8" name="customCSS">{customCSS}</textarea>
@@ -217,7 +217,7 @@
                     <div class="col-md-3">
 
                         <div class="card">
-                            <div class="card-header bg-dark text-white">
+                            <div class="card-header">
                                 Page Layout
                             </div>
                             <div class="card-body">
@@ -288,7 +288,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="card">
-                            <div class="card-header bg-dark text-white">
+                            <div class="card-header">
                                 Background
                             </div>
                             <div class="card-body">
@@ -349,7 +349,7 @@
                     <div class="col-md-3">
 
                         <div class="card">
-                            <div class="card-header bg-dark text-white">
+                            <div class="card-header">
                                 Sidebars
                             </div>
                             <div class="card-body">
@@ -384,7 +384,7 @@
                     <div class="col-md-3">
 
                         <div class="card">
-                            <div class="card-header bg-dark text-white">
+                            <div class="card-header">
                                 Navigation
                             </div>
                             <div class="card-body">
@@ -430,7 +430,7 @@
 
 
                 <div class="card">
-                    <div class="card-header bg-dark text-white">
+                    <div class="card-header">
                         Custom CSS
                     </div>
                     <textarea data-code-editor="css" class="form-control" rows="8" name="customCSS">{customCSS}</textarea>

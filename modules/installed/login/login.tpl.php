@@ -54,7 +54,7 @@ class loginTemplate extends template {
     public $gameDesc = '
         <form method="post" action="?page=admin&module=login&action=desc">
             <div class="card mb-3 code-editor-flush">
-                <div class="card-header bg-dark text-white">Game Description</div>
+                <div class="card-header">Game Description</div>
                 <textarea type="text" class="form-control" data-editor="html" name="loginSuffix" rows="5">{loginSuffix}</textarea>
             </div>
             <div class="text-end">
@@ -66,7 +66,7 @@ class loginTemplate extends template {
     public $gameInfo = '
         <form method="post" action="?page=admin&module=login&action=info">
             <div class="card mb-3 code-editor-flush">
-                <div class="card-header bg-dark text-white">Game Information</div>
+                <div class="card-header">Game Information</div>
                 <textarea type="text" class="form-control" data-editor="html" name="loginPostfix" rows="5">{loginPostfix}</textarea>
             </div>
             <div class="text-end">

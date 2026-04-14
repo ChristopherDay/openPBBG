@@ -5,7 +5,7 @@ class gameSettingsTemplate extends template {
     <div class="row">
         <div class="col-md-8">
             <div class="card mb-3">
-                <h4 class="card-header bg-dark text-white">View Ranks</h4>
+                <h4 class="card-header">View Ranks</h4>
                 <div class="card-body">
                     <table class="table table-bordered table-xs" data-sort-col="1">
                         <thead>
@@ -49,7 +49,7 @@ class gameSettingsTemplate extends template {
 
     public $rankDelete = '
         <div class="card">
-            <div class="card-header bg-dark text-white">
+            <div class="card-header">
                 Delete Rank
             </div>
             <div class="card-body">
@@ -66,7 +66,7 @@ class gameSettingsTemplate extends template {
     public $rankForm = '
         <form method="post" action="?page=admin&module=gameSettings&action={editType}Rank&id={id}">
             <div class="card mb-3">
-                <h4 class="card-header bg-dark text-white">{ucfirst editType} Rank</h4>
+                <h4 class="card-header">{ucfirst editType} Rank</h4>
                 <div class="card-body">
                     <div class="form-group mb-3">
                         <label class="fw-bold mb-1">Rank Name</label>
@@ -101,7 +101,7 @@ class gameSettingsTemplate extends template {
         <div class="row">
             <div class="col-md-8">
                 <div class="card mb-3">
-                    <h4 class="card-header bg-dark text-white">Money Ranks</h4>
+                    <h4 class="card-header">Money Ranks</h4>
                     <div class="card-body">
                         <table class="table table-bordered table-xs" data-sort-col="1">
                             <thead>
@@ -141,7 +141,7 @@ class gameSettingsTemplate extends template {
 
     public $moneyRankDelete = '
         <div class="card">
-            <div class="card-header bg-dark text-white">
+            <div class="card-header">
                 Delete Money Rank
             </div>
             <div class="card-body">
@@ -159,7 +159,7 @@ class gameSettingsTemplate extends template {
 
             <form method="post" action="?page=admin&module=gameSettings&action={editType}MoneyRank&id={id}">
                 <div class="card mb-3">
-                    <h4 class="card-header bg-dark text-white">{ucfirst editType} Rank</h4>
+                    <h4 class="card-header">{ucfirst editType} Rank</h4>
                     <div class="card-body">
                         <div class="form-group mb-3">
                             <label class="fw-bold mb-1">Rank Name</label>
