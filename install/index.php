@@ -1,6 +1,5 @@
 <?php
   if (file_exists(__DIR__ . "/install.lock")) {
-    /* output html saying installer is already completed */
     header("Location: ./complete.php");
     exit;
   }
@@ -11,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Installer</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../themes/default/bootstrapThemes/default/bootstrap.min.css" rel="stylesheet">
 
   <style>
     .monospace { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
@@ -219,7 +218,7 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../themes/default/js/bootstrap.min.js"></script>
 
   <script>
     // ---------- Helpers ----------
