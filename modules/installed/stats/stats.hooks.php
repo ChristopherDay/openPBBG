@@ -56,7 +56,7 @@
             <div class="col-sm-6 card-body br">
                 <div class="row">
                     <div class="col-sm-4">
-                        <i class="material-icons-two-tone text-primary mb-1">group</i>
+                        <i class="fa-solid fa-people-group text-primary"></i>
                     </div>
                     <div class="col-sm-8 text-md-center">
                         <h5>'.number_format($stats["alive"]).'</h5>
@@ -67,7 +67,7 @@
             <div class="col-sm-6 d-none d-md-table-cell d-lg-table-cell d-xl-table-cell card-body br">
                 <div class="row">
                     <div class="col-sm-4">
-                        <i class="material-icons-two-tone text-primary mb-1">language</i>
+                        <i class="fa-solid fa-money-bill-1-wave text-primary"></i>
                     </div>
                     <div class="col-sm-8 text-md-center">
                         <h5>'.number_shorten($stats["cash"], 2) .'</h5>
@@ -78,7 +78,7 @@
             <div class="col-sm-6 card-body">
                 <div class="row">
                     <div class="col-sm-4">
-                        <i class="material-icons-two-tone text-primary mb-1">unarchive</i>
+                        <i class="fa-solid fa-star text-primary"></i>
                     </div>
                     <div class="col-sm-8 text-md-center">
                         <h5>'.number_shorten($stats["points"], 0) .'</h5>
