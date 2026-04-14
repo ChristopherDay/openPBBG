@@ -190,13 +190,9 @@
         }
 
         public function method_view () {
-            
-            if (!isset($this->methodData->themeName)) {
-                $this->methodData->themeName = false;
-            }
 
             $this->html .= $this->page->buildElement("themeList", array(
-                "themes" => $this->getTheme($this->methodData->themeName, false)
+                "themes" => $this->getTheme(false, false)
             ));
 
         }

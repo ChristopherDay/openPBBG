@@ -67,22 +67,24 @@ class themeManagerTemplate extends template {
 
         <div class="row">
             {#each themes}
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="card">
-                        <div class="card-header text-center {#if active}bg-success{else}bg-dark{/if} text-white">
+                        <div class="card-header text-center {#if active}bg-success{/if}">
                             {name}
                         </div>
                         <div class="text-center card-feature" style="background-image: url(\'themes/{id}/preview.png\')">
                             <span class="float-end bg-dark text-white p-1 m-3 rounded">{ucfirst themeType}</span>
                         </div>
                         <div class="card-body">
-                            <p>
-                                <a href="{author.url}" target="_blank">{author.name}</a>
+                                <a href="{author.url}" target="_blank" class="btn btn-link btn-sm">
+                                    {author.name}
+                                </a>
                                 <span class="float-end bg-gray-300 p-1 rounded">{version}</span>
-                            </p>
+                        </div>
+                        <div class="card-footer">
                             {#if active}
                                 <a href="" class="btn btn-link text d-block disabled">
-                                    Currently used as {themeType} theme
+                                    {ucfirst themeType} theme
                                 </a>
                             {else}
                                 <a href="?page=admin&module=themeManager&action=activate&type={themeType}&id={id}" class="btn btn-success d-block">
