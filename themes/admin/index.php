@@ -17,9 +17,6 @@ if (!class_exists("mainTemplate")) {
 	<meta name="author" content="DashboardKit">
 	<!-- Favicon icon -->
 	<link rel="icon" href="themes/{_theme}/assets/images/favicon.svg" type="image/x-icon">
-	<!-- font css -->
-	<link rel="stylesheet" href="themes/{_theme}/assets/fonts/feather.css" />
-	<link rel="stylesheet" href="themes/{_theme}/assets/fonts/material.css" />
 	<!-- vendor css -->
 	<link rel="stylesheet" href="themes/{_theme}/assets/css/style.css" />
 	<link rel="stylesheet" href="themes/{_theme}/assets/css/admin.css?ver={timestamp}" />
@@ -179,9 +176,7 @@ if (!class_exists("mainTemplate")) {
 <script src="themes/{_theme}/3rdparty/datatables.net-buttons/js/buttons.flash.min.js"></script>
 <script src="themes/{_theme}/3rdparty/datatables.net-buttons/js/buttons.html5.min.js"></script>
 <script src="themes/{_theme}/3rdparty/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="themes/{_theme}/3rdparty/pdfmake/build/pdfmake.min.js"></script>
-<script src="themes/{_theme}/3rdparty/pdfmake/build/vfs_fonts.js"></script>
-<script src="themes/{_theme}/3rdparty/jszip/dist/jszip.min.js"></script>
+
 
 <script src="themes/{_theme}/3rdparty/summernote/summernote.js"></script>
 <script src="themes/{_theme}/3rdparty/codemirror/codemirror.min.js"></script>
