@@ -52,8 +52,7 @@
                 date('Y-m-d H:i:s')
             );
             
-            $return = '';
-            $return .= '<div class="well error-well">';
+            $return = '<pre>';
             $return .= '<h1>There was an error!</h1>';
             $return .= '<p style="font-family: monospace;">';
             $return .= '<strong>File:</strong> '.$file;
@@ -62,22 +61,39 @@
             $return .= '<br /><strong>Type:</strong> '.$type;
             $return .= '</p>';
             
-            $return .= '</div>';
+            $return .= '</pre>';
             
             $this->log(json_encode($errorArray), $major);
                 
             if (!$config["debug"] && $major) {
-                echo '<h1>Sorry something went very wrong!</h1>';
-                echo '<p>The error has been logged and waiting for a developer to review this issue.</p>';
-                echo '<p>If you are the developer you can enable better dubuging by editing config.php and enabling debug</p>';
-                exit;
+                $return = '<p>An unexpected error occurred while loading this page.</p>
+                <p>
+                  If you’re a developer, you can enable debug mode to see the full error details.
+                  Open <code>config.php</code> and change:
+                </p>
+
+                <pre><code>$config["debug"] = false;</code></pre>
+
+                <p>to:</p>
+
+                <pre><code>$config["debug"] = true;</code></pre>
+
+                <p>Then refresh the page.</p>';
+
+                $this->page($return);
                 
             } else if ($config["debug"]) {
-                echo $return;
+                /* check to  see  if its a 500 error if so show the page */
+                if ($major) {
+                    $this->page($return);
+                }  else {
+                    echo $return;
+                }
             }
             
             
         }
+
         
         public function shutdown() {
             $error = error_get_last();
@@ -126,6 +142,186 @@
             }
         
         }
+
+    function page($text) {
+        echo  '<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Error</title>
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#111827;
+      --border:#243244;
+      --text:#e5e7eb;
+      --muted:#9ca3af;
+      --danger:#ef4444;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:var(--bg);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+    }
+
+    .wrap{width:min(900px, 100%);}
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      overflow:hidden;
+    }
+
+    header{
+      padding:18px 20px;
+      border-bottom:1px solid var(--border);
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+    }
+
+    .icon{
+      width:34px;height:34px;
+      border-radius:10px;
+      border:1px solid var(--danger);
+      color:var(--danger);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      flex:0 0 auto;
+      margin-top:2px;
+    }
+
+    h1{
+      margin:0;
+      font-size:18px;
+      line-height:1.2;
+    }
+
+    .sub{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:13px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    main{padding:18px 20px 20px;}
+
+    .panel{
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:14px;
+      background:var(--bg);
+    }
+
+    .label{
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:8px;
+    }
+
+    .message{
+      font-size:15px;
+      line-height:1.45;
+      word-break:break-word;
+    }
+
+    details{
+      margin-top:12px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      overflow:hidden;
+      background:var(--card);
+    }
+
+    summary{
+      cursor:pointer;
+      user-select:none;
+      padding:12px 14px;
+      color:var(--text);
+      font-weight:600;
+      border-bottom:1px solid var(--border);
+      background:var(--card);
+    }
+
+    pre{
+      margin:0;
+      padding:14px;
+      overflow:auto;
+      font-family:var(--mono);
+      font-size:12.5px;
+      line-height:1.45;
+      color:var(--text);
+      background:var(--bg);
+      white-space:pre-wrap;
+      word-break:break-word;
+    }
+
+    footer{
+      padding:12px 20px;
+      border-top:1px solid var(--border);
+      color:var(--muted);
+      font-size:12px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      background:var(--card);
+    }
+
+    a{color:var(--text);text-decoration:underline}
+
+    code{
+      font-family:var(--mono);
+      font-size:12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" role="alert" aria-live="polite">
+      <header>
+        <div class="icon" aria-hidden="true">!</div>
+        <div>
+          <h1>Something went wrong</h1>
+          <div class="sub">
+            <span>HTTP <code>500</code></span>
+          </div>
+        </div>
+      </header>
+
+      <main>
+          ' . $text . '
+      </main>
+
+      <footer>
+        <div>Try again, or <a href="/">go back home</a>.</div>
+        <div>Time <code>' . date('Y-m-d H:i:s T') . '</code></div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>';
+exit;
+    }
         
     }
 
