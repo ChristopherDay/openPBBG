@@ -26,6 +26,24 @@
 
     include 'dbconn.php';
 
+    if (!isset($_SESSION['userID']) && isset($_COOKIE["authToken"])) {
+        $token = $_COOKIE["authToken"];
+        $checkToken = $db->select("SELECT * FROM loginCookies WHERE LC_token = :token", array(
+            "token" => $token
+        ));
+        if ($checkToken) {
+            if ($checkToken["LC_userAgent"] == $_SERVER['HTTP_USER_AGENT']) {
+                if ($checkToken["LC_expiry"] > time()) {
+                    $_SESSION['userID'] = $checkToken["LC_user"];
+                } else {
+                    $db->query("DELETE FROM loginCookies WHERE LC_id = :id", array(
+                        "id" => $checkToken["LC_id"]
+                    ));
+                }
+            }
+        }
+    } 
+
     $settings = new settings();
 
     $page = new Page();
@@ -36,6 +54,7 @@
     }
 
     $pageToLoad = $_GET['page'];
+
 
     $user = false;
     if (!empty($_SESSION['userID'])) {

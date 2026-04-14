@@ -67,6 +67,16 @@
 
             $_SESSION['userID'] = $user->info->U_id;
 
+                $token = bin2hex(random_bytes(16));
+                $expiry = time() + (86400 * 365);
+                setcookie("authToken", $token, $expiry);
+                $this->db->insert("INSERT INTO loginCookies (LC_user, LC_token, LC_expiry, LC_userAgent) VALUES (:user, :token, :expiry, :agent)", array(
+                    "user" => $user->info->U_id,
+                    "token" => $token,
+                    "expiry" => $expiry,
+                    "agent" => $_SERVER['HTTP_USER_AGENT']
+                ));
+
             $actionHook = new hook("userAction");
             $action = array(
                 "user" => $user->info->U_id, 

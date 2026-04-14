@@ -666,7 +666,15 @@
         }
         
         public function  logout() {
-        
+            
+            if (isset($_COOKIR["authToken"])) {
+                $token = $_COOKIE["authToken"];
+                $this->db->query("DELETE FROM loginCookies WHERE LC_token = :token", array(
+                    "token" => $token
+                ));
+                setcookie("authToken", "", time() - 3600);
+            }
+
             session_destroy();
             
         }

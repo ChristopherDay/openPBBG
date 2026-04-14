@@ -145,3 +145,12 @@ CREATE TABLE IF NOT EXISTS `chat` (
   `CH_text` varchar(128) NOT NULL,
   PRIMARY KEY (`CH_id`)
 ) DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `loginCookies` (
+  `LC_id` int(11) NOT NULL AUTO_INCREMENT,
+  `LC_user` int(11) NOT NULL,
+  `LC_token` varchar(255) NOT NULL,
+  `LC_expiry` int(11) NOT NULL,
+  `LC_userAgent` varchar(255) NOT NULL,
+  PRIMARY KEY (`LC_id`)
+) DEFAULT CHARSET=utf8;
