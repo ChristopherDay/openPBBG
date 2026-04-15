@@ -1,0 +1,112 @@
+:root{
+	--bg:#071021;           /* deep navy */
+	--muted:rgba(255,255,255,0.65);
+	--muted-2:rgba(255,255,255,0.45);
+	--primary:#7c3aed;      /* purple accent */
+	--primary-2:#5b21b6;
+	--accent-contrast:#ffffff;
+	--input-bg:#0f1724;
+	--border:rgba(255,255,255,0.06);
+}
+
+*{box-sizing:border-box}
+body{
+	background:var(--bg);
+	color:var(--muted);
+	font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+	min-height:100vh;
+}
+
+/* Card */
+.card{
+	background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+	border:1px solid var(--border);
+	color:var(--muted);
+}
+
+/* Header logo circle */
+img.rounded-circle{background:rgba(255,255,255,0.02);padding:4px}
+
+/* Stepper */
+.stepper .step{flex:1;text-align:center;cursor:pointer;opacity:.7}
+.stepper .step.active{opacity:1}
+.stepper .circle{
+	width:44px;height:44px;border-radius:50%;background:transparent;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--muted);
+	border:1px solid var(--border);
+	box-shadow:0 6px 18px rgba(0,0,0,0.45), inset 0 -6px 16px rgba(124,58,237,0.03);
+	transition:all .18s ease;
+}
+.stepper .step.active .circle{
+	background:linear-gradient(135deg,var(--primary),var(--primary-2));
+	color:var(--accent-contrast);
+	border-color:transparent;
+	transform:translateY(-2px) scale(1.02);
+}
+.stepper .label{font-size:.82rem;color:var(--muted-2)}
+
+/* Progress bar */
+#installerProgress{background:linear-gradient(90deg,var(--primary),var(--primary-2))}
+
+/* Form controls: dark */
+.form-control, .form-select, textarea {
+	background:var(--input-bg);
+	color:var(--muted);
+	border:1px solid var(--border);
+	box-shadow:none;
+}
+.form-control:focus, .form-select:focus, textarea:focus {
+	background:var(--input-bg);
+	color:var(--muted);
+	border-color:rgba(124,58,237,0.6);
+	box-shadow:0 0 0 .15rem rgba(124,58,237,0.12);
+	outline:0;
+}
+.form-label{color:var(--muted)}
+.small.text-muted{color:var(--muted-2)}
+
+/* Badges */
+.badge.bg-success{background:#16a34a;color:#fff}
+.badge.bg-danger{background:#dc2626;color:#fff}
+
+/* Buttons: primary -> purple */
+.btn-primary{
+	background:linear-gradient(135deg,var(--primary),var(--primary-2));
+	border:0;color:var(--accent-contrast);
+	box-shadow:0 6px 18px rgba(91,33,182,0.12);
+}
+.btn-outline-secondary{
+	color:var(--muted);
+	border-color:var(--border);
+	background:transparent;
+}
+.btn-outline-secondary:hover{border-color:rgba(255,255,255,0.12)}
+
+/* Install progress */
+#installProgress{
+	background:linear-gradient(90deg,var(--primary),var(--primary-2));
+}
+
+/* Invalid inputs */
+.is-invalid{border-color:#ff6b6b !important; box-shadow:0 0 0 .15rem rgba(255,107,107,0.08)}
+
+/* Done box */
+#doneBox i{color:var(--primary-2)}
+#doneBox h5{color:#fff}
+
+/* Installer logo */
+.installer-logo{
+	height: 100px;
+	width:auto;
+	object-fit:contain;
+	/* display:block; */
+	background:transparent;
+	padding:4px;
+	border-radius:8px;
+}
+
+/* Small responsive tweaks */
+@media (max-width:576px){
+	.stepper{gap:6px;font-size:.75rem}
+	.stepper .circle{width:38px;height:38px}
+	.installer-logo{height:44px}
+}
