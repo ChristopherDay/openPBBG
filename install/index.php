@@ -416,6 +416,7 @@
           out.textContent = "Install complete. " + (data.message || "");
           out.className = "mt-3 small text-success fw-semibold";
           showAlert("success", data.message);
+          window.location.href = "./complete.php";
         } else {
           out.textContent = "Install failed: " + (data.message || "Unknown error");
           out.className = "mt-3 small text-danger fw-semibold";
