@@ -1,0 +1,150 @@
+:root {
+    --background: #0f1724;
+    --background-lighter: #1a3444;
+    --background-darker: #182a3d;
+    --background-accent: #2e1e55;
+    --line-background: #4D5D6C;
+    --circle-background: #253447;
+    --status-background: #4598BF;
+    --text-purple: #9d77fd;
+}
+html, body {
+    padding: 0;
+    margin: 0;
+    font-family: "Raleway", "Roboto", -apple-system, Segoe UI, Ubuntu, Helvetica, sans-serif;
+    font-family: "Fakt Pro", "Proxima Nova", San Francisco, -apple-system, BlinkMacSystemFont, ".SFSNText-Regular", Segoe UI, Ubuntu, Helvetica, sans-serif;
+    color: #FAFAFA;
+    height: 100%;
+    overflow: hidden;
+    background: var(--background);
+}
+
+.installer-accordion{
+    --bs-accordion-bg: #253447;
+    --bs-accordion-color: #212529;
+    --bs-accordion-btn-bg: #1c2939;
+    --bs-accordion-btn-color: #FFF;
+    --bs-accordion-active-color: #FFF;
+    --bs-accordion-active-bg: var(--background-accent);
+    --bs-accordion-border-color: var(--background);
+
+    --bs-accordion-btn-focus-border-color: #000;
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 1px rgba(0, 0, 0, .25);
+    --bs-accordion-btn-icon: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e);
+    --bs-accordion-btn-active-icon: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%230c63e4'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e);
+
+
+    --bs-accordion-border-width: 1px;
+    --bs-accordion-border-radius: 0.375rem;
+    --bs-accordion-inner-border-radius: calc(0.375rem - 1px);
+    --bs-accordion-btn-padding-x: 1.5rem;
+    --bs-accordion-btn-padding-y: .8rem;
+    --bs-accordion-body-padding-x: 1.25rem;
+    --bs-accordion-body-padding-y: 1rem;
+}
+
+.installer-accordion .accordion-button{
+    display: block;
+    font-size: .75rem;
+}
+.installer-accordion .accordion-button > span{
+    font-size: .6875rem;
+    display: block;
+    color: #4D5D6C;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+}
+
+.steps-wizard {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.steps-wizard::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -1rem;
+    bottom: 0;
+    left: .5rem;
+    width: 2px;
+    height: calc(100% + 2rem);
+    background: var(--line-background);
+    z-index: 99;
+}
+.steps-wizard > .steps-li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+}
+.steps-wizard > .steps-li:not(:last-child) {
+    margin-bottom: 1rem;
+}
+.steps-wizard > .steps-li > .steps-circle {
+    height: 1.25rem;
+    width: 1.25rem;
+    margin-left: -1px;
+    border: 6px solid var(--circle-background);
+    background: var(--line-background);
+    border-radius: 50%;
+    margin-right: .5rem;
+}
+.steps-wizard > .steps-li > .steps-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.25rem;
+    width: 1.25rem;
+    color: var(--circle-background);
+    background: var(--status-background);
+    margin-right: 1rem;
+    font-size: .875rem;
+    border-radius: 50%;
+    border: 2px solid var(--circle-background);
+}
+.steps-wizard > .steps-li > .steps-title {
+    margin: 0;
+    color: var(--line-background);
+    font-weight: 400;
+    font-size: .875rem;
+}
+.steps-wizard > .steps-li.status-done > .steps-status {
+    background: var(--status-background);
+}
+.steps-wizard > .steps-li.status-done > .steps-title {
+    color: var(--status-background);
+    font-weight: 600;
+}
+.steps-wizard > .steps-li.status-active > .steps-status {
+    /* background: var(--text-purple); */
+    background: #FFF;
+}
+.steps-wizard > .steps-li.status-active > .steps-title {
+    /* color: var(--text-purple); */
+    color: #FFF;
+    font-weight: 600;
+}
+
+
+
+
+/* to remove */
+.steps {
+    box-shadow: 0 .1rem .2rem rgba(0,0,0, .3);
+    border-radius: .25rem;
+    background-color: var(--background-darker);
+}
+.steps > .steps-header {
+    padding: 1rem;
+    background-color: var(--background-accent);
+    border-radius: .25rem;
+}
+.steps.status-success > .steps-header {
+    color: var(--bs-success);
+}
+.steps.status-danger > .steps-header {
+    color: var(--bs-danger);
+}
