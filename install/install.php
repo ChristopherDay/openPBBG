@@ -49,17 +49,19 @@
         exit;
     }
 
-    $configContent = "<?php\n\n";
-    $configContent .= "\$config = array();\n\n";
-    $configContent .= "\$config[\"debug\"] = false;\n\n";
-    $configContent .= "\$config[\"db\"] = array(\n";
-    $configContent .= "    \"driver\" => \"" . $installData["db"]["driver"] . "\",\n";
-    $configContent .= "    \"port\" => \"" . $installData["db"]["port"] . "\",\n";
-    $configContent .= "    \"host\" => \"" . $installData["db"]["host"] . "\",\n";
-    $configContent .= "    \"database\" => \"" . $installData["db"]["name"] . "\",\n";
-    $configContent .= "    \"user\" => \"" . $installData["db"]["user"] . "\",\n";
-    $configContent .= "    \"pass\" => \"" . $installData["db"]["pass"] . "\"\n";
-    $configContent .= ");\n";   
+    $config = array(
+        "debug" => false,
+        "db" => array(
+            "driver" => $installData["db"]["driver"],
+            "port" => $installData["db"]["port"],
+            "host" => $installData["db"]["host"],
+            "database" => $installData["db"]["name"],
+            "user" => $installData["db"]["user"],
+            "pass" => $installData["db"]["pass"]
+        )
+    );
+
+    $configContent = "<?php\n\$config = " . var_export($config, true) . ";\n";
 
     file_put_contents(__DIR__ . "/../config.php", $configContent);
 
