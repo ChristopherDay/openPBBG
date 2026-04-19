@@ -22,8 +22,19 @@ foreach ($required as $ext) {
   $extensions[$ext] = extension_loaded($ext);
 }
 
+$php_version_ok = version_compare(PHP_VERSION, '7.4.0', '>=');
+
+$config_writable = is_writable(__DIR__ . '/../config.php');
+
+$modules_writable = is_writable(__DIR__ . '/../modules/installed/') &&
+                     is_writable(__DIR__ . '/../modules/installing/') &&
+                     is_writable(__DIR__ . '/../modules/disabled/');
+
 echo json_encode([
   'ok' => true,
+  'php_version_ok' => $php_version_ok,
+  'config_writable' => $config_writable,
+  'modules_writable' => $modules_writable,
   'php_version' => PHP_VERSION,
   'sapi' => php_sapi_name(),
   'os' => PHP_OS_FAMILY ?? PHP_OS,

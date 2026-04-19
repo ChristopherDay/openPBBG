@@ -16,7 +16,7 @@
     .monospace { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
   </style>
 </head>
-<body class="bg-light">
+<body data-bs-theme="light">
   <div class="container py-5">
     <div class="row justify-content-center">
       <div class="col-lg-10 col-xl-9">
@@ -26,41 +26,43 @@
 
         <div id="globalAlert" class="alert d-none" role="alert"></div>
 
-        <div class="card shadow-sm">
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" id="installTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="tab-req" data-bs-toggle="tab" data-bs-target="#pane-req" type="button" role="tab">
+              1) Requirements
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="tab-db" data-bs-toggle="tab" data-bs-target="#pane-db" type="button" role="tab">
+              2) Database
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="tab-admin" data-bs-toggle="tab" data-bs-target="#pane-admin" type="button" role="tab">
+              3) Admin User
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="tab-install" data-bs-toggle="tab" data-bs-target="#pane-install" type="button" role="tab">
+              4) Install
+            </button>
+          </li>
+        </ul>
+
+        <!-- remove border and rounding from the top only -->
+        <div class="card shadow-sm border-top-0 rounded-top-0">
           <div class="card-body p-3 p-md-4">
 
-            <!-- Tabs -->
-            <ul class="nav nav-tabs" id="installTabs" role="tablist">
-              <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="tab-req" data-bs-toggle="tab" data-bs-target="#pane-req" type="button" role="tab">
-                  1) Requirements
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-db" data-bs-toggle="tab" data-bs-target="#pane-db" type="button" role="tab">
-                  2) Database
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-admin" data-bs-toggle="tab" data-bs-target="#pane-admin" type="button" role="tab">
-                  3) Admin User
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-install" data-bs-toggle="tab" data-bs-target="#pane-install" type="button" role="tab">
-                  4) Install
-                </button>
-              </li>
-            </ul>
-
-            <div class="tab-content pt-3" id="installTabsContent">
+            <div class="tab-content" id="installTabsContent">
 
               <!-- Requirements -->
               <div class="tab-pane fade show active" id="pane-req" role="tabpanel" aria-labelledby="tab-req" tabindex="0">
                 <div class="d-flex flex-wrap gap-2 align-items-center justify-content-between">
                   <div>
                     <h2 class="h5 mb-1">Server Requirements</h2>
-                    <div class="text-muted small">Checks PHP extensions like <span class="monospace">zip</span>.</div>
+                    <div class="text-muted small">Checks the server environment.</div>
+
                   </div>
                   <button class="btn btn-outline-primary" id="btnCheckReq" type="button">Check requirements</button>
                 </div>
@@ -73,8 +75,13 @@
                     <ul class="list-group" id="reqList"></ul>
                   </div>
                   <div class="col-md-6">
+                    
+                    <div class="fw-semibold mb-2">System Checks</div>
+                    <div id="systemChecks" class="small text-muted mb-3 list-group">Not checked yet.</div>
+
                     <div class="fw-semibold mb-2">Server info</div>
                     <pre class="bg-body-tertiary border rounded p-2 small mb-0" id="serverInfo">Not checked yet.</pre>
+
                   </div>
                 </div>
 
@@ -303,6 +310,9 @@
       const serverInfo = document.getElementById("serverInfo");
       serverInfo.textContent = "Checking...";
 
+      const systemChecks = document.getElementById("systemChecks");
+      systemChecks.textContent = "Performing system checks...";
+
       try {
         const res = await fetch("./requirements.php", { headers: { "Accept": "application/json" } });
         if (!res.ok) throw new Error("HTTP " + res.status);
@@ -314,6 +324,26 @@
           `OS: ${requirementsResult.os || "?"}`;
 
         renderReqList();
+
+        systemChecks.innerHTML = `
+          <div class="list-group-item d-flex justify-content-between align-items-center">PHP version <span class="${requirementsResult.php_version_ok ? "text-success fw-semibold" : "text-warning fw-semibold"}">${requirementsResult.php_version_ok ? "OK" : "LOW"}</span></div>
+          <div class="list-group-item d-flex justify-content-between align-items-center">config.php writable <span class="${requirementsResult.config_writable ? "text-success fw-semibold" : "text-danger fw-semibold"}">${requirementsResult.config_writable ? "YES" : "NO"}</span></div>
+          <div class="list-group-item d-flex justify-content-between align-items-center">Modules folders writable <span class="${requirementsResult.modules_writable ? "text-success fw-semibold" : "text-danger fw-semibold"}">${requirementsResult.modules_writable ? "YES" : "NO"}</span></div>
+        `;
+        if (!requirementsResult.php_version_ok) {
+          showAlert("danger", "PHP version must be 7.4 or higher. Detected: " + requirementsResult.php_version);
+          return;
+        }
+
+        if (!requirementsResult.config_writable) {
+          showAlert("danger", "The config.php file is not writable.");
+          return;
+        }
+
+        if (!requirementsResult.modules_writable) {
+          showAlert("danger", "One or more module directories are not writable.");
+          return;
+        }
 
         const missing = requiredExtensions.filter(e => !requirementsResult.extensions?.[e]);
         if (missing.length) showAlert("danger", "Missing required PHP extensions: " + missing.join(", "));
