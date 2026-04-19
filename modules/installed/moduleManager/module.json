@@ -33,5 +33,21 @@
             "text": "Reactivate Plugin",
             "method": "reactivate"
         }
+    ], 
+    "dependencies": [
+        {
+            "module": "core", 
+            "moduleName": "OpenPBBG - Core Engine",
+            "version": "3.0.1", 
+            "author": "Chris Day",
+            "link": false
+        }, 
+        {
+            "module": "admin", 
+            "moduleName": "Admin Panel",
+            "version": "1.0.1", 
+            "author": "Chris Day", 
+            "link": false
+        }
     ]
 }
