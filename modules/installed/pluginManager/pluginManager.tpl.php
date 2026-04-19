@@ -346,17 +346,23 @@
         ';
 
         public $alterModuleConfirm = '
-            <div class="text-center">
-                <p> 
-                    Please confirm that you want to {type} this module?
-                </p>
-                <p> 
-                    <em>"{module.name}"</em>
-                </p>
-                <a href="?page=admin&module=pluginManager&action={type}&moduleName={module.id}&do=true" class="btn btn-danger">
-                    I confirm that i want to {type} this module 
-                </a>
+            <div class="card mb-3">
+                <div class="card-header">Please Confirm</div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <p> 
+                            Please confirm that you want to {type} this plugin?
+                        </p>
+                        <p> 
+                            <em>"{module.name}"</em>
+                        </p>
+                        <a href="?page=admin&module=pluginManager&action={type}&moduleName={module.id}&do=true" class="btn btn-danger">
+                            I confirm that i want to {type} this module 
+                        </a>
+                    </div>
+                </div>
             </div>
+
 
         ';
 
