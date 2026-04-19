@@ -65,7 +65,7 @@
                     {/each}
                 </ul>
             {/if}
-            <div class="well">
+            <div class="rounded p-3 bg-light border mb-3">
                 {description}
             </div>
 
@@ -103,57 +103,109 @@
                         </table>
                     {/if}
                     {#unless bundle}
-                        <table class="table no-dt">
-                            <thead>
-                                <tr>
-                                    <th>Option</th>
-                                    <th width="60px" class="text-center">Value</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Module accessible within jail</td>
-                                    <td class="text-center">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card mb-3">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title mb-3">Access In Jail</h5>
                                         {#if allowedInJail}
-                                            <i class="glyphicon glyphicon-ok"></i>
+                                            <i class="fa fa-check fs-1 text-success"></i>
                                         {/if}
                                         {#unless allowedInJail}
-                                            <i class="glyphicon glyphicon-remove"></i>
-                                        {/unless}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Module requires user to be logged in</td>
-                                    <td class="text-center">
+                                            <i class="fa fa-times fs-1 text-danger"></i>
+                                        {/unless}   
+                                    </div>
+                                </div>      
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-3">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title mb-3">Requires Login</h5>
                                         {#if requireLogin}
-                                            <i class="glyphicon glyphicon-ok"></i>
+                                            <i class="fa fa-check fs-1 text-success"></i>
                                         {/if}
                                         {#unless requireLogin}
-                                            <i class="glyphicon glyphicon-remove"></i>
+                                            <i class="fa fa-times fs-1 text-danger"></i>
                                         {/unless}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Has admin panel</td>
-                                    <td class="text-center">
+                                    </div>
+                                </div>  
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card mb-3">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title mb-3">Has ACP</h5>
                                         {#if admin}
-                                            <i class="glyphicon glyphicon-ok"></i>
+                                            <i class="fa fa-check fs-1 text-success"></i>
                                         {/if}
                                         {#unless admin}
-                                            <i class="glyphicon glyphicon-remove"></i>
+                                            <i class="fa fa-times fs-1 text-danger"></i>
                                         {/unless}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {#if admin}
+                            <h4>Admin Panel Options</h4>
+                            <ul class="list-group">
+                                {#each admin}
+                                    {#if ../_activated}
+                                        <li class="list-group-item p-2">
+                                        {text}
+                                            <a href="?page=admin&module={../id}&action={method}" class="float-end">
+                                                View
+                                            </a>
+                                        </li>
+                                    {else}
+                                        <li class="list-group-item p-2">{text}</li>
+                                    {/if}
+                                {/each}
+                            </ul>
+                        {/if}
                     {/unless}
                 </div>
                 <div class="col-md-6">
-                    {#if admin}
-                        <h4>Admin Actions</h4>
-                        <ul>
-                            {#each admin}
-                                <li>{text}</li>
+                    <!-- show module dependencies and other info here -->
+                    <h4>Module Dependencies</h4>
+                    {#if dependencies}
+                        <ul class="list-group">
+                        <!--
+                        
+"dependencies": [
+{
+    "module": "core", 
+    "moduleName": "OpenPBBG - Core Engine",
+    "version": "3.0.1", 
+    "author": "Chris Day",
+    "link": false, 
+    "has": false
+}, 
+{
+    "module": "admin", 
+    "moduleName": "Admin Panel",
+    "version": "1.0.1", 
+    "author": "Chris Day", 
+    "link": false, 
+    "has": true
+}
+] -->
+                            {#each dependencies}
+                                <li class="list-group-item p-2">
+                                    <span class="badge bg-light-{#if has}success{else}danger{/if} border me-2">
+                                        {#if has}
+                                            <i class="fa fa-check"></i>
+                                        {else}
+                                            <i class="fa fa-times"></i>
+                                        {/if}
+                                    </span>
+                                    {#if link}
+                                        <a href="?page=admin&module={module}">{moduleName}</a>
+                                    {else}
+                                        {moduleName}
+                                    {/if}
+                                    <span class="float-end badge bg-secondary">{version}</span>
+                                </li>
+
                             {/each}
                         </ul>
                     {/if}

@@ -16,7 +16,30 @@
 
         private function getModule($moduleName = false) {
             if ($moduleName) {
-                return $this->page->modules[$moduleName];
+
+                $moduleInfo = $this->page->modules[$moduleName];
+
+                $dependencies = isset($moduleInfo["dependencies"]) ? $moduleInfo["dependencies"] : array(); 
+
+                foreach ($dependencies as $key => $dependency) {
+                    
+                    if (!isset($this->page->modules[$dependency["module"]])) {
+                        $moduleInfo["dependencies"][$key]["has"] = false;
+                    } else {
+                        $dependendencieInfo = $this->page->modules[$dependency["module"]];
+
+                        if ($dependendencieInfo["author"] != $dependency["author"]) {
+                            $moduleInfo["dependencies"][$key]["has"] = true;
+                        }
+                        
+                        if (!version_compare($dependendencieInfo["version"], $dependency["version"], ">=")) {
+                            $moduleInfo["dependencies"][$key]["has"] = false;
+                        }
+                    }
+                    
+                }
+
+                return $moduleInfo;
             } 
 
             return $this->page->modules;
