@@ -1,5 +1,5 @@
 <?php
-    class moduleManagerTemplate extends template {
+    class pluginManagerTemplate extends template {
 
         public $continueWithError = '
             <div class="alert alert-danger">
@@ -7,12 +7,12 @@
             </div>
             <h3>Error Output</h3>
             {error.output}
-            <a href="?page=admin&module=moduleManager&action=install&view={id}" class="btn btn-primary">
+            <a href="?page=admin&module=pluginManager&action=install&view={id}" class="btn btn-primary">
                 Go back to module overview
             </a>
             <div class="float-end">
                 <em>This may cause other issues </em>
-                <a href="?page=admin&module=moduleManager&action=install&installModule={id}&force=true" class="btn btn-danger">
+                <a href="?page=admin&module=pluginManager&action=install&installModule={id}&force=true" class="btn btn-danger">
                     Continue with install
                 </a>
             </div>
@@ -37,13 +37,13 @@
 
             <div class="float-end">
                 {#if _installing}
-                    <a href="?page=admin&module=moduleManager&action=install&installModule={id}" class="btn btn-primary">Install Module</a>
+                    <a href="?page=admin&module=pluginManager&action=install&installModule={id}" class="btn btn-primary">Install Module</a>
                 {/if}
                 {#if _activated}
-                    <a href="?page=admin&module=moduleManager&action=deactivate&moduleName={id}" class="btn btn-danger">Deactivate Module</a>
+                    <a href="?page=admin&module=pluginManager&action=deactivate&moduleName={id}" class="btn btn-danger">Deactivate Module</a>
                 {/if}
                 {#if _deactivated}
-                    <a href="?page=admin&module=moduleManager&action=reactivate&moduleName={id}" class="btn btn-success">Reactivate Module</a>
+                    <a href="?page=admin&module=pluginManager&action=reactivate&moduleName={id}" class="btn btn-success">Reactivate Module</a>
                 {/if}
             </div>
             <h2>{name} <small>{version}</small></h2>
@@ -86,12 +86,12 @@
                                     <tr>
                                         <td></td>
                                         <td>
-                                            <a href="?page=admin&module=moduleManager&action=install&view={id}&extract=*" class="btn btn-xs btn-block btn-success">
+                                            <a href="?page=admin&module=pluginManager&action=install&view={id}&extract=*" class="btn btn-xs btn-block btn-success">
                                                 Extract All
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="?page=admin&module=moduleManager&action=install&view={id}&installBundleModule=*" class="btn btn-xs btn-block btn-warning">
+                                            <a href="?page=admin&module=pluginManager&action=install&view={id}&installBundleModule=*" class="btn btn-xs btn-block btn-warning">
                                                 Install All
                                             </a>
                                         </td>
@@ -235,20 +235,20 @@
         public $mInfoActions = '
             {#unless installed}
                 {#unless extracted}
-                    <a href="?page=admin&module=moduleManager&action=install&view={id}&extract={name}">
+                    <a href="?page=admin&module=pluginManager&action=install&view={id}&extract={name}">
                         Extract
                     </a>
                 {/unless}
             {/unless}
             {#if extracted}
                 {#unless installed}
-                    <a href="?page=admin&module=moduleManager&action=install&view={id}&installBundleModule={name}">
+                    <a href="?page=admin&module=pluginManager&action=install&view={id}&installBundleModule={name}">
                         Install
                     </a>
                 {/unless}
             {/if}
             {#if installed}
-                <a href="?page=admin&module=moduleManager&action=install&view={id}&deactivateBundleModule={name}">
+                <a href="?page=admin&module=pluginManager&action=install&view={id}&deactivateBundleModule={name}">
                     De-Activate
                 </a>
             {/if}
@@ -297,9 +297,9 @@
                                 <td>{version}</td>
                                 <td><a href="{author.url}" target="_blank">{author.name}</a></td>
                                 <td>
-                                    [<a href="?page=admin&module=moduleManager&action=view&moduleName={id}">View</a>] 
+                                    [<a href="?page=admin&module=pluginManager&action=view&moduleName={id}">View</a>] 
                                     {#unless moduleCantBeDisabled}
-                                    [<a href="?page=admin&module=moduleManager&action=deactivate&moduleName={id}">Deactivate</a>]
+                                    [<a href="?page=admin&module=pluginManager&action=deactivate&moduleName={id}">Deactivate</a>]
                                     {/unless}
                                 </td>
                             </tr>
@@ -308,8 +308,8 @@
                 </table>
             </div>
         </div>
-        ';
-
+        '
+;
         public $deactivatedModuleList = '
         <div class="card mb-3">
             <div class="card-body">
@@ -331,10 +331,10 @@
                                 <td>{version}</td>
                                 <td><a href="{author.url}" target="_blank">{author.name}</a></td>
                                 <td>
-                                    [<a href="?page=admin&module=moduleManager&action=deactivated&moduleName={id}">View</a>] 
+                                    [<a href="?page=admin&module=pluginManager&action=deactivated&moduleName={id}">View</a>] 
                                     {#unless moduleCantBeDisabled}
-                                    [<a href="?page=admin&module=moduleManager&action=reactivate&moduleName={id}">Reactivate</a>]
-                                    [<a href="?page=admin&module=moduleManager&action=remove&moduleName={id}">Remove</a>]
+                                    [<a href="?page=admin&module=pluginManager&action=reactivate&moduleName={id}">Reactivate</a>]
+                                    [<a href="?page=admin&module=pluginManager&action=remove&moduleName={id}">Remove</a>]
                                     {/unless}
                                 </td>
                             </tr>
@@ -353,7 +353,7 @@
                 <p> 
                     <em>"{module.name}"</em>
                 </p>
-                <a href="?page=admin&module=moduleManager&action={type}&moduleName={module.id}&do=true" class="btn btn-danger">
+                <a href="?page=admin&module=pluginManager&action={type}&moduleName={module.id}&do=true" class="btn btn-danger">
                     I confirm that i want to {type} this module 
                 </a>
             </div>
@@ -361,7 +361,7 @@
         ';
 
         public $moduleForm = '
-            <form method="post" action="?page=admin&module=moduleManager&action=install" enctype="multipart/form-data">
+            <form method="post" action="?page=admin&module=pluginManager&action=install" enctype="multipart/form-data">
                 <div class="card mb-3">
                     <div class="card-body">
                         <div class="form-group mb-3">
@@ -395,8 +395,8 @@
                                     <td>{version}</td>
                                     <td><a href="{author.url}" target="_blank">{author.name}</a></td>
                                     <td>
-                                        [<a href="?page=admin&module=moduleManager&action=install&view={id}">Continue</a>] 
-                                        [<a href="?page=admin&module=moduleManager&action=install&remove={id}">Remove</a>] 
+                                        [<a href="?page=admin&module=pluginManager&action=install&view={id}">Continue</a>] 
+                                        [<a href="?page=admin&module=pluginManager&action=install&remove={id}">Remove</a>] 
                                     </td>
                                 </tr>
                             {/each}
