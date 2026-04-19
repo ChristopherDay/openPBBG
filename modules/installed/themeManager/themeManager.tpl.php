@@ -69,7 +69,7 @@ class themeManagerTemplate extends template {
             {#each themes}
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="card-header text-center {#if active}bg-success{/if}">
+                        <div class="card-header text-center {#if active}bg-light-success{/if}">
                             {name}
                         </div>
                         <div class="text-center card-feature" style="background-image: url(\'themes/{id}/preview.png\')">

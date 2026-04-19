@@ -5033,7 +5033,7 @@ textarea.form-control-lg {
 .card-header {
     padding: 10px;
     margin-bottom: 0;
-    background-color: rgb(var(--bs-dark-rgb)) !important;
+    background: rgb(var(--bs-dark-rgb)) !important;
     color: #ffffff;
     border-bottom: 0px solid rgba(0, 0, 0, 0.125);
 }
@@ -5044,7 +5044,7 @@ textarea.form-control-lg {
 
 .card-footer {
     padding: 10px ;
-    background-color: rgb(var(--bs-light-rgb)) !important;
+    background: rgb(var(--bs-light-rgb)) !important;
     border-top: 0px solid rgba(0, 0, 0, 0.125);
 }
 
@@ -13830,7 +13830,7 @@ textarea.form-control-lg {
 }
 
 .bg-light-success {
-    background: #d1f4e0;
+    background: #d1f4e0 !important;
     color: #17C666;
 }
 
