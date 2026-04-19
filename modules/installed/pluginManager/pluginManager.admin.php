@@ -32,7 +32,27 @@
                             $moduleInfo["dependencies"][$key]["has"] = true;
                         }
                         
-                        if (!version_compare($dependendencieInfo["version"], $dependency["version"], ">=")) {
+                        if (strpos($dependency["version"], ">=") === 0) {
+                            $match = ">=";
+                            $version = str_replace(">=", "", $dependency["version"]);
+                        } else if (strpos($dependency["version"], ">") === 0) {
+                            $match = ">";
+                            $version = str_replace(">", "", $dependency["version"]);
+                        } else if (strpos($dependency["version"], "=") === 0) {
+                            $match = "=";
+                            $version = str_replace("=", "", $dependency["version"]) ;
+                        } else if (strpos($dependency["version"], "<=") === 0) {
+                            $match = "<=";
+                            $version = str_replace("<=", "", $dependency["version"]);
+                        } else if (strpos($dependency["version"], "<") === 0) {
+                            $match = "<";
+                            $version = str_replace("<", "", $dependency["version"]);
+                        } else {
+                            $match = "=";
+                            $version = $dependency["version"];
+                        }
+
+                        if (!version_compare($dependendencieInfo["version"], $version, $match)) {
                             $moduleInfo["dependencies"][$key]["has"] = false;
                         }
                     }
