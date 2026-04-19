@@ -8,7 +8,7 @@
             <h3>Error Output</h3>
             {error.output}
             <a href="?page=admin&module=pluginManager&action=install&view={id}" class="btn btn-primary">
-                Go back to module overview
+                Go back to plugin overview
             </a>
             <div class="float-end">
                 <em>This may cause other issues </em>
@@ -27,25 +27,34 @@
         </div>
         {/each}
         {#unless modules}
-            <div class="text-center"><em>There are no modules</em></div>
+            <div class="text-center"><em>There are no plugins</em></div>
         {/unless}';
 
         public $moduleOverview = '
         
         <div class="card mb-3">
+            <div class="card-header">
+                {name}
+                <div class="float-end">
+                    {#if _installing}
+                        <a href="?page=admin&module=pluginManager&action=install&installModule={id}" class="text-primary bg-light-primary rounded border border-primary p-1">
+                            <i class="fas fa-download"></i> Install Plugin
+                        </a>
+                    {/if}
+                    {#if _activated}
+                        <a href="?page=admin&module=pluginManager&action=deactivate&moduleName={id}" class="text-danger bg-light-danger rounded border border-danger p-1">
+                            <i class="fas fa-ban"></i> Deactivate Plugin
+                        </a>
+                    {/if}
+                    {#if _deactivated}
+                        <a href="?page=admin&module=pluginManager&action=reactivate&moduleName={id}" class="text-success bg-light-success rounded border border-success p-1">
+                            <i class="fas fa-check"></i> Reactivate Plugin
+                        </a>
+                    {/if}
+                </div>
+            </div>
             <div class="card-body">
 
-            <div class="float-end">
-                {#if _installing}
-                    <a href="?page=admin&module=pluginManager&action=install&installModule={id}" class="btn btn-primary">Install Module</a>
-                {/if}
-                {#if _activated}
-                    <a href="?page=admin&module=pluginManager&action=deactivate&moduleName={id}" class="btn btn-danger">Deactivate Module</a>
-                {/if}
-                {#if _deactivated}
-                    <a href="?page=admin&module=pluginManager&action=reactivate&moduleName={id}" class="btn btn-success">Reactivate Module</a>
-                {/if}
-            </div>
             <h2>{name} <small>{version}</small></h2>
             {#if author.name}
                 <p>
@@ -76,7 +85,7 @@
                         <table class="table no-dt">
                             <thead>
                                 <tr>
-                                    <th>Module</th>
+                                    <th>Plugin</th>
                                     <th class="text-center" width="100px">Extracted</th>
                                     <th class="text-center" width="100px">Installed</th>
                                     <th class="text-center" width="100px">Actions</th>
@@ -165,8 +174,7 @@
                     {/unless}
                 </div>
                 <div class="col-md-6">
-                    <!-- show module dependencies and other info here -->
-                    <h4>Module Dependencies</h4>
+                    <h4>Plugin Dependencies</h4>
                     {#if dependencies}
                         <ul class="list-group">
                         <!--
@@ -371,7 +379,7 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <div class="form-group mb-3">
-                            <label class="fw-bold mb-1">Module File (Zipped)</label>
+                            <label class="fw-bold mb-1">Plugin File (Zipped)</label>
                             <input type="file" class="form-control" name="file" />
                         </div>
                     </div>
