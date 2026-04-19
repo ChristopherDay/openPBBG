@@ -6,7 +6,7 @@
         "name": "Chris Day",
         "url": "http:\/\/glscript.cdcoding.com"
     },
-    "pageName": "Plugin Manager",
+    "pageName": "Plugins",
     "bootstrapVersion": 5,
     "moduleCantBeDisabled": true,
     "adminGroup": "Plugins & Themes",
