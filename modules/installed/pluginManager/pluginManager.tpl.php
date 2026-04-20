@@ -36,192 +36,191 @@
             <div class="card-header">
                 {name}
                 <div class="float-end">
-                    {#if _installing}
-                        <a href="?page=admin&module=pluginManager&action=install&installModule={id}" class="text-primary bg-light-primary rounded border border-primary p-1">
-                            <i class="fas fa-download"></i> Install Plugin
-                        </a>
-                    {/if}
+                    
                     {#if _activated}
                         <a href="?page=admin&module=pluginManager&action=deactivate&moduleName={id}" class="text-danger bg-light-danger rounded border border-danger p-1">
                             <i class="fas fa-ban"></i> Deactivate Plugin
                         </a>
-                    {/if}
-                    {#if _deactivated}
-                        <a href="?page=admin&module=pluginManager&action=reactivate&moduleName={id}" class="text-success bg-light-success rounded border border-success p-1">
-                            <i class="fas fa-check"></i> Reactivate Plugin
-                        </a>
+                    {else}
+                        {#if canInstall}
+                            {#if _installing}
+                                <a href="?page=admin&module=pluginManager&action=install&installModule={id}" class="text-primary bg-light-primary rounded border border-primary p-1">
+                                    <i class="fas fa-download"></i> Install Plugin
+                                </a>
+                            {/if}
+                            {#if _deactivated}
+                                <a href="?page=admin&module=pluginManager&action=reactivate&moduleName={id}" class="text-success bg-light-success rounded border border-success p-1">
+                                    <i class="fas fa-check"></i> Reactivate Plugin
+                                </a>
+                            {/if}
+                        {else}
+                            <span class="text-muted bg-light rounded border border-muted p-1">
+                                <i class="fas fa-ban"></i> Dependencies not met
+                            </span>
+                        {/if}
                     {/if}
                 </div>
             </div>
             <div class="card-body">
 
-            <h2>{name} <small>{version}</small></h2>
-            {#if author.name}
-                <p>
-                    Developed by <a href="{author.url}" target="_blank">{author.name}</a>
-                    {#if notes} <small> - <{notes}></small>{/if}
-                </p>
-            {else}
-                <p>
-                    Developed by: 
-                </p>
-                <ul>
-                    {#each author}
-                        <li>
-                            <a href="{url}" target="_blank">{name}</a>
-                            {#if notes} <small> - <{notes}></small>{/if}
-                        </li>
-                    {/each}
-                </ul>
-            {/if}
-            <div class="rounded p-3 bg-light border mb-3">
-                {description}
-            </div>
+                
+                <div class="rounded p-3 bg-light border mb-3">
+                    {description}
+                </div>
 
-            <div class="row">
-                <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
 
-                    {#if bundle}
-                        <table class="table no-dt">
-                            <thead>
-                                <tr>
-                                    <th>Plugin</th>
-                                    <th class="text-center" width="100px">Extracted</th>
-                                    <th class="text-center" width="100px">Installed</th>
-                                    <th class="text-center" width="100px">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        {#if bundle}
+                            <table class="table no-dt">
+                                <thead>
                                     <tr>
-                                        <td></td>
-                                        <td>
-                                            <a href="?page=admin&module=pluginManager&action=install&view={id}&extract=*" class="btn btn-xs btn-block btn-success">
-                                                Extract All
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="?page=admin&module=pluginManager&action=install&view={id}&installBundleModule=*" class="btn btn-xs btn-block btn-warning">
-                                                Install All
-                                            </a>
-                                        </td>
-                                        <td></td>
+                                        <th>Plugin</th>
+                                        <th class="text-center" width="100px">Extracted</th>
+                                        <th class="text-center" width="100px">Installed</th>
+                                        <th class="text-center" width="100px">Actions</th>
                                     </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                                <a href="?page=admin&module=pluginManager&action=install&view={id}&extract=*" class="btn btn-xs btn-block btn-success">
+                                                    Extract All
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="?page=admin&module=pluginManager&action=install&view={id}&installBundleModule=*" class="btn btn-xs btn-block btn-warning">
+                                                    Install All
+                                                </a>
+                                            </td>
+                                            <td></td>
+                                        </tr>
 
-                                    <{bundleInfo}>
-                            </tbody>
-                        </table>
-                    {/if}
-                    {#unless bundle}
+                                        <{bundleInfo}>
+                                </tbody>
+                            </table>
+                        {/if}
+                        {#unless bundle}
 
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="card mb-3">
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title mb-3">Access In Jail</h5>
-                                        {#if allowedInJail}
-                                            <i class="fa fa-check fs-1 text-success"></i>
-                                        {/if}
-                                        {#unless allowedInJail}
-                                            <i class="fa fa-times fs-1 text-danger"></i>
-                                        {/unless}   
-                                    </div>
-                                </div>      
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card mb-3">
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title mb-3">Requires Login</h5>
-                                        {#if requireLogin}
-                                            <i class="fa fa-check fs-1 text-success"></i>
-                                        {/if}
-                                        {#unless requireLogin}
-                                            <i class="fa fa-times fs-1 text-danger"></i>
-                                        {/unless}
-                                    </div>
-                                </div>  
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card mb-3">
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title mb-3">Has ACP</h5>
-                                        {#if admin}
-                                            <i class="fa fa-check fs-1 text-success"></i>
-                                        {/if}
-                                        {#unless admin}
-                                            <i class="fa fa-times fs-1 text-danger"></i>
-                                        {/unless}
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card mb-3">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title mb-3">Access In Jail</h5>
+                                            {#if allowedInJail}
+                                                <i class="fa fa-check fs-1 text-success"></i>
+                                            {/if}
+                                            {#unless allowedInJail}
+                                                <i class="fa fa-times fs-1 text-danger"></i>
+                                            {/unless}   
+                                        </div>
+                                    </div>      
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card mb-3">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title mb-3">Requires Login</h5>
+                                            {#if requireLogin}
+                                                <i class="fa fa-check fs-1 text-success"></i>
+                                            {/if}
+                                            {#unless requireLogin}
+                                                <i class="fa fa-times fs-1 text-danger"></i>
+                                            {/unless}
+                                        </div>
+                                    </div>  
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card mb-3">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title mb-3">Has ACP</h5>
+                                            {#if admin}
+                                                <i class="fa fa-check fs-1 text-success"></i>
+                                            {/if}
+                                            {#unless admin}
+                                                <i class="fa fa-times fs-1 text-danger"></i>
+                                            {/unless}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        {#if admin}
-                            <h4>Admin Panel Options</h4>
+                            {#if admin}
+                                <h4>Admin Panel Options</h4>
+                                <ul class="list-group">
+                                    {#each admin}
+                                        {#if ../_activated}
+                                            <li class="list-group-item p-2">
+                                            {text}
+                                                <a href="?page=admin&module={../id}&action={method}" class="float-end">
+                                                    View
+                                                </a>
+                                            </li>
+                                        {else}
+                                            <li class="list-group-item p-2">{text}</li>
+                                        {/if}
+                                    {/each}
+                                </ul>
+                            {/if}
+                        {/unless}
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Plugin Dependencies</h4>
+                        {#if dependencies}
                             <ul class="list-group">
-                                {#each admin}
-                                    {#if ../_activated}
-                                        <li class="list-group-item p-2">
-                                        {text}
-                                            <a href="?page=admin&module={../id}&action={method}" class="float-end">
-                                                View
-                                            </a>
-                                        </li>
-                                    {else}
-                                        <li class="list-group-item p-2">{text}</li>
-                                    {/if}
+                                {#each dependencies}
+                                    <li class="list-group-item p-2">
+                                        <span class="badge bg-light-{#if has}success{else}danger{/if} border me-2">
+                                            {#if has}
+                                                <i class="fa fa-check"></i>
+                                            {else}
+                                                <i class="fa fa-times"></i>
+                                            {/if}
+                                        </span>
+                                        {#if link}
+                                            <a href="?page=admin&module={module}">{moduleName}</a>
+                                        {else}
+                                            {moduleName}
+                                        {/if}
+                                        <span class="float-end">
+                                            {#each version}
+                                                <span class="badge bg-secondary ms-1">{.}</span>
+                                            {/each}
+                                        </span>
+                                    </li>
+
                                 {/each}
                             </ul>
                         {/if}
-                    {/unless}
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <h4>Plugin Dependencies</h4>
-                    {#if dependencies}
-                        <ul class="list-group">
-                        <!--
-                        
-"dependencies": [
-{
-    "module": "core", 
-    "moduleName": "OpenPBBG - Core Engine",
-    "version": "3.0.1", 
-    "author": "Chris Day",
-    "link": false, 
-    "has": false
-}, 
-{
-    "module": "admin", 
-    "moduleName": "Admin Panel",
-    "version": "1.0.1", 
-    "author": "Chris Day", 
-    "link": false, 
-    "has": true
-}
-] -->
-                            {#each dependencies}
-                                <li class="list-group-item p-2">
-                                    <span class="badge bg-light-{#if has}success{else}danger{/if} border me-2">
-                                        {#if has}
-                                            <i class="fa fa-check"></i>
-                                        {else}
-                                            <i class="fa fa-times"></i>
-                                        {/if}
-                                    </span>
-                                    {#if link}
-                                        <a href="?page=admin&module={module}">{moduleName}</a>
-                                    {else}
-                                        {moduleName}
-                                    {/if}
-                                    <span class="float-end badge bg-secondary">{version}</span>
-                                </li>
 
-                            {/each}
-                        </ul>
-                    {/if}
+
                 </div>
-            </div>
-
-
-            </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-6"> 
+                            {#if author.name}
+                                <strong>Author:</strong> <a href="{author.url}" target="_blank">{author.name}</a>
+                                {#if notes} <small> - <{notes}></small>{/if}
+                            {else}
+                                <p>
+                                    <strong>Developed by:</strong> 
+                                </p>
+                                <ul>
+                                    {#each author}
+                                        <li>
+                                            <a href="{url}" target="_blank">{name}</a>
+                                            {#if notes} <small> - <{notes}></small>{/if}
+                                        </li>
+                                    {/each}
+                                </ul>
+                            {/if}
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <strong>Version:</strong> {version}
+                        </div>
+                    </div>
+                </a>
             </div>
         ';
 
@@ -288,11 +287,11 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th width="190px">Name</th>
+                            <th>Name</th>
                             <th>Description</th>
-                            <th width="70px">Version</th>
-                            <th width="90px">Author</th>
-                            <th width="100px">Actions</th>
+                            <th>Version</th>
+                            <th>Author</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -305,10 +304,7 @@
                                 <td>{version}</td>
                                 <td><a href="{author.url}" target="_blank">{author.name}</a></td>
                                 <td>
-                                    [<a href="?page=admin&module=pluginManager&action=view&moduleName={id}">View</a>] 
-                                    {#unless moduleCantBeDisabled}
-                                    [<a href="?page=admin&module=pluginManager&action=deactivate&moduleName={id}">Deactivate</a>]
-                                    {/unless}
+                                    <a href="?page=admin&module=pluginManager&action=view&moduleName={id}">View</a>
                                 </td>
                             </tr>
                         {/each}
@@ -339,11 +335,7 @@
                                 <td>{version}</td>
                                 <td><a href="{author.url}" target="_blank">{author.name}</a></td>
                                 <td>
-                                    [<a href="?page=admin&module=pluginManager&action=deactivated&moduleName={id}">View</a>] 
-                                    {#unless moduleCantBeDisabled}
-                                    [<a href="?page=admin&module=pluginManager&action=reactivate&moduleName={id}">Reactivate</a>]
-                                    [<a href="?page=admin&module=pluginManager&action=remove&moduleName={id}">Remove</a>]
-                                    {/unless}
+                                    <a href="?page=admin&module=pluginManager&action=deactivated&moduleName={id}">View</a>
                                 </td>
                             </tr>
                         {/each}

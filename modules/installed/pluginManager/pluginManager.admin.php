@@ -14,51 +14,74 @@
 
     class adminModule {
 
-        private function getModule($moduleName = false) {
-            if ($moduleName) {
+        private function updateDependencies(&$moduleInfo) {
 
-                $moduleInfo = $this->page->modules[$moduleName];
+            
+            if (!isset($moduleInfo["dependencies"])) {
+                $moduleInfo["dependencies"] = array();
+            }
 
-                $dependencies = isset($moduleInfo["dependencies"]) ? $moduleInfo["dependencies"] : array(); 
+            $dependencies = $moduleInfo["dependencies"];
 
-                foreach ($dependencies as $key => $dependency) {
+            foreach ($dependencies as $key => $dependency) {
+                
+                if (!isset($this->page->modules[$dependency["module"]])) {
+                    $moduleInfo["dependencies"][$key]["has"] = false;
+                } else {
+                    $dependendencieInfo = $this->page->modules[$dependency["module"]];
+
+                    if ($dependendencieInfo["author"] != $dependency["author"]) {
+                        $moduleInfo["dependencies"][$key]["has"] = true;
+                    }
                     
-                    if (!isset($this->page->modules[$dependency["module"]])) {
-                        $moduleInfo["dependencies"][$key]["has"] = false;
-                    } else {
-                        $dependendencieInfo = $this->page->modules[$dependency["module"]];
+                    if (!is_array($dependency["version"])) {
+                        $dependency["version"] = array($dependency["version"]);
+                        $moduleInfo["dependencies"][$key]["version"] = $dependency["version"];
+                    }
 
-                        if ($dependendencieInfo["author"] != $dependency["author"]) {
-                            $moduleInfo["dependencies"][$key]["has"] = true;
-                        }
-                        
-                        if (strpos($dependency["version"], ">=") === 0) {
+                    foreach ($dependency["version"] as $version) {
+
+                        if (strpos($version, ">=") === 0) {
                             $match = ">=";
-                            $version = str_replace(">=", "", $dependency["version"]);
-                        } else if (strpos($dependency["version"], ">") === 0) {
+                            $version = str_replace(">=", "", $version);
+                        } else if (strpos($version, ">") === 0) {
                             $match = ">";
-                            $version = str_replace(">", "", $dependency["version"]);
-                        } else if (strpos($dependency["version"], "=") === 0) {
+                            $version = str_replace(">", "", $version);
+                        } else if (strpos($version, "=") === 0) {
                             $match = "=";
-                            $version = str_replace("=", "", $dependency["version"]) ;
-                        } else if (strpos($dependency["version"], "<=") === 0) {
+                            $version = str_replace("=", "", $version) ;
+                        } else if (strpos($version, "<=") === 0) {
                             $match = "<=";
-                            $version = str_replace("<=", "", $dependency["version"]);
-                        } else if (strpos($dependency["version"], "<") === 0) {
+                            $version = str_replace("<=", "", $version);
+                        } else if (strpos($version, "<") === 0) {
                             $match = "<";
-                            $version = str_replace("<", "", $dependency["version"]);
+                            $version = str_replace("<", "", $version);
                         } else {
                             $match = "=";
-                            $version = $dependency["version"];
+                            $version = $version;
                         }
 
                         if (!version_compare($dependendencieInfo["version"], $version, $match)) {
                             $moduleInfo["dependencies"][$key]["has"] = false;
                         }
                     }
-                    
                 }
+                
+            }
+                
+            $moduleInfo["canInstall"] = true;
 
+            foreach ($moduleInfo["dependencies"] as $dependency) {
+                if (!$dependency["has"]) {
+                    $moduleInfo["canInstall"] = false;
+                }
+            }
+        }
+
+        private function getModule($moduleName = false) {
+            if ($moduleName) {
+                $moduleInfo = $this->page->modules[$moduleName];
+                $this->updateDependencies($modInfo);
                 return $moduleInfo;
             } 
 
@@ -118,6 +141,9 @@
                 }
 
             }
+
+            $this->updateDependencies($info);
+
             $info["id"] = $moduleName;
             return $info;
         }
@@ -129,9 +155,7 @@
 
             foreach ($moduleDirectories as $moduleName) {
                 if ($moduleName[0] == ".") continue;
-
                 $moduleInfoFile = $dir . $moduleName . "/module.json";
-                
                 if (file_exists($moduleInfoFile)) {
                     $info = $this->getInfo($moduleInfoFile, $moduleName, $dir);
                     $modules[$moduleName] = $info;
