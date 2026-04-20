@@ -61,8 +61,6 @@
                 "killedBy" => $killedBy,
                 "moneyRank" => $profile->getMoneyRank()->MR_desc, 
                 "rank" => $profile->getRank()->R_name, 
-                "gangID" => $profile->getGang()["id"], 
-                "gang" => $profile->getGang()["name"], 
                 "dead" => $profile->info->U_status == 0, 
                 "laston" => $profile->getTimer("laston"), 
                 "status" => $profile->getStatus(), 
