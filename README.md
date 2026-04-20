@@ -12,7 +12,7 @@ An open source game framework written in PHP using MySQL
  - Plugin Management
 	- Merge themes and plugins together
 	- Link to OpenPBBG.com
-	- Add plugin dependencies
+	- ~~Add plugin dependencies~~
   - ~~Better error handling~~
 	- ~~New  UI~~
 	- Add the abiility to set `$config["debug"]` to a user ID so that the error will only appear for that user, this would allow you to debug an error in a live enviroment without making the error public
