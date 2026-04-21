@@ -14,8 +14,38 @@
 
     class adminModule {
 
-        private function updateDependencies(&$moduleInfo) {
+        public function zipErrorToString($code) {
+            $errors = [
+                ZipArchive::ER_OK => 'No error',
+                ZipArchive::ER_MULTIDISK => 'Multi-disk zip archives not supported',
+                ZipArchive::ER_RENAME => 'Renaming temporary file failed',
+                ZipArchive::ER_CLOSE => 'Closing zip archive failed',
+                ZipArchive::ER_SEEK => 'Seek error',
+                ZipArchive::ER_READ => 'Read error',
+                ZipArchive::ER_WRITE => 'Write error',
+                ZipArchive::ER_CRC => 'CRC error',
+                ZipArchive::ER_ZIPCLOSED => 'Zip archive closed',
+                ZipArchive::ER_NOENT => 'No such file',
+                ZipArchive::ER_EXISTS => 'File already exists',
+                ZipArchive::ER_OPEN => 'Cannot open file',
+                ZipArchive::ER_TMPOPEN => 'Failure to create temporary file',
+                ZipArchive::ER_ZLIB => 'Zlib error',
+                ZipArchive::ER_MEMORY => 'Memory allocation failure',
+                ZipArchive::ER_CHANGED => 'Entry has been changed',
+                ZipArchive::ER_COMPNOTSUPP => 'Compression method not supported',
+                ZipArchive::ER_EOF => 'Premature EOF',
+                ZipArchive::ER_INVAL => 'Invalid argument',
+                ZipArchive::ER_NOZIP => 'Not a zip archive',
+                ZipArchive::ER_INTERNAL => 'Internal error',
+                ZipArchive::ER_INCONS => 'Zip archive inconsistent',
+                ZipArchive::ER_REMOVE => 'Cannot remove file',
+                ZipArchive::ER_DELETED => 'Entry has been deleted',
+            ];
 
+            return $errors[$code] ?? "Unknown error ($code)";
+        }
+
+        private function updateDependencies(&$moduleInfo) {
             
             if (!isset($moduleInfo["dependencies"])) {
                 $moduleInfo["dependencies"] = array();
@@ -81,7 +111,7 @@
         private function getModule($moduleName = false) {
             if ($moduleName) {
                 $moduleInfo = $this->page->modules[$moduleName];
-                $this->updateDependencies($modInfo);
+                $this->updateDependencies($moduleInfo);
                 return $moduleInfo;
             } 
 
@@ -229,6 +259,103 @@
             
         }
 
+        public function upgradeForm($currentModule) {
+
+            $this->html .= $this->page->buildElement("upgradeForm", array(
+                "module" => $currentModule
+            ));
+
+        }
+
+        public function method_upgrade() {
+
+            if (!isset($this->page->modules[$this->methodData->moduleName])) {
+                return $this->html .= $this->page->buildElement("error", array(
+                    "text" => "The module you are trying to upgrade does not exist"
+                ));
+            }
+        
+            $currentModule = $this->page->modules[$this->methodData->moduleName];
+            
+            $installDir = "modules/installing/";
+            $installLocation = $installDir . $currentModule["id"] . "/";
+            
+            $currentModule["schemas"] = glob("modules/installed/" . $currentModule["id"] . "/schema*.sql");
+
+
+            if (isset($_FILES["file"])) {
+
+                $moduleFile = $_FILES["file"];
+
+                $fileName = str_replace(".zip", "", $moduleFile["name"]);
+
+                
+                if ($currentModule["id"] . ".zip" != $moduleFile["name"]) {
+                    $this->html .= $this->page->buildElement("error", array(
+                        "text" => "Please provide a module in the correct format (" . $currentModule["id"] . ".zip)"
+                    ));
+                    return $this->upgradeForm($currentModule);
+                } 
+
+                if ($fileName != $this->methodData->moduleName) {
+                    $this->html .= $this->page->buildElement("error", array(
+                        "text" => "The module ID in the module.json does not match the module you are trying to upgrade"
+                    ));
+                    return $this->upgradeForm($currentModule);
+                }
+
+                if (file_exists($installLocation)) { 
+                    $this->removeDir($installLocation);
+                } else {
+                    mkdir($installLocation);
+                }
+
+                $zip = new ZipArchive;
+                $res = $zip->open($moduleFile["tmp_name"]);
+
+                if ($res === TRUE) {
+                    $zip->extractTo($installLocation);
+                    $zip->close();
+
+                    if (!file_exists($installLocation . "module.json")) {
+                        $this->removeDir($installLocation);
+                        return $this->html .= $this->page->buildElement("error", array(
+                            "text" => "Please provide a zipped with a module.json file"
+                        ));
+                    }
+
+                    $info = json_decode(file_get_contents($installLocation . "module.json"), true);
+
+                    $this->updateDependencies($info);
+
+
+                    if ($info["canInstall"] == false) {
+                        $this->removeDir($installLocation);
+                        $this->html .= $this->page->buildElement("error", array(
+                            "text" => "This module has unmet dependencies and cant be installed"
+                        ));
+                        return $this->upgradeForm($currentModule);
+                    }
+
+                    $this->installModuleCommit($fileName, $currentModule["schemas"]);
+                } else {
+
+                    /* get zip error information */
+                    $errorInfo = $this->zipErrorToString($res);
+
+                    $this->html .= $this->page->buildElement("error", array(
+                        "text" => $errorInfo
+                    ));
+                    return $this->upgradeForm($currentModule);
+                }
+            } else {
+
+                $this->upgradeForm($currentModule);
+
+            }
+
+        }
+
         public function method_install () {
 
             if (isset($this->methodData->remove)) {
@@ -255,7 +382,7 @@
 
                 if ($fileName == $moduleFile["name"]) {
                     return $this->page->buildElement("error", array(
-                        "text" => "Please provide a module in the correctFormat (moduleName.zip)"
+                        "text" => "Please provide a module in the correct format (moduleName.zip)"
                     ));
                 } 
 
@@ -270,7 +397,7 @@
 
                 $zip = new ZipArchive;
                 $res = $zip->open($moduleFile["tmp_name"]);
-
+                debug($res);exit;
                 if ($res === TRUE) {
                     $zip->extractTo($installLocation);
                     $zip->close();
@@ -297,7 +424,7 @@
 
         }
 
-        public function installModuleCommit($moduleName) {
+        public function installModuleCommit($moduleName, $existingSchemas = array()) {
 
             $installDir = "modules/installing/";
             $installLocation = $installDir . $moduleName . "/";
@@ -306,10 +433,45 @@
             $oldDir = "modules/installing/" . $moduleName;
             $newDir = "modules/installed/" . $moduleName;
 
-            $sqlFile = $installLocation . "schema.sql";
-            if (file_exists($sqlFile)) {
+            $sqlFiles = glob($installLocation . "schema*.sql");
+
+            usort($sqlFiles, function ($a, $b) {
+                // Extract the filename
+                $aName = basename($a);
+                $bName = basename($b);
+
+                // Match schema.sql or schema.X.sql
+                preg_match('/^schema(?:\.(\d+))?\.sql$/', $aName, $aMatch);
+                preg_match('/^schema(?:\.(\d+))?\.sql$/', $bName, $bMatch);
+
+                // If no number, treat as 0 (so schema.sql comes first)
+                $aNum = isset($aMatch[1]) ? (int)$aMatch[1] : 0;
+                $bNum = isset($bMatch[1]) ? (int)$bMatch[1] : 0;
+
+                return $aNum <=> $bNum;
+            });
+
+            $existingSchemas = array_map('basename', $existingSchemas);
+
+            foreach ($sqlFiles as $sqlFile) {
+                if (in_array(basename($sqlFile), $existingSchemas)) {
+                    continue;
+                }
                 $sql = file_get_contents($sqlFile);
-                if (!$this->db->query($sql)) {
+                try {
+                    $query = $this->db->query($sql);
+                } catch (Exception $e) {
+                    if (!isset($this->methodData->force)) {
+                        return $this->html .= $this->page->buildElement("continueWithError", array(
+                            "error" => array(
+                                "text" => "There was an error with the SQL when installing this module",
+                                "output" => debug($e->getMessage(), true, true)
+                            ),
+                            "id" => $moduleName
+                        ));
+                    }
+                }
+                if (!$query) {
                     if (!isset($this->methodData->force)) {
                         return $this->html .= $this->page->buildElement("continueWithError", array(
                             "error" => array(
@@ -323,6 +485,10 @@
             }
 
             $info = json_decode(file_get_contents($installLocation . "module.json"), true);
+            
+            if (file_exists($newDir)) {
+                $this->removeDir($newDir);
+            }
 
             if (@rename($oldDir, $newDir)) {
                 return $this->html .= $this->page->buildElement("success", array(

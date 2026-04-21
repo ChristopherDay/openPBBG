@@ -41,6 +41,9 @@
                         <a href="?page=admin&module=pluginManager&action=deactivate&moduleName={id}" class="text-danger bg-light-danger rounded border border-danger p-1">
                             <i class="fas fa-ban"></i> Deactivate Plugin
                         </a>
+                        <a href="?page=admin&module=pluginManager&action=upgrade&moduleName={id}" class="ms-2 text-info bg-light-info rounded border border-info p-1">
+                            <i class="fas fa-arrow-up"></i> Upgrade Plugin
+                        </a>
                     {else}
                         {#if canInstall}
                             {#if _installing}
@@ -366,9 +369,32 @@
 
         ';
 
+        public $upgradeForm = '
+            <form method="post" action="?page=admin&module=pluginManager&action=upgrade&moduleName={module.id}" enctype="multipart/form-data">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Upgrade {module.name}
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group mb-3">
+                            <label class="fw-bold mb-1">Plugin File (Zipped)</label>
+                            <input type="file" class="form-control" name="file" />
+                        </div>
+                    </div>
+                </div>
+                <div class="text-end">
+                    <button class="btn btn-primary" name="submit" type="submit" value="1">Upload</button>
+                </div>
+            </form>
+
+        ';
+
         public $moduleForm = '
             <form method="post" action="?page=admin&module=pluginManager&action=install" enctype="multipart/form-data">
                 <div class="card mb-3">
+                    <div class="card-header">
+                        Install New Plugin
+                    </div>
                     <div class="card-body">
                         <div class="form-group mb-3">
                             <label class="fw-bold mb-1">Plugin File (Zipped)</label>
