@@ -47,8 +47,20 @@
             $user = @new user();
             $round = new Round();
             $settings = new settings();
+
+            $validation = array(
+                "validateUserEmail" => $settings->loadSetting("validateUserEmail", true, 0),
+                "enableRegistration" => $settings->loadSetting("enableRegistration", true, 1),
+                "minPasswordLength" => $settings->loadSetting("minPasswordLength", true, 6),
+                "passwordRequireNumber" => $settings->loadSetting("passwordRequireNumber", true, 0),
+                "passwordRequireSpecialChar" => $settings->loadSetting("passwordRequireSpecialChar", true, 0)
+            );
             
-            if(preg_match("/^[a-zA-Z0-9]+$/", $this->methodData->username) != 1) {
+            if ($validation["enableRegistration"] == 0) {
+                $this->regError =  $this->page->buildElement('error', array(
+                    "text" => 'Registration is currently disabled'
+                ));
+            } else if(preg_match("/^[a-zA-Z0-9]+$/", $this->methodData->username) != 1) {
                 $this->regError =  $this->page->buildElement('error', array(
                     "text" => 'Please enter a valid username'
                 )); 
@@ -60,6 +72,18 @@
                 $this->regError =  $this->page->buildElement('error', array(
                     "text" => 'Your username should be atleast 3 characters long'
                 )); 
+            } else if (strlen($this->methodData->password) < $validation["minPasswordLength"]) {
+                $this->regError =  $this->page->buildElement('error', array(
+                    "text" => 'Your password should be atleast '.$validation["minPasswordLength"].' characters long'
+                )); 
+            } else if ($validation["passwordRequireNumber"] && !preg_match("/[0-9]/", $this->methodData->password)) {
+                $this->regError =  $this->page->buildElement('error', array(
+                    "text" => 'Your password should contain at least one number'
+                ));
+            } else if ($validation["passwordRequireSpecialChar"] && !preg_match("/[!@#$%^&*(),.?\":{}|<>]/", $this->methodData->password)) {
+                $this->regError =  $this->page->buildElement('error', array(
+                    "text" => 'Your password should contain at least one special character'
+                ));
             } else if (
                 !empty($this->methodData->password) && ($this->methodData->password == $this->methodData->cpassword)
             ) {

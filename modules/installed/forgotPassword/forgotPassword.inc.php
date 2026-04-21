@@ -65,9 +65,41 @@
             }
 
             if (isset($this->methodData->password) && isset($this->methodData->cpassword)) {
+                
+                $settings = new settings();
 
-                if ($this->methodData->password != $this->methodData->cpassword) {
+                $validation = array(
+                    "validateUserEmail" => $settings->loadSetting("validateUserEmail", true, 0),
+                    "enableRegistration" => $settings->loadSetting("enableRegistration", true, 1),
+                    "minPasswordLength" => $settings->loadSetting("minPasswordLength", true, 6),
+                    "passwordRequireNumber" => $settings->loadSetting("passwordRequireNumber", true, 0),
+                    "passwordRequireSpecialChar" => $settings->loadSetting("passwordRequireSpecialChar", true, 0)
+                );
+
+                 if ($validation["enableRegistration"] == 0) {
+                    $this->error("Registration is currently disabled");
+                    
+                } else if (strlen($this->methodData->password) < $validation["minPasswordLength"]) {
+                    $this->error('Your password should be atleast '.$validation["minPasswordLength"].' characters long');
+
+                } else if ($validation["passwordRequireNumber"] && !preg_match("/[0-9]/", $this->methodData->password)) {
+                    $this->error('Your password should contain at least one number');
+
+                } else if ($validation["passwordRequireSpecialChar"] && !preg_match("/[!@#$%^&*(),.?\":{}|<>]/", $this->methodData->password)) {
+                    $this->error('Your password should contain at least one special character');
+
+                } else  if ($this->methodData->password != $this->methodData->cpassword) {
                     $this->error("Passwords do not match");
+
+                } else if ($validation["passwordRequireNumber"] && !preg_match("/[0-9]/", $this->methodData->password)) {
+                    $this->error('Your password should contain at least one number');
+
+                } else if ($validation["passwordRequireSpecialChar"] && !preg_match("/[!@#$%^&*(),.?\":{}|<>]/", $this->methodData->password)) {
+                    $this->error('Your password should contain at least one special character');
+
+                } else  if ($this->methodData->password != $this->methodData->cpassword) {
+                    $this->error("Passwords do not match");
+
                 } else {
                     $new = $user->encrypt($user->info->U_id . $this->methodData->password);
                     $user->set("U_password", $new);
