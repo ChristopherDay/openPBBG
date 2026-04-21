@@ -124,15 +124,16 @@ class membershipTemplate extends template {
     public $settings = '
         <form method="post" action="?page=admin&module=membership&action=settings">
             <div class="card mb-3">
-                <div class="card-body">
-                    <div class="form-group mb-3">
-                        <label class="fw-bold mb-1">PayPal Email address</label>
-                        <input type="text" class="form-control" name="membershipLinkName" value="{membershipLinkName}" />
-                    </div>
-                    <div class="form-group mb-3">
-                        <label class="fw-bold mb-1">Currency Code (e.g. GBP or USD)</label>
-                        <input type="text" class="form-control" name="membershipName" value="{membershipName}" />
-                    </div>
+                <div class="card-header">Membership Settings</div>
+                <div class="list-group list-group-flush">
+                    <label class="list-group-item d-flex align-items-center justify-content-between">
+                        Membership Link Name
+                        <input type="text" class="form-control w-auto" name="membershipLinkName" value="{membershipLinkName}" />
+                    </label>
+                    <label class="list-group-item d-flex align-items-center justify-content-between">
+                        Membership Name
+                        <input type="text" class="form-control w-auto" name="membershipName" value="{membershipName}" />
+                    </label>
                 </div>
             </div>
             <div class="text-end">

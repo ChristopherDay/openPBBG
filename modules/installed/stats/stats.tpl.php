@@ -82,10 +82,6 @@ class statsTemplate extends template {
                                 <span class="badge">{#money cash}</span>
                             </li>
                             <li class="list-group-item">
-                                Bullets
-                                <span class="badge">{number_format bullets}</span>
-                            </li>
-                            <li class="list-group-item">
                                 {_setting "pointsName"}
                                 <span class="badge">{number_format points}</span>
                             </li>

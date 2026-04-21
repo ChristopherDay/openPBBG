@@ -397,7 +397,7 @@
 
                 $zip = new ZipArchive;
                 $res = $zip->open($moduleFile["tmp_name"]);
-                debug($res);exit;
+                
                 if ($res === TRUE) {
                     $zip->extractTo($installLocation);
                     $zip->close();

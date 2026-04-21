@@ -14,7 +14,7 @@ $(function () {
             ['insert', ['picture', 'hr', 'video']],
             ['table', ['table']]
         ],
-        height: 600,
+        height: 500,
         fontSizes: ['8', '9', '10', '11', '12', '14', '18', '24', '36', '48' , '64', '82', '150']
     });
 })

@@ -5,7 +5,7 @@ class gameSettingsTemplate extends template {
     <div class="row">
         <div class="col-md-8">
             <div class="card mb-3">
-                <h4 class="card-header">View Ranks</h4>
+                <div class="card-header">View Ranks</div>
                 <div class="card-body">
                     <table class="table table-bordered table-xs" data-sort-col="1">
                         <thead>
@@ -66,7 +66,7 @@ class gameSettingsTemplate extends template {
     public $rankForm = '
         <form method="post" action="?page=admin&module=gameSettings&action={editType}Rank&id={id}">
             <div class="card mb-3">
-                <h4 class="card-header">{ucfirst editType} Rank</h4>
+                <div class="card-header">{ucfirst editType} Rank</div>
                 <div class="card-body">
                     <div class="form-group mb-3">
                         <label class="fw-bold mb-1">Rank Name</label>
@@ -101,7 +101,7 @@ class gameSettingsTemplate extends template {
         <div class="row">
             <div class="col-md-8">
                 <div class="card mb-3">
-                    <h4 class="card-header">Money Ranks</h4>
+                    <div class="card-header">Money Ranks</div>
                     <div class="card-body">
                         <table class="table table-bordered table-xs" data-sort-col="1">
                             <thead>
@@ -159,7 +159,7 @@ class gameSettingsTemplate extends template {
 
             <form method="post" action="?page=admin&module=gameSettings&action={editType}MoneyRank&id={id}">
                 <div class="card mb-3">
-                    <h4 class="card-header">{ucfirst editType} Rank</h4>
+                    <div class="card-header">{ucfirst editType} Rank</div>
                     <div class="card-body">
                         <div class="form-group mb-3">
                             <label class="fw-bold mb-1">Rank Name</label>

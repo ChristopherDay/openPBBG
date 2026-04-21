@@ -13,8 +13,15 @@
     "adminGroup": "Pages",
     "admin": [
         {
-            "text": "Page Settings",
+            "text": "Settings",
             "method": "settings"
+        }, 
+        {
+            "text": "Page Text",
+            "method": "page"
+        }, {
+            "text": "Footer text",
+            "method": "footer"
         }
     ]
 }

@@ -270,7 +270,7 @@
             <div class="row g-3">
                 <div class="col-md-6">
                     <div class="card mb-3">
-                        <h4 class="card-header">Item Information</h4>
+                        <div class="card-header">Item Information</div>
                         <div class="card-body">
                             <div class="form-group mb-3">
                                 <label class="fw-bold mb-1">Item Name</label>
@@ -294,9 +294,9 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card mb-3">
-                        <h4 class="card-header">
+                        <div class="card-header">
                             Item Effects
-                        </h4>
+                        </div>
                         <div class="card-body">
                             <div class="effect-data" style="display: none;">
                                 {#each effectTypes}{name}.--.{type}.-.{/each}

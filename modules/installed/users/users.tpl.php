@@ -41,7 +41,7 @@
         public $userList = '
 
             <div class="card mb-3">
-                <h4 class="card-header">Current Users</h4>
+                <div class="card-header">Current Users</div>
                 <div class="card-body">
                     <table class="table table-bordered table-xs">
                         <thead>

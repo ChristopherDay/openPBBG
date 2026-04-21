@@ -3,48 +3,37 @@ class themeManagerTemplate extends template {
     public $themeOptions = '
         <form method="post" action="?page=admin&module=themeManager&action=options">
         <div class="card mb-3">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group mb-3">
-
-                            <label class="fw-bold mb-1">Game Name</label>
-                            <input type="text" class="form-control" name="game_name" value="{game_name}" />
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group mb-3">
-                            <label class="fw-bold mb-1">From Email</label>
-                            <input type="text" class="form-control" name="from_email" value="{from_email}" />
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group mb-3">
-                            <label class="fw-bold mb-1">Points Name</label>
-                            <input type="text" class="form-control" name="pointsName" value="{pointsName}" />
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group mb-3">
-                            <label class="fw-bold mb-1">Gang Name</label>
-                            <input type="text" class="form-control" name="gangName" value="{gangName}" />
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group mb-3">
-                            <label class="fw-bold mb-1">Landing Module</label>
-                            <select class="form-control" name="landingPage">
-                                {#each modules}
-                                    <option value="{id}" {#if selected}selected{/if}>
-                                        {name}
-                                    </option>
-                                {/each}
-                            </select>
-                        </div>
-                    </div>
+            <div class="card-header">Theme Options</div>
+            <div class="list-group list-group-flush">
+                <label class="list-group-item d-flex align-items-center justify-content-between">
+                    Game Name
+                    <input type="text" class="form-control w-auto" name="game_name" value="{game_name}" />
+                </label>
+                <label class="list-group-item d-flex align-items-center justify-content-between">
+                    From Email
+                    <input type="text" class="form-control w-auto" name="from_email" value="{from_email}" />
+                </label>
+                <label class="list-group-item d-flex align-items-center justify-content-between">
+                    Points Name
+                    <input type="text" class="form-control w-auto" name="pointsName" value="{pointsName}" />
+                </label>
+                <label class="list-group-item d-flex align-items-center justify-content-between">
+                    Gang Name
+                    <input type="text" class="form-control w-auto" name="gangName" value="{gangName}" />
+                </label>
+                <label class="list-group-item d-flex align-items-center justify-content-between">
+                    Landing Module
+                    <select class="form-control w-auto" name="landingPage">
+                        {#each modules}
+                            <option value="{id}" {#if selected}selected{/if}>
+                                {name}
+                            </option>
+                        {/each}
+                    </select>
+                </div>
                 </div>
                 <div class="text-end">
-                    <button class="btn btn-default" name="submit" type="submit" value="1">Save</button>
+                    <button class="btn btn-primary" name="submit" type="submit" value="1">Save</button>
                 </div>
             </form>
         ';

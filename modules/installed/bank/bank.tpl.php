@@ -5,12 +5,16 @@ class bankTemplate extends template {
     public $options = '
         <form method="post" action="#">
             <div class="card mb-3">
-                <h4 class="card-header">Bank Settings</h4>
-                <div class="card-body">
-                    <div class="form-group mb-3">
-                        <label class="fw-bold mb-1">Deposit tax (%)</label>
-                        <input type="text" class="form-control" name="bankTax" value="{bankTax}" />
-                    </div>
+                <div class="card-header">Bank Settings</div>
+                <div class="list-group list-group-flush">
+
+                    <label class="list-group-item d-flex align-items-center justify-content-between">
+                        Deposit tax (%)
+                        <div class="input-group float-end" style="width: 150px;">
+                            <input type="text" class="form-control form-control-sm d-inline w-25 float-end" name="bankTax" value="{bankTax}" />
+                            <span class="input-group-text">%</span>
+                        </div>
+                    </label>
                 </div>
             </div>
             <div class="text-end">
