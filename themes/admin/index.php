@@ -26,12 +26,12 @@ if (!class_exists("mainTemplate")) {
 	<link rel="stylesheet" href="themes/{_theme}/3rdparty/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" />
 	<link rel="stylesheet" href="themes/{_theme}/3rdparty/summernote/summernote.css" />
 	<link rel="stylesheet" href="themes/{_theme}/3rdparty/codemirror/codemirror.min.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+	<link rel="stylesheet" href="themes/{_theme}/3rdparty/fontawesome/all.css" />
 	{#if moduleCSSFile}
-	<link href="{moduleCSSFile}" rel="stylesheet" />
+		<link href="{moduleCSSFile}" rel="stylesheet" />
 	{/if}
 	{#each CSSFiles}
-	<link href="{.}" rel="stylesheet" />
+		<link href="{.}" rel="stylesheet" />
 	{/each}
 	<title>{game_name} - {page}</title>
 </head>
