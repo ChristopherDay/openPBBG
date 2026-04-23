@@ -62,10 +62,29 @@
             $return .= '</p>';
             
             $return .= '</pre>';
-            
+       
             $this->log(json_encode($errorArray), $major);
-                
-            if (!$config["debug"] && $major) {
+            if ($config["debug"] === true) {
+                if ($major) {
+                    $this->page($return);
+                }  else {
+                    echo $return;
+                }
+            } else if (intval($config["debug"]) && isset($_SESSION["userID"]) && $_SESSION["userID"] == $config["debug"]) {
+                if ($major) {
+                    $this->page($return);
+                }  else {
+                    echo $return;
+                }
+
+            } else if (is_array($config["debug"]) && isset($_SESSION["userID"]) && in_array($_SESSION["userID"], $config["debug"])) {
+                if ($major) {
+                    $this->page($return);
+                }  else {
+                    echo $return;
+                }
+              
+            } else if ($major) {
                 $return = '<p>An unexpected error occurred while loading this page.</p>
                 <p>
                   If you’re a developer, you can enable debug mode to see the full error details.
@@ -82,15 +101,7 @@
 
                 $this->page($return);
                 
-            } else if ($config["debug"]) {
-                /* check to  see  if its a 500 error if so show the page */
-                if ($major) {
-                    $this->page($return);
-                }  else {
-                    echo $return;
-                }
             }
-            
             
         }
 
